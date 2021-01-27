@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import main.ObjSql;
+import model.Cliente;
 import model.Dipendenti;
 
 public class DipendentiDao {
@@ -56,6 +57,49 @@ public class DipendentiDao {
 		}
 		
 		return dipendente;
+	}
+	
+	public List<Dipendenti> findBykv(String k,String v) {
+		String[]allowed = {"id","admin", "nome", "cognome", "telefono"};
+		List<Dipendenti> dipendenti = new ArrayList<>();
+
+		boolean isAllowed=false;
+		for(String check: allowed) {
+			if(k.equals(check)) {
+				isAllowed=true;
+				break;
+			}
+		}
+		
+		if(!isAllowed) {
+			return dipendenti;
+		}
+
+
+		Object [] campiString = {v};
+		ObjSql connettore = new ObjSql();
+		String sql = "SELECT `id`, `nome`, `cognome`, `telefono`,`admin` FROM `dipendente` "
+				+ "WHERE `"+k+"`=?";
+		System.out.println(sql);
+		System.out.println(v);
+		
+		boolean resp = connettore.sql(sql, campiString);
+		
+		List<Object> rsp = connettore.getResponse();
+		if(resp && rsp.size()>0) {
+			for(int i=0;i<rsp.size();i++) {
+				Object[] clienteDb = (Object[]) rsp.get(i);
+				Dipendenti cliente = new Dipendenti();
+				cliente.setMatricola((int)clienteDb[0]);
+				cliente.setNome((String)clienteDb[1]);
+				cliente.setCognome((String)clienteDb[2]);
+				cliente.setTelefono((String)clienteDb[3]);
+				cliente.setAdmin((boolean)clienteDb[4]);
+				dipendenti.add(cliente);
+			}
+		}
+		
+		return dipendenti;
 	}
 	
 	public List<Dipendenti> findAll() {

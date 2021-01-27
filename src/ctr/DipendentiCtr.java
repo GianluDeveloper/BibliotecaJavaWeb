@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.DipendentiDao;
+import model.Cliente;
 import model.Dipendenti;
 
 @WebServlet("Dipendenti")
@@ -33,6 +34,8 @@ public class DipendentiCtr extends HttpServlet{
 			this.remove(request, response);
 		}else if(azione.equals("findById")) {
 			this.findById(request, response);
+		}else if(azione.equals("findBykv")) {
+			this.findBykv(request, response);
 		}else if(azione.equals("findAll")) {
 			this.findAll(request, response);
 		}else {
@@ -71,7 +74,7 @@ public class DipendentiCtr extends HttpServlet{
 		this.doGet(request, response);
 	}
 	private void update(HttpServletRequest request,HttpServletResponse response) throws IOException, ServletException {
-		String matricolaget = request.getParameter("matricola");
+		String matricolaget = request.getParameter("id");
 		String nome = request.getParameter("nome");
 		String cognome = request.getParameter("cognome");
 		String telefono = request.getParameter("telefono");
@@ -132,6 +135,15 @@ public class DipendentiCtr extends HttpServlet{
 			response.getWriter().append("id non fornito");
 		}
 		
+	}
+	private void findBykv(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+		String k = request.getParameter("k");
+		String v = request.getParameter("v");
+		if(k!=null&&v!=null) {
+			List<Dipendenti> res = this.dipendentiDao.findBykv(k,v);
+			request.getSession().setAttribute("lista", res);
+			request.getRequestDispatcher("findAllDipendenti.jsp").forward(request, response);
+		}
 	}
 	
 	private void findAll(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {

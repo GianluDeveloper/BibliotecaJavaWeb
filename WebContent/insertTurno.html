@@ -1,18 +1,12 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Inserisci Turno</title>
-</head>
-<body>
-<h1>Inserisci Turno</h1>
-<form method="POST" action="Turni">
-	idDipendente: <input type="number" name="idDipendente"/><br/>
-	data_inizio: <input type="date" name="data_inizio"/><br/>
-	data_fine: <input type="date" name="data_fine"/><br/>
+<div>
+<h2>Inserisci Turno</h2>
+<div>
+<form method="POST" action="#"  data-action="Turni:insert" onsubmit="return handleForm(this)">
+	idDipendente: <input type="number" name="idDipendente" required/><br/>
+	data_inizio: <input type="date" name="data_inizio" required/><br/>
+	data_fine: <input type="date" name="data_fine" required/><br/>
 	<input type="hidden" name="azione" value="insert"/>
 	<br/><input type="submit" value="Invia"/>
 </form>
-
-</body>
-</html>
+</div>
+</div>

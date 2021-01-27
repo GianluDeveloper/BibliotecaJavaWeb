@@ -1,38 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<%@ page import="java.util.List,dao.LibriDao,model.Libri" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-<style>#customers {
-  font-family: Arial, Helvetica, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-}
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-#customers td, #customers th {
-  border: 1px solid #ddd;
-  padding: 8px;
-}
+<%@ page import="java.util.List,java.util.ArrayList" %>
 
-#customers tr:nth-child(even){background-color: #f2f2f2;}
 
-#customers tr:hover {background-color: #ddd;}
-
-#customers th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;
-  background-color: #4CAF50;
-  color: white;
-}</style>
-</head>
-<body>
-<jsp:include page="header.jsp"></jsp:include>
-
-<table id="customers">
+<table>
 <tr>
 	<th>idLibro</th>
 	<th>numPagine</th>
@@ -44,33 +17,30 @@
 	<th>isbn</th>
 	<th>casaEditrice</th>
 </tr>
-<%
-List<Libri> libri = new LibriDao().findAll();
-
-for(int i = 0;i<libri.size();i++){
-	 Libri d = libri.get(i);
-	 int idLibro=d.getIdLibro(),numPagine=d.getNumPagine(),anno=d.getAnno(),posizione=d.getPosizione();
-	 String titolo=d.getTitolo(), genere=d.getGenere(), autore=d.getAutore(), 
-			 isbn=d.getIsbn(), casaEditrice=d.getCasaEditrice();
-	 
-	 %>
-	<tr>
-	 <td><%=idLibro %></td>
-	 <td><%=numPagine %></td>
-	 <td><% out.print(anno); %></td>
-	 <td><%=posizione %></td>
-	 <td><%=titolo %></td>
-	 <td><%=genere %></td>
-	 <td><%=autore %></td>
-	 <td><%=isbn %></td>
-	 <td><%=casaEditrice %></td>
-	</tr>
-	 <% 
-	
-}
-%>
+<c:forEach items="${lista}" var="entry">
+        <tr>
+		<td>${entry.idLibro}</td>
+		<td>${entry.numPagine}</td>
+		<td>${entry.anno}</td>
+		<td>${entry.posizione}</td>
+		<td>${entry.titolo}</td>
+		<td>${entry.genere}</td>
+		<td>${entry.autore}</td>
+		<td>${entry.isbn}</td>
+		<td>${entry.casaEditrice}</td>
+		<td>
+      <a
+        href="#${pageContext.request.contextPath}/update.jsp?type=Libri&id=${entry.idLibro }"
+        onclick="updateLink(this)"
+        ><em class="fa fa-edit fa-fw"></em
+      ></a>
+    </td>
+    <td>
+      <a data-link="LibriAll" data-action="stop" href ="#${pageContext.request.contextPath}/Libri?azione=remove&id=${entry.idLibro }"
+        onclick="return remove(this)" ><em class="fa fa-trash-alt fa-fw"></em
+      ></a>
+    </td>
+    	</tr>
+</c:forEach>
 </table>
-<jsp:include page="footer.jsp"></jsp:include>
 
-</body>
-</html>

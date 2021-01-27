@@ -22,6 +22,16 @@ public class JavaDate {
 		
 		return String.join("/", newTmp);
 	}
+	public String toWebFormat(String input) {
+		String[] tmp = input.split("/");
+		String[] newTmp = new String[tmp.length];
+		int counter=0;
+		for(int i = tmp.length-1;i>=0;i--) {
+			newTmp[counter++]=tmp[i];
+		}
+		
+		return String.join("-", newTmp);
+	}
 	public java.sql.Date convert(String giorno, String mese, String anno) {
 		
 

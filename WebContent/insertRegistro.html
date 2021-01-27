@@ -1,21 +1,15 @@
-<!DOCTYPE html>
-<html lang="it">
-<head>
-<meta charset="UTF-8">
-<title>Inserisci RegistroLibri</title>
-</head>
-<body>
-<h1>Inserisci RegistroLibri</h1>
-<form method="POST" action="RegistroLibri">
-	idLibro: <input type="number" name="idLibro"/><br/>
-	idCliente: <input type="number" name="idCliente"/><br/>
-	idDipendente: <input type="number" name="idDipendente"/><br/>
-	data_prestito: <input type="date" name="data_prestito"/><br/>
-	data_scadenza: <input type="date" name="data_scadenza"/><br/>
-	data_rientro: <input type="date" name="data_rientro"/><br/>
+<div>
+<h2>Inserisci Registro Libri</h2>
+<div>
+<form method="POST" action="#"  data-action="RegistroLibri:insert" onsubmit="return handleForm(this)">
+	idLibro: <input type="number" name="idLibro" required/><br/>
+	idCliente: <input type="number" name="idCliente" required/><br/>
+	idDipendente: <input type="number" name="idDipendente" required/><br/>
+	data_prestito: <input type="date" name="data_prestito" required/><br/>
+	data_scadenza: <input type="date" name="data_scadenza" required/><br/>
+	data_rientro: <input type="date" name="data_rientro" required/><br/>
 	<input type="hidden" name="azione" value="insert"/>
 	<br/><input type="submit" value="Invia"/>
 </form>
-
-</body>
-</html>
+</div>
+</div>

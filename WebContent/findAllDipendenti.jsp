@@ -2,19 +2,12 @@
     pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<%@ page import="java.util.List,java.util.ArrayList, model.Dipendenti" %>
-<%-- <!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>FindAll Dipendenti</title>
-</head>
-<jsp:include page="header.jsp"></jsp:include>
-<body>
- --%>
+<%@ page import="java.util.List,java.util.ArrayList" %>
+
+
 <table>
 <tr>
-	<th>matricola</th>
+	<th>idDipendente</th>
 	<th>nome</th>
 	<th>cognome</th>
 	<th>telefono</th>
@@ -31,19 +24,16 @@
 		<td>${entry.admin}</td>
 		<td>
       <a
-        href="${pageContext.request.contextPath}/update.jsp?type=Dipendenti&id=${entry.matricola }"
+        href="#${pageContext.request.contextPath}/update.jsp?type=Dipendenti&id=${entry.matricola }"
+        onclick="updateLink(this)"
         ><em class="fa fa-edit fa-fw"></em
       ></a>
     </td>
     <td>
-      <a data-link="Dipendente" data-action="stop" href ="#${pageContext.request.contextPath}/Dipendenti?azione=remove&id=${entry.matricola }"
+      <a data-link="DipendenteAll" data-action="stop" href ="#${pageContext.request.contextPath}/Dipendenti?azione=remove&id=${entry.matricola }"
         onclick="return remove(this)" ><em class="fa fa-trash-alt fa-fw"></em
       ></a>
     </td>
     	</tr>
 </c:forEach>
 </table>
-<%-- <jsp:include page="footer.jsp"></jsp:include>
-
-</body>
-</html> --%>

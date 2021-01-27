@@ -1,24 +1,19 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>inserisci libro</title>
-</head>
-<body>
-<h1>Inserisci Libro</h1>
-
-<form method="POST" action="Libri">
-	numero pagine: <input type="number" name="numPagine"/><br/>
-	anno: <input type="number" name="anno"/><br/>
-	posizione: <input type="number" name="posizione"/><br/>
-	titolo: <input type="text" name="titolo"/><br/>
-	genere: <input type="text" name="genere"/><br/>
-	autore: <input type="text" name="autore"/><br/>
-	isbn: <input type="text" name="isbn"/><br/>
-	casaEditrice: <input type="text" name="casaEditrice"/><br/>
-	<input type="hidden" name="azione" value="insert"/>
+<div>
+<h2>Inserisci Libro</h2>
+<div>
+<form method="POST"  action="#" data-action="Libri:insert" onsubmit="return handleForm(this)">
+	numero pagine: <input type="number" name="numPagine" required/><br/>
+	anno: <input type="number" name="anno" required/><br/>
+	posizione: <input type="number" name="posizione" required/><br/>
+	titolo: <input type="text" name="titolo" required /><br/>
+	genere: <input type="text" name="genere" required/><br/>
+	autore: <input type="text" name="autore" required/><br/>
+	isbn: <input type="text" name="isbn" required/><br/>
+	casaEditrice: <input type="text" name="casaEditrice" required/><br/>
+	<input type="hidden" name="azione" value="insert" />
 	<br/><input type="submit" value="Invia"/>
 </form>
 
-</body>
-</html>
+</div>
+
+</div>

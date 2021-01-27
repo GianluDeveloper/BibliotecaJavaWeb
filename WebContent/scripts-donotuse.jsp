@@ -1,11 +1,7 @@
 <%@ page language="java" contentType="application/javascript; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
-
 const asideClick = (e) => {
-  console.log(e);
   const href = e.href;
-  console.log(href);
   if (href != undefined) {
     if (href.match(/remove/)) {
       e.preventDefault();
@@ -17,8 +13,8 @@ const asideClick = (e) => {
     }
   }
   const elem = e.target.getAttribute("data-link");
-  console.log(elem);
   document.querySelector("aside").style.display = "inline";
+
   updateMain(elem);
 };
 
@@ -49,7 +45,7 @@ const updateLink = async (e) => {
 const gestisciForm = (e) => {
   console.log(e);
   const inputs = e.querySelectorAll("input");
-  const action = e.action;
+  // const action = e.action;
   if (inputs != undefined) {
     const data = "";
     let isFirst = true;
@@ -62,17 +58,20 @@ const gestisciForm = (e) => {
           isFirst = false;
           data = +"&";
         }
-        if (k == "admin") {
-          if (p.checked)
-            data += encodeURIComponent(k) + "=" + encodeURIComponent(v);
-        } else {
-          data += encodeURIComponent(k) + "=" + encodeURIComponent(v);
-        }
+        data += encodeURIComponent(k) + "=" + encodeURIComponent(v);
       }
     });
     return false;
-  }
-  return false;
+  //   fetch(action, {
+  //     method: "post",
+  //     headers: {
+  //       Accept: "application/json, text/plain, */*",
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: data,
+  //   }).then((p) => console.log(p));
+  // }
+  // return false;
 };
 window.ActionName = "";
 
@@ -92,22 +91,11 @@ const handleForm = (e) => {
       const el = inputs[i];
       const k = el.name;
       const v = el.value;
-
-      const toAppend = encodeURIComponent(k) + "=" + encodeURIComponent(v);
-
-      if (k == "admin") {
-        if (el.checked) {
-          if (i > 0) {
-            data += "&";
-          }
-          data += toAppend;
-        }
-      } else {
-        if (i > 0) {
-          data += "&";
-        }
-        data += toAppend;
+      if (i > 0) {
+        data += "&";
       }
+      const toAppend = encodeURIComponent(k) + "=" + encodeURIComponent(v);
+      data += toAppend;
       dataObj[k] = v;
     }
     console.log(data);
@@ -137,10 +125,8 @@ const handleForm = (e) => {
         },
         body: data,
       }).then(() => {
-        let azioneFatta = "inserito";
-        if (azione == "update") azioneFatta = "aggiornato";
         document.querySelector("main").innerHTML =
-          "<h2>" + url + " " + azioneFatta + " con successo</h2>";
+          "<h2>" + url + " inserito con successo</h2>";
       });
     }
   }
@@ -148,93 +134,52 @@ const handleForm = (e) => {
 };
 const updateMain = async (actionName) => {
   document.querySelector("aside").style.display = "inline";
-
+  console.log("doing " + actionName);
   let data;
   if (actionName == "Home") {
     document.querySelector("aside").style.display = "none";
   } else if (actionName == "Dipendente") {
     data = await fetch(
-      "${pageContext.request.contextPath}/insertDipendente.html?_=" +
-        new Date().getTime()
+      "/BibliotecaServlet/insertDipendente.html?_=" + new Date().getTime()
     );
   } else if (actionName == "DipendenteFind") {
     data = await fetch(
-      "${pageContext.request.contextPath}/findBykv.jsp?type=Dipendente&_=" +
+      "/BibliotecaServlet/findBykv.jsp?type=Dipendente&_=" +
         new Date().getTime()
     );
   } else if (actionName == "DipendenteAll") {
     data = await fetch(
-      "${pageContext.request.contextPath}/Dipendenti?azione=findAll&_=" +
-        new Date().getTime()
-    );
-  } else if (actionName == "Libri") {
-    data = await fetch(
-      "${pageContext.request.contextPath}/insertLibro.html?_=" +
-        new Date().getTime()
-    );
-  } else if (actionName == "LibriFind") {
-    data = await fetch(
-      "${pageContext.request.contextPath}/findBykv.jsp?type=Libri&_=" +
-        new Date().getTime()
-    );
-  } else if (actionName == "LibriAll") {
-    data = await fetch(
-      "${pageContext.request.contextPath}/Libri?azione=findAll&_=" +
-        new Date().getTime()
-    );
-  } else if (actionName == "RegistroLibri") {
-    data = await fetch(
-      "${pageContext.request.contextPath}/insertRegistro.html?_=" +
-        new Date().getTime()
-    );
-  } else if (actionName == "RegistroLibriFind") {
-    data = await fetch(
-      "${pageContext.request.contextPath}/findBykv.jsp?type=RegistroLibri&_=" +
-        new Date().getTime()
-    );
-  } else if (actionName == "RegistroLibriAll") {
-    data = await fetch(
-      "${pageContext.request.contextPath}/RegistroLibri?azione=findAll&_=" +
-        new Date().getTime()
-    );
-  } else if (actionName == "Turni") {
-    data = await fetch(
-      "${pageContext.request.contextPath}/insertTurno.html?_=" +
-        new Date().getTime()
-    );
-  } else if (actionName == "TurniFind") {
-    data = await fetch(
-      "${pageContext.request.contextPath}/findBykv.jsp?type=Turni&_=" +
-        new Date().getTime()
-    );
-  } else if (actionName == "TurniAll") {
-    data = await fetch(
-      "${pageContext.request.contextPath}/Turni?azione=findAll&_=" +
-        new Date().getTime()
+      "/BibliotecaServlet/Dipendenti?azione=findAll&_=" + new Date().getTime()
     );
   } else if (actionName == "Cliente") {
     data = await fetch(
-      "${pageContext.request.contextPath}/insertCliente.html?_=" +
-        new Date().getTime()
+      "/BibliotecaServlet/insertCliente.html?_=" + new Date().getTime()
     );
   } else if (actionName == "ClienteFind") {
     data = await fetch(
-      "${pageContext.request.contextPath}/findBykv.jsp?type=Cliente&_=" +
-        new Date().getTime()
+      "/BibliotecaServlet/findBykv.jsp?type=Cliente&_=" + new Date().getTime()
     );
   } else if (actionName == "ClienteAll") {
     data = await fetch(
-      "${pageContext.request.contextPath}/Cliente?azione=findAll&_=" +
-        new Date().getTime()
+      "/BibliotecaServlet/Cliente?azione=findAll&_=" + new Date().getTime()
     );
   } else {
-    return;
+    // data = await fetch(
+    //   "/BibliotecaServlet/insertDipendente.html?_=" + new Date().getTime()
+    // );
   }
 
   const html = await data.text();
   window.ActionName = actionName;
   //html=html.replace("{var}",actionName);
   document.querySelector("main").innerHTML = html;
+  // const state = { page_id: 1, user_id: 5 };
+  // const title = "";
+  // const url = "hello-world.html";
+  // document.querySelectorAll("main a").forEach((d) => {
+  //    d.addEventListener("click", asideClick);
+  //  });
+  // history.pushState(state, title, url);
 };
 
 (() => {
@@ -242,7 +187,4 @@ const updateMain = async (actionName) => {
     d.addEventListener("click", asideClick);
   });
 })();
-
-
-
 

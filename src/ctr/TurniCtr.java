@@ -37,6 +37,8 @@ public class TurniCtr extends HttpServlet{
 			this.findById(request, response);
 		}else if(azione.equals("findAll")) {
 			this.findAll(request, response);
+		}else if(azione.equals("findBykv")) {
+			this.findBykv(request, response);
 		}else {
 			response.getWriter().append("Azione non riconosciuta.");
 		}
@@ -110,22 +112,21 @@ public class TurniCtr extends HttpServlet{
 		}
 		
 	}
+	private void findBykv(HttpServletRequest request,HttpServletResponse response) throws IOException, ServletException {
+		String k = request.getParameter("k");
+		String v = request.getParameter("v");
+		if(k!=null&&v!=null) {
+			List<Turni> res = turniDao.findBykv(k,v);
+			request.getSession().setAttribute("turni", res);
+			request.getRequestDispatcher("findAllTurni.jsp").forward(request, response);
+		}
+		
+		
+	}
 	private void findAll(HttpServletRequest request,HttpServletResponse response) throws IOException, ServletException {
 		List<Turni> res = turniDao.findAll();
-		String html="<table>";
-		for(Turni c : res) {
-			html+="<tr>"+
-					"<td><button title='modifica questo utente' onclick='window.location.href=\"?idTurno="+c.getIdTurni()+"&idDipendente="+
-					c.getIdDipendente()+"&data_inizio="+c.getData_inizio()+"&data_fine="+c.getData_fine()+
-					"\"'>Modifica utente "+c.getIdTurni()+"</a></td>"+
-					"<td>"+c.getIdDipendente()+"</td>"+
-					"<td>"+c.getData_inizio()+"</td>"+
-					"<td>"+c.getData_fine()+"</td><td>"
-					+ "<button onclick='window.location.href=\"?azione=remove&id="+c.getIdTurni()
-					+"\"'>Rimuovi questo utente</button></tr>";
-		}
-		html+="</table>";
-		request.getSession().setAttribute("html", html);
+		
+		request.getSession().setAttribute("turni", res);
 		request.getRequestDispatcher("findAllTurni.jsp").forward(request, response);
 	}
 }

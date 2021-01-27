@@ -33,41 +33,40 @@
           <div class="azione">
             <a href="#" data-link="Cliente">Inserisci cliente</a>
           </div>
-<!--           <div class="azione"><a href="#">Aggiorna cliente</a></div> -->
           <div class="azione"><a href="#" data-link="ClienteFind">Trova clienti</a></div>
           <div class="azione"><a href="#" data-link="ClienteAll">Lista clienti</a></div>
         </div>
         <div class="oggettoAside">
           <h4>Dipendenti</h4>
           <div class="azione">
-            <a href="#">Inserisci Dipendente</a>
+            <a href="#"  data-link="Dipendente">Inserisci Dipendente</a>
           </div>
 <!--           <div class="azione"><a href="#">Aggiorna Dipendente</a></div> -->
-          <div class="azione"><a href="#">Trova Dipendenti</a></div>
-          <div class="azione"><a href="#">Lista Dipendenti</a></div>
+          <div class="azione"><a href="#"  data-link="DipendenteFind">Trova Dipendenti</a></div>
+          <div class="azione"><a href="#"  data-link="DipendenteAll">Lista Dipendenti</a></div>
         </div>
         <div class="oggettoAside">
           <h4>Libri</h4>
-          <div class="azione"><a href="#">Inserisci Libro</a></div>
+          <div class="azione"><a href="#" data-link="Libri">Inserisci Libro</a></div>
 <!--           <div class="azione"><a href="#">Aggiorna Libro</a></div> -->
-          <div class="azione"><a href="#">Trova Libri</a></div>
-          <div class="azione"><a href="#">Lista Libri</a></div>
+          <div class="azione"><a href="#" data-link="LibriFind">Trova Libri</a></div>
+          <div class="azione"><a href="#" data-link="LibriAll">Lista Libri</a></div>
         </div>
         <div class="oggettoAside">
           <h4>Registro Libri</h4>
           <div class="azione">
-            <a href="#">Inserisci Registro Libri</a>
+            <a href="#"  data-link="RegistroLibri">Inserisci Registro Libri</a>
           </div>
 <!--           <div class="azione"><a href="#">Aggiorna Registro Libri</a></div> -->
-          <div class="azione"><a href="#">Trova Registri Libri</a></div>
-          <div class="azione"><a href="#">Lista Registri Libri</a></div>
+          <div class="azione"><a href="#"  data-link="RegistroLibriFind">Trova Registri Libri</a></div>
+          <div class="azione"><a href="#"  data-link="RegistroLibriAll">Lista Registri Libri</a></div>
         </div>
         <div class="oggettoAside">
           <h4>Turni</h4>
-          <div class="azione"><a href="#">Inserisci Turno</a></div>
+          <div class="azione"><a href="#" data-link="Turni">Inserisci Turno</a></div>
 <!--           <div class="azione"><a href="#">Aggiorna Turno</a></div> -->
-          <div class="azione"><a href="#">Trova Turni</a></div>
-          <div class="azione"><a href="#">Lista Turni</a></div>
+          <div class="azione"><a href="#" data-link="TurniFind">Trova Turni</a></div>
+          <div class="azione"><a href="#" data-link="TurniAll">Lista Turni</a></div>
         </div>
       </aside>
       <main>
@@ -97,7 +96,7 @@
         <section>
           <h2>Dipendenti</h2>
           <div class="azione">
-            <a href="#" 
+            <a href="#"  data-link="Dipendente"
               ><em class="fa fa-plus fa-fw"></em>&nbsp;Inserisci dipendente</a
             >
           </div>
@@ -107,12 +106,12 @@
 <!--             > -->
 <!--           </div> -->
           <div class="azione">
-            <a href="#"
+            <a href="#" data-link="DipendenteFind"
               ><em class="fa fa-search fa-fw"></em>&nbsp;Trova dipendenti</a
             >
           </div>
           <div class="azione">
-            <a href="#" data-link="Dipendente"
+            <a href="#" data-link="DipendenteAll"
               ><em class="fa fa-list fa-fw"></em>&nbsp;Lista dipendenti</a
             >
           </div>
@@ -120,7 +119,7 @@
         <section>
           <h2>Turni</h2>
           <div class="azione">
-            <a href="#"
+            <a href="#"  data-link="Turni"
               ><em class="fa fa-plus fa-fw"></em>&nbsp;Inserisci turno</a
             >
           </div>
@@ -130,18 +129,18 @@
 <!--             > -->
 <!--           </div> -->
           <div class="azione">
-            <a href="#"
+            <a href="#"  data-link="TurniFind"
               ><em class="fa fa-search fa-fw"></em>&nbsp;Trova turni</a
             >
           </div>
           <div class="azione">
-            <a href="#"><em class="fa fa-list fa-fw"></em>&nbsp;Lista turni</a>
+            <a href="#"  data-link="TurniAll"><em class="fa fa-list fa-fw"></em>&nbsp;Lista turni</a>
           </div>
         </section>
         <section>
           <h2>Libri</h2>
           <div class="azione">
-            <a href="#"
+            <a href="#" data-link="Libri" 
               ><em class="fa fa-plus fa-fw"></em>&nbsp;Inserisci libro</a
             >
           </div>
@@ -151,18 +150,18 @@
 <!--             > -->
 <!--           </div> -->
           <div class="azione">
-            <a href="#"
+            <a href="#" data-link="LibriFind"
               ><em class="fa fa-search fa-fw"></em>&nbsp;Trova libri</a
             >
           </div>
           <div class="azione">
-            <a href="#"><em class="fa fa-list fa-fw"></em>&nbsp;Lista libri</a>
+            <a href="#" data-link="LibriAll" ><em class="fa fa-list fa-fw"></em>&nbsp;Lista libri</a>
           </div>
         </section>
         <section>
           <h2>Registro Libri</h2>
           <div class="azione">
-            <a href="#"
+            <a href="#"  data-link="RegistroLibri"
               ><em class="fa fa-plus fa-fw"></em>&nbsp;Inserisci Registro
               Libri</a
             >
@@ -174,12 +173,12 @@
 <!--             > -->
 <!--           </div> -->
           <div class="azione">
-            <a href="#"
+            <a href="#"  data-link="RegistroLibriFind"
               ><em class="fa fa-search fa-fw"></em>&nbsp;Trova Registri Libri</a
             >
           </div>
           <div class="azione">
-            <a href="#"
+            <a href="#"  data-link="RegistroLibriAll" 
               ><em class="fa fa-list fa-fw"></em>&nbsp;Lista Registri Libri</a
             >
           </div>

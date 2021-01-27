@@ -1,38 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.List,model.Registro" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-<style>#customers {
-  font-family: Arial, Helvetica, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-}
 
-#customers td, #customers th {
-  border: 1px solid #ddd;
-  padding: 8px;
-}
-
-#customers tr:nth-child(even){background-color: #f2f2f2;}
-
-#customers tr:hover {background-color: #ddd;}
-
-#customers th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;
-  background-color: #4CAF50;
-  color: white;
-}</style>
-</head>
-<body>
-<jsp:include page="header.jsp"></jsp:include>
-
-<table id="customers">
+<div><h2>Registro Libri</h2>
+<table>
 <tr>
 	<th>id</th>
 	<th>idLibro</th>
@@ -41,6 +12,8 @@
 	<th>data_prestito</th>
 	<th>data_scadenza</th>
 	<th>data_rientro</th>
+	<th>Modifica</th>
+	<th>Elimina</th>
 </tr>
 <%
 List<Registro> lista = (List<Registro>)request.getSession().getAttribute("registri");
@@ -58,13 +31,24 @@ for(Registro d : lista){
 		<td><%=data_prestito %></td>
 		<td><%=data_scadenza %></td>
 		<td><%=data_rientro %></td>
+		<td>
+      <a
+        href="#${pageContext.request.contextPath}/update.jsp?type=RegistroLibri&id=<%=id %>"
+        onclick="updateLink(this)"
+        ><em class="fa fa-edit fa-fw"></em
+      ></a>
+    </td>
+    <td>
+      <a data-link="RegistroLibriAll" data-action="stop" href ="#${pageContext.request.contextPath}/RegistroLibri?azione=remove&id=<%=id %>"
+        onclick="return remove(this)" ><em class="fa fa-trash-alt fa-fw"></em
+      ></a>
+    </td>
 	</tr>
 	
 	<% 
 }
 %>
 </table>
-<jsp:include page="footer.jsp"></jsp:include>
+</div>
 
-</body>
-</html>
+
