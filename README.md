@@ -14,6 +14,10 @@ Tecnologie usate:
 Esempio live:
 <https://gianlu.dev/JavaBiblioteca/>
 
+***
+
 ![Java Biblioteca](ScreenJavaBiblioteca.png)
+
+***
 
 ![Java Biblioteca Insert](ScreenJavaBibliotecaInsert.png)
