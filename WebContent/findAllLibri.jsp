@@ -16,6 +16,8 @@
 	<th>autore</th>
 	<th>isbn</th>
 	<th>casaEditrice</th>
+	<th>Modifica</th>
+	<th>Elimina</th>
 </tr>
 <c:forEach items="${lista}" var="entry">
         <tr>
