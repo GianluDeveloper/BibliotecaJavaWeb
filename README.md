@@ -4,6 +4,8 @@ Progetto esemplificativo con backend Java.
 
 Tecnologie usate:
 - Servlet Java
+- JDBC
+- JSTL
 - MySQL
 - Docker & Docker-Compose
 - CSS3 & CSS Grid
