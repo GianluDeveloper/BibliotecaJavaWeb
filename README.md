@@ -3,7 +3,7 @@
 Progetto esemplificativo con backend Java. 
 
 Tecnologie usate:
-- Servlet Java
+- Servlet Java JBoss/Wildfly
 - JDBC
 - JSTL
 - MySQL
