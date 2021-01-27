@@ -2,7 +2,11 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.List,model.Registro" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<div>
 
+
+<h2>Lista Turni</h2>
+<div>
 <table>
 <tr>
 	<th>idTurni</th>
@@ -33,3 +37,7 @@
     	</tr>
 </c:forEach>
 </table>
+</div>
+</div>
+
+

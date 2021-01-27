@@ -12,6 +12,11 @@
 <jsp:include page="header.jsp"></jsp:include>
 <body>
  --%>
+<div>
+
+
+<h2>Lista Clienti</h2>
+<div>
 <table>
 <tr>
 	<th>idCliente</th>
@@ -42,7 +47,6 @@
     	</tr>
 </c:forEach>
 </table>
-<%-- <jsp:include page="footer.jsp"></jsp:include>
+</div>
+</div>
 
-</body>
-</html> --%>

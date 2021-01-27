@@ -22,6 +22,18 @@ public class JavaDate {
 		
 		return String.join("/", newTmp);
 	}
+	public String[] handleWebFormatArray(String input) {
+		String[] tmp = input.split("-");
+		String[] newTmp = new String[tmp.length];
+		int counter=0;
+		for(int i = tmp.length-1;i>=0;i--) {
+			newTmp[counter++]=tmp[i];
+		}
+//		newTmp[0]=tmp[2];
+//		newTmp[1]=tmp[1];
+//		newTmp[2]=tmp[0];
+		return newTmp;
+	}
 	public String toWebFormat(String input) {
 		String[] tmp = input.split("/");
 		String[] newTmp = new String[tmp.length];

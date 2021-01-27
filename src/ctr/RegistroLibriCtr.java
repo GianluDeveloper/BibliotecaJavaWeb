@@ -83,6 +83,8 @@ public class RegistroLibriCtr extends HttpServlet {
 			data_prestito=new JavaDate().handleWebFormat(data_prestito);
 			data_rientro=new JavaDate().handleWebFormat(data_rientro);
 			data_scadenza=new JavaDate().handleWebFormat(data_scadenza);
+			
+					
 			Registro d = new Registro(id,idLibroInt,idClienteInt,idDipendenteInt,data_prestito,data_scadenza,data_rientro);
 			boolean res = registroLibriDao.update(d);
 			if(res) {

@@ -4,7 +4,11 @@
 
 <%@ page import="java.util.List,java.util.ArrayList" %>
 
+<div>
 
+
+<h2>Lista Libri</h2>
+<div>
 <table>
 <tr>
 	<th>idLibro</th>
@@ -45,4 +49,6 @@
     	</tr>
 </c:forEach>
 </table>
+</div>
+</div>
 

@@ -70,10 +70,12 @@ public class TurniCtr extends HttpServlet{
 		String data_inizio=request.getParameter("data_inizio"), 
 				data_fine=request.getParameter("data_fine");
 		String dipendenteGet = request.getParameter("idDipendente");
-		String idTurnoGet=request.getParameter("idTurno");
+		String idTurnoGet=request.getParameter("idTurni");
 		if(idTurnoGet!=null&&data_inizio!=null&&data_fine!=null&dipendenteGet!=null) {
 			int idDipendente = Integer.parseInt(dipendenteGet);
 			int idTurno = Integer.parseInt(idTurnoGet);
+			data_inizio=new JavaDate().handleWebFormat(data_inizio);
+			data_fine=new JavaDate().handleWebFormat(data_fine);
 			Turni d = new Turni(idTurno, idDipendente, data_inizio, data_fine);
 			boolean res = turniDao.update(d);
 			response.addHeader("Content-Type","text/html");

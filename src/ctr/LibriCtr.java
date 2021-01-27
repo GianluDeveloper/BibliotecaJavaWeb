@@ -55,6 +55,7 @@ public class LibriCtr extends HttpServlet {
 			int annoInt = Integer.parseInt(anno);		
 			int posizioneInt = Integer.parseInt(posizione);		
 			Libri d = new Libri(0,numPagineInt,annoInt,posizioneInt,titolo,genere,autore,isbn,casaEditrice);
+			
 			boolean res = libriDao.insert(d);
 			if(res) {
 				response.addHeader("Content-Type", "text/html");

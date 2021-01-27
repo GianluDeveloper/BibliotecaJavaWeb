@@ -25,7 +25,8 @@ public class RegistroLibriDao {
 	
 	public boolean update(Registro d) {
 		Object [] campiString = {d.getIdLibro(),d.getIdCliente(),d.getIdDipendente(),
-				d.getData_prestito().split("/"),d.getData_scadenza().split("/"),
+				d.getData_prestito().split("/"),
+				d.getData_scadenza().split("/"),
 				d.getData_rientro().split("/"),d.getId()};
 		ObjSql connettore = new ObjSql();
 		String sql = "UPDATE `registro` SET `idLibro`=?,`idCliente`=?,`idDipendente`=?,"

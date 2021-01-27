@@ -2,8 +2,13 @@
     pageEncoding="UTF-8"%>
 <% String type = (String)request.getParameter("type"); %>
 <% if(type.equals("Cliente")) { %>
+<div>
+
+
+<h2>Ricerca Clienti</h2>
+<div>
 <form method="POST" data-action="Cliente:findBykv" action="#" onsubmit="return handleForm(this)">
-	<label for="k">Ricerca Cliente:</label><br/>
+	<label for="k">Campo di ricerca:</label><br/>
 	<select name="k" id="k">
 		<option value="nome">Nome</option>
 		<option value="cognome">Cognome</option>
@@ -13,12 +18,16 @@
 	<input type="text" placeholder="Ricerca..." name="v" required/><br/>
 	<button type="submit">Trova</button>
 	<input type="hidden" name="azione" value="findBykv"/>
-</form>
+</form></div></div>
 <%}else if(type.equals("Dipendente")){
 	%>
-	
+	<div>
+
+
+<h2>Ricerca Dipendenti</h2>
+<div>
 	<form method="POST" data-action="Dipendenti:findBykv" action="#" onsubmit="return handleForm(this)">
-	<label for="k">Ricerca Dipendenti:</label><br/>
+	<label for="k">Campo di ricerca:</label><br/>
 	<select name="k" id="k">
 		<option value="nome">Nome</option>
 		<option value="cognome">Cognome</option>
@@ -30,13 +39,17 @@
 	<button type="submit">Trova</button>
 	<input type="hidden" name="azione" value="findBykv"/>
 </form>
-	
+	</div></div>
 	<%
 }else if(type.equals("Libri")){
 	%>
+<div>
 
+
+<h2>Ricerca Libri</h2>
+<div>
 	<form method="POST" data-action="Libri:findBykv" action="#" onsubmit="return handleForm(this)">
-	<label for="k">Ricerca Libri:</label><br/>
+	<label for="k">Campo di ricerca:</label><br/>
 	<select name="k" id="k">
 		<option value="titolo">Titolo</option>
 		<option value="anno">Anno</option>
@@ -52,12 +65,17 @@
 	<button type="submit">Trova</button>
 	<input type="hidden" name="azione" value="findBykv"/>
 </form>
-	
+	</div></div>
 	<%
 }else if(type.equals("RegistroLibri")){
 	%>
+	<div>
+
+
+<h2>Ricerca Registro Libri</h2>
+<div>
 	<form method="POST" data-action="RegistroLibri:findBykv" action="#" onsubmit="return handleForm(this)">
-	<label for="k">Ricerca Registro Libri:</label><br/>
+	<label for="k">Campo di ricerca:</label><br/>
 	<select name="k" id="k">
 		<option value="idLibro">idLibro</option>
 		<option value="idCliente">idCliente</option>
@@ -70,13 +88,18 @@
 	<input type="text" placeholder="Ricerca..." name="v" required/><br/>
 	<button type="submit">Trova</button>
 	<input type="hidden" name="azione" value="findBykv"/>
-</form>
+</form></div></div>
 
 	<%
 }else if(type.equals("Turni")){
 	%>
+	<div>
+
+
+<h2>Ricerca Turni</h2>
+<div>
 	<form method="POST" data-action="Turni:findBykv" action="#" onsubmit="return handleForm(this)">
-	<label for="k">Ricerca Turni:</label><br/>
+	<label for="k">Campo di ricerca:</label><br/>
 	<select name="k" id="k">
 		<option value="idDipendente">idDipendente</option>
 		<option value="data_inizio">data_inizio</option>
@@ -87,7 +110,7 @@
 	<button type="submit">Trova</button>
 	<input type="hidden" name="azione" value="findBykv"/>
 </form>
-	
+	</div></div>
 	<%
 }
 

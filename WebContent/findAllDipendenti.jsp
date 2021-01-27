@@ -4,7 +4,11 @@
 
 <%@ page import="java.util.List,java.util.ArrayList" %>
 
+<div>
 
+
+<h2>Lista Dipendenti</h2>
+<div>
 <table>
 <tr>
 	<th>idDipendente</th>
@@ -37,3 +41,7 @@
     	</tr>
 </c:forEach>
 </table>
+</div>
+</div>
+
+

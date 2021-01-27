@@ -164,7 +164,7 @@ if(type.equals("Dipendentix")){
 	casaEditrice: <input type="text" name="casaEditrice"  value='<%=d.getCasaEditrice() %>' required/><br/>
 	<input type="hidden" name="azione" value="update" />
 	<input type="hidden" name="idLibro" value="<%=d.getIdLibro() %>" />
-	<br/><input type="submit" value="Invia"/>
+	<br/><button type="submit">Aggiorna dati</button>
 </form>
 
 </div>
@@ -194,7 +194,7 @@ if(type.equals("Dipendentix")){
 	data_scadenza: <input type="date" name="data_scadenza" value="<%=new JavaDate().toWebFormat(d.getData_scadenza())%>"  required/><br/>
 	data_rientro: <input type="date" name="data_rientro"  value="<%=new JavaDate().toWebFormat(d.getData_rientro())%>" required/><br/>
 	<input type="hidden" name="azione" value="update"/>
-	<br/><input type="submit" value="Invia"/>
+	<br/><button type="submit">Aggiorna dati</button>
 			<input type="hidden" name="id" value="<%=d.getId() %>" />
 	
 </form>
@@ -226,7 +226,7 @@ if(type.equals("Dipendentix")){
 	data_inizio: <input type="date" name="data_inizio" value="<%=new JavaDate().toWebFormat(d.getData_inizio())%>"/><br/>
 	data_fine: <input type="date" name="data_fine" value="<%=new JavaDate().toWebFormat(d.getData_fine())%>"/><br/>
 	<input type="hidden" name="azione" value="update"/>
-	<br/><input type="submit" value="Invia"/>
+	<br/><button type="submit">Aggiorna dati</button>
 	<input type="hidden" name="idTurni" value="<%=d.getIdTurni() %>" />
 	
 </form>

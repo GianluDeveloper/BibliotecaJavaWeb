@@ -46,22 +46,23 @@ public class LibriDao {
 		Object [] campiString = {id};
 		ObjSql connettore = new ObjSql();
 		String sql = "SELECT `idLibro`, `numPagine`,`anno`,`posizione`,`titolo`,"+
-				"`genere`,`autore`,`isbn`,`casaEditrice`,`autore` "
-				+ "FROM `libri` WHERE `idLibro` = ?";
+				"`genere`,`autore`,`isbn`,`casaEditrice` "
+				+ " FROM `libri` WHERE `idLibro` = ?";
 		boolean resp = connettore.sql(sql, campiString);
 		
 		List<Object> rsp = connettore.getResponse();
 		if(resp && rsp.size()>0) {
+			int incr = 0;
 			Object[] clienteDb = (Object[]) rsp.get(0);
-			cliente.setIdLibro((int)clienteDb[0]);
-			cliente.setNumPagine((int)clienteDb[1]);
-			cliente.setAnno((int)clienteDb[2]);
-			cliente.setPosizione((int)clienteDb[3]);
-			cliente.setTitolo((String)clienteDb[4]);
-			cliente.setGenere((String)clienteDb[5]);
-			cliente.setIsbn((String)clienteDb[6]);
-			cliente.setCasaEditrice((String)clienteDb[7]);
-			cliente.setAutore((String)clienteDb[8]);
+			cliente.setIdLibro((int)clienteDb[incr++]);
+			cliente.setNumPagine((int)clienteDb[incr++]);
+			cliente.setAnno((int)clienteDb[incr++]);
+			cliente.setPosizione((int)clienteDb[incr++]);
+			cliente.setTitolo((String)clienteDb[incr++]);
+			cliente.setGenere((String)clienteDb[incr++]);
+			cliente.setAutore((String)clienteDb[incr++]);
+			cliente.setIsbn((String)clienteDb[incr++]);
+			cliente.setCasaEditrice((String)clienteDb[incr++]);
 		}
 		
 		return cliente;
@@ -88,7 +89,7 @@ public class LibriDao {
 		Object [] campiString = {v};
 		ObjSql connettore = new ObjSql();
 		String sql = "SELECT `idLibro`, `numPagine`,`anno`,`posizione`,`titolo`,"
-				+ " `genere`,`autore`,`isbn`,`casaEditrice`,`autore` "
+				+ " `genere`,`autore`,`isbn`,`casaEditrice` "
 				+ " FROM `libri` WHERE `"+k+"`=?";
 		
 		boolean resp = connettore.sql(sql, campiString);
@@ -97,17 +98,17 @@ public class LibriDao {
 		if(resp && rsp.size()>0) {
 			for(int i=0;i<rsp.size();i++) {
 				Libri cliente = new Libri();
-
+				int incr = 0;
 				Object[] clienteDb = (Object[]) rsp.get(i);
-				cliente.setIdLibro((int)clienteDb[0]);
-				cliente.setNumPagine((int)clienteDb[1]);
-				cliente.setAnno((int)clienteDb[2]);
-				cliente.setPosizione((int)clienteDb[3]);
-				cliente.setTitolo((String)clienteDb[4]);
-				cliente.setGenere((String)clienteDb[5]);
-				cliente.setIsbn((String)clienteDb[6]);
-				cliente.setCasaEditrice((String)clienteDb[7]);
-				cliente.setAutore((String)clienteDb[8]);
+				cliente.setIdLibro((int)clienteDb[incr++]);
+				cliente.setNumPagine((int)clienteDb[incr++]);
+				cliente.setAnno((int)clienteDb[incr++]);
+				cliente.setPosizione((int)clienteDb[incr++]);
+				cliente.setTitolo((String)clienteDb[incr++]);
+				cliente.setGenere((String)clienteDb[incr++]);
+				cliente.setAutore((String)clienteDb[incr++]);
+				cliente.setIsbn((String)clienteDb[incr++]);
+				cliente.setCasaEditrice((String)clienteDb[incr++]);
 				libri.add(cliente);
 			}
 		}
@@ -121,25 +122,27 @@ public class LibriDao {
 		Object [] campiString = {1};
 		ObjSql connettore = new ObjSql();
 		String sql = "SELECT `idLibro`, `numPagine`,`anno`,`posizione`,`titolo`,"+
-				"`genere`,`autore`,`isbn`,`casaEditrice`,`autore` "
-				+ "FROM `libri` WHERE ?";
+				"`genere`,`autore`,`isbn`,`casaEditrice` "
+				+ " FROM `libri` WHERE ?";
 		boolean resp = connettore.sql(sql, campiString);
 		
 		List<Object> rsp = connettore.getResponse();
 		if(resp && rsp.size()>0) {
 			for(int i = 0;i<rsp.size();i++) {
 				Libri cliente = new Libri();
-
+				int incr = 0;
 				Object[] clienteDb = (Object[]) rsp.get(i);
-				cliente.setIdLibro((int)clienteDb[0]);
-				cliente.setNumPagine((int)clienteDb[1]);
-				cliente.setAnno((int)clienteDb[2]);
-				cliente.setPosizione((int)clienteDb[3]);
-				cliente.setTitolo((String)clienteDb[4]);
-				cliente.setGenere((String)clienteDb[5]);
-				cliente.setIsbn((String)clienteDb[6]);
-				cliente.setCasaEditrice((String)clienteDb[7]);
-				cliente.setAutore((String)clienteDb[8]);
+				cliente.setIdLibro((int)clienteDb[incr++]);
+				cliente.setNumPagine((int)clienteDb[incr++]);
+				cliente.setAnno((int)clienteDb[incr++]);
+				cliente.setPosizione((int)clienteDb[incr++]);
+				cliente.setTitolo((String)clienteDb[incr++]);
+				cliente.setGenere((String)clienteDb[incr++]);
+				cliente.setAutore((String)clienteDb[incr++]);
+				cliente.setIsbn((String)clienteDb[incr++]);
+				cliente.setCasaEditrice((String)clienteDb[incr++]);
+
+				
 				libri.add(cliente);
 			}
 		}
