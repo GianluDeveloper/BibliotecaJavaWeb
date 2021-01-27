@@ -1,0 +1,49 @@
+<table>
+  <tr>
+    <th>matricola</th>
+    <th>nome</th>
+    <th>cognome</th>
+    <th>telefono</th>
+    <th>admin</th>
+    <th>Modifica</th>
+    <th>Elimina</th>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>Mario</td>
+    <td>Bianchi</td>
+    <td>023850238</td>
+    <td>true</td>
+    <td>
+      <a
+        href="${pageContext.request.contextPath}/update.jsp?type=Dipendenti&id=${entry.matricola }"
+        ><em class="fa fa-edit fa-fw"></em
+      ></a>
+    </td>
+    <td>
+      <a
+        href="${pageContext.request.contextPath}/Dipendenti?azione=remove&id=${entry.matricola }"
+        ><em class="fa fa-trash-alt fa-fw"></em
+      ></a>
+    </td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>Mario</td>
+    <td>Rossi</td>
+    <td>023850238</td>
+    <td>false</td>
+    <td>
+      <a
+        href="${pageContext.request.contextPath}/update.jsp?type=Dipendenti&id=${entry.matricola }"
+        ><em class="fa fa-edit fa-fw"></em
+      ></a>
+    </td>
+    <td>
+      <a
+        href="${pageContext.request.contextPath}/Dipendenti?azione=remove&id=${entry.matricola }"
+        ><em class="fa fa-trash-alt fa-fw"></em
+      ></a>
+    </td>
+  </tr>
+</table>

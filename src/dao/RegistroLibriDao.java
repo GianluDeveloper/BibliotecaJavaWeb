@@ -3,6 +3,7 @@ package dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import main.JavaDate;
 import main.ObjSql;
 import model.Registro;
 
@@ -78,16 +79,19 @@ public class RegistroLibriDao {
 		
 		List<Object> rsp = connettore.getResponse();
 		if(resp && rsp.size()>0) {
-			Registro cliente = new Registro();
-			Object[] clienteDb = (Object[]) rsp.get(0);
-			cliente.setId((int)clienteDb[0]);
-			cliente.setIdLibro((int)clienteDb[1]);
-			cliente.setIdCliente((int)clienteDb[2]);
-			cliente.setIdDipendente((int)clienteDb[3]);
-			cliente.setData_prestito((String)clienteDb[4]);
-			cliente.setData_scadenza((String)clienteDb[5]);
-			cliente.setData_rientro((String)clienteDb[6]);
-			registri.add(cliente);
+			for(Object p:rsp) {
+				Registro cliente = new Registro();
+				Object[] clienteDb = (Object[]) p;
+				cliente.setId((int)clienteDb[0]);
+				cliente.setIdLibro((int)clienteDb[1]);
+				cliente.setIdCliente((int)clienteDb[2]);
+				cliente.setIdDipendente((int)clienteDb[3]);
+				cliente.setData_prestito(new JavaDate().back((java.sql.Date)clienteDb[4]));
+				cliente.setData_scadenza(new JavaDate().back((java.sql.Date)clienteDb[5]));
+				cliente.setData_rientro(new JavaDate().back((java.sql.Date)clienteDb[6]));
+				registri.add(cliente);
+			}
+			
 		}
 		
 		return registri;

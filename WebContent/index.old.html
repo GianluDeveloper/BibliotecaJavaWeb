@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Gestionale Biblioteca</title>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<div class="content">
+	<header><h1>Gestionale biblioteca</h1></header>
+
+	<article class="gridContent">
+		<div>
+			<h2>Operazioni di inserimento</h2>
+			<div><a href="insertCliente.html">Inserisci Cliente</a></div>
+			<div><a href="insertDipendente.html">Inserisci Dipendente</a></div>
+			<div><a href="insertLibro.html">Inserisci Libro</a></div>
+			<div><a href="insertRegistro.html">Inserisci Registro Libri</a></div>
+			<div><a href="insertTurno.html">Inserisci Turno</a></div>
+		</div>
+		<div>
+			<h2>Visualizza intera tabella</h2>
+			<div><a href="Cliente?azione=findAll">FindAll Cliente</a></div>
+			<div><a href="Dipendenti?azione=findAll">FindAll Dipendenti</a></div>
+			<div><a href="findAllLibri.jsp">FindAll Libri</a></div>
+			<div><a href="RegistroLibri?azione=findAll">FindAll Registro Libri</a></div>
+			<div><a href="Turni?azione=findAll">FindAll Turni</a></div>
+		</div>
+		<div>
+			<h2>Ricerca libera</h2>
+			<div><a href="findBykv.html">FindBykv Clienti</a></div>
+			<div><a href="findBykv.html">FindBykv Dipendenti</a></div>
+			<div><a href="findBykv.html">FindBykv Libri</a></div>
+			<div><a href="findBykv.html">FindBykv Registro Libri</a></div>
+			<div><a href="findBykv.html">FindBykv Turni</a></div>
+		</div>
+		<div>
+			<h2>Delete</h2>
+			<div><a href="delete.jsp?type=Cliente">Delete Cliente</a></div>
+			<div><a href="delete.jsp?type=Dipendenti">Delete Dipendente</a></div>
+			<div><a href="delete.jsp?type=Libri">Delete Libro</a></div>
+			<div><a href="delete.jsp?type=RegistroLibri">Delete Registro Libri</a></div>
+			<div><a href="delete.jsp?type=Turni">Delete Turno</a></div>
+		</div>
+		<div>
+			<h2>Update</h2>
+			<div><a href="Cliente?azione=update">Update Cliente</a></div>
+			<div><a href="Cliente?azione=update">Update Dipendente</a></div>
+			<div><a href="Cliente?azione=update">Update Libro</a></div>
+			<div><a href="Cliente?azione=update">Update Registro Libri</a></div>
+			<div><a href="Cliente?azione=update">Update Turno</a></div>
+		</div>
+	</article>
+	<footer>Footer &copy;</footer>
+</div>
+
+</body>
+</html>

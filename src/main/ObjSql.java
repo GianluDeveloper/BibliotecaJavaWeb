@@ -14,7 +14,7 @@ public class ObjSql {
 	private static final String USERNAME = "java";
 	private static final String PASSWORD = "java";
 	
-	private static String url = "jdbc:mysql://127.0.0.1:3306/"+DBName
+	private static String url = "jdbc:mysql://dbMY:3306/"+DBName
 			+"?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 	private static Connection dbConnection = null;
 	private static String driver = "com.mysql.cj.jdbc.Driver";

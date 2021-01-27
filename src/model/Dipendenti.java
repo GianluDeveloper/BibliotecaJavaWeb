@@ -55,7 +55,11 @@ public class Dipendenti {
 	}
 
 	public boolean isAdmin() {
-		return admin;
+		return this.admin;
+	}	
+	
+	public boolean getAdmin() {
+		return this.admin;
 	}
 
 	public void setAdmin(boolean admin) {

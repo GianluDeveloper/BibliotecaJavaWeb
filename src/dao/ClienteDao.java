@@ -54,6 +54,47 @@ public class ClienteDao {
 		
 		return cliente;
 	}
+	public List<Cliente> findBykv(String k,String v) {
+		String[]allowed = {"idCliente", "nome", "cognome", "telefono"};
+		List<Cliente> clienti = new ArrayList<>();
+
+		boolean isAllowed=false;
+		for(String check: allowed) {
+			if(k.equals(check)) {
+				isAllowed=true;
+				break;
+			}
+		}
+		
+		if(!isAllowed) {
+			return clienti;
+		}
+
+
+		Object [] campiString = {v};
+		ObjSql connettore = new ObjSql();
+		String sql = "SELECT `idCliente`, `nome`, `cognome`, `telefono` FROM `cliente` "
+				+ "WHERE `"+k+"`=?";
+		System.out.println(sql);
+		System.out.println(v);
+		
+		boolean resp = connettore.sql(sql, campiString);
+		
+		List<Object> rsp = connettore.getResponse();
+		if(resp && rsp.size()>0) {
+			for(int i=0;i<rsp.size();i++) {
+				Object[] clienteDb = (Object[]) rsp.get(i);
+				Cliente cliente = new Cliente();
+				cliente.setIdCliente((int)clienteDb[0]);
+				cliente.setNome((String)clienteDb[1]);
+				cliente.setCognome((String)clienteDb[2]);
+				cliente.setTelefono((String)clienteDb[3]);
+				clienti.add(cliente);
+			}
+		}
+		
+		return clienti;
+	}
 	
 	public List<Cliente> findAll() {
 		List<Cliente> clienti = new ArrayList<>();

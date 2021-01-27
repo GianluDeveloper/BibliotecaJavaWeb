@@ -1,31 +1,131 @@
 package ctr;
 
+import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import dao.TurniDao;
+import main.JavaDate;
+import model.Cliente;
 import model.Turni;
 
-public class TurniCtr {
+@WebServlet("Turni")
+public class TurniCtr extends HttpServlet{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private TurniDao turniDao = new TurniDao();
 	
-	public boolean insert(Turni d) {
-		boolean res = turniDao.insert(d);
-		return res;
+	protected void doGet(HttpServletRequest request,HttpServletResponse response) throws IOException, ServletException {
+		response.addHeader("Content-Type", "text/html");
+		String azione = request.getParameter("azione");
+		if(azione == null) {
+			response.getWriter().append("Ciao dipendente");
+		}else if(azione.equals("insert")) {
+			this.insert(request, response);
+		}else if(azione.equals("update")) {
+			this.update(request, response);			
+		}else if(azione.equals("remove")) {
+			this.remove(request, response);
+		}else if(azione.equals("findById")) {
+			this.findById(request, response);
+		}else if(azione.equals("findAll")) {
+			this.findAll(request, response);
+		}else {
+			response.getWriter().append("Azione non riconosciuta.");
+		}
 	}
-	public boolean update(Turni d) {
-		boolean res = turniDao.update(d);
-		return res;
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		this.doGet(request, response);
 	}
-	public boolean remove(Turni d) {
-		boolean res = turniDao.remove(d);
-		return res;
+	private void insert(HttpServletRequest request,HttpServletResponse response) throws IOException {
+
+		String data_inizio=request.getParameter("data_inizio"), 
+				data_fine=request.getParameter("data_fine");
+		String dipendenteGet = request.getParameter("idDipendente");
+		
+		if(data_inizio!=null&&data_fine!=null&dipendenteGet!=null) {
+			int idDipendente = Integer.parseInt(dipendenteGet);
+			data_inizio=new JavaDate().handleWebFormat(data_inizio);
+			data_fine=new JavaDate().handleWebFormat(data_fine);
+
+			Turni d = new Turni(0, idDipendente, data_inizio, data_fine);
+			boolean res = turniDao.insert(d);
+			response.addHeader("Content-Type", "text/html");
+			response.getWriter().append("Turno inserito correttamente"+". Torna alla <a href='/BibliotecaServlet'>home</a>");
+		}else {
+			response.getWriter().append("si e' verificato un errore");
+		}			
+		
 	}
-	public Turni findByID(int id) {
-		Turni res = turniDao.findById(id);
-		return res;
+	private void update(HttpServletRequest request,HttpServletResponse response) throws IOException {
+		String data_inizio=request.getParameter("data_inizio"), 
+				data_fine=request.getParameter("data_fine");
+		String dipendenteGet = request.getParameter("idDipendente");
+		String idTurnoGet=request.getParameter("idTurno");
+		if(idTurnoGet!=null&&data_inizio!=null&&data_fine!=null&dipendenteGet!=null) {
+			int idDipendente = Integer.parseInt(dipendenteGet);
+			int idTurno = Integer.parseInt(idTurnoGet);
+			Turni d = new Turni(idTurno, idDipendente, data_inizio, data_fine);
+			boolean res = turniDao.update(d);
+			response.addHeader("Content-Type","text/html");
+
+			response.getWriter().append("Turno aggiornato correttamente"+". Torna alla <a href='/BibliotecaServlet'>home</a>");
+		}else {
+			response.addHeader("Content-Type","text/html");
+
+			response.getWriter().append("si e' verificato un errore"+". Torna alla <a href='/BibliotecaServlet'>home</a>");
+		}	
 	}
-	public List<Turni> findAll() {
+	private void remove(HttpServletRequest request,HttpServletResponse response) throws IOException {
+		String turno = request.getParameter("id");
+		response.addHeader("Content-Type","text/html");
+
+		if(turno!=null) {
+			int idTurno = Integer.parseInt(turno);
+			Turni d = new Turni();
+			d.setIdTurni(idTurno);
+			boolean res = turniDao.remove(d);
+			response.getWriter().append("Turno "+idTurno+" rimosso"+". Torna alla <a href='/BibliotecaServlet'>home</a>");
+		}else {
+			response.getWriter().append("Errore nei parametri"+". Torna alla <a href='/BibliotecaServlet'>home</a>");
+		}
+		
+	}
+	private void findById(HttpServletRequest request,HttpServletResponse response) throws IOException {
+		String turno = request.getParameter("idTurno");
+		if(turno!=null) {
+			int idTurno = Integer.parseInt(turno);
+			Turni res = turniDao.findById(idTurno);
+			String html = "";
+			html += "idTurno: "+res.getIdTurni()+" idDipendente: "+res.getIdDipendente()+
+					" dataInizio: "+res.getData_inizio()+" data fine: "+res.getData_fine();
+			response.getWriter().append(html);
+		}
+		
+	}
+	private void findAll(HttpServletRequest request,HttpServletResponse response) throws IOException, ServletException {
 		List<Turni> res = turniDao.findAll();
-		return res;
+		String html="<table>";
+		for(Turni c : res) {
+			html+="<tr>"+
+					"<td><button title='modifica questo utente' onclick='window.location.href=\"?idTurno="+c.getIdTurni()+"&idDipendente="+
+					c.getIdDipendente()+"&data_inizio="+c.getData_inizio()+"&data_fine="+c.getData_fine()+
+					"\"'>Modifica utente "+c.getIdTurni()+"</a></td>"+
+					"<td>"+c.getIdDipendente()+"</td>"+
+					"<td>"+c.getData_inizio()+"</td>"+
+					"<td>"+c.getData_fine()+"</td><td>"
+					+ "<button onclick='window.location.href=\"?azione=remove&id="+c.getIdTurni()
+					+"\"'>Rimuovi questo utente</button></tr>";
+		}
+		html+="</table>";
+		request.getSession().setAttribute("html", html);
+		request.getRequestDispatcher("findAllTurni.jsp").forward(request, response);
 	}
 }

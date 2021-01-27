@@ -35,7 +35,7 @@ public class LibriDao {
 	public boolean remove(Libri d) {
 		Object [] campiString = {d.getIdLibro()};
 		ObjSql connettore = new ObjSql();
-		String sql = "DELETE FROM `libri` WHERE id=?";
+		String sql = "DELETE FROM `libri` WHERE idLibro=?";
 		boolean resp = connettore.sql(sql, campiString);
 		return resp;
 	}
@@ -77,17 +77,20 @@ public class LibriDao {
 		
 		List<Object> rsp = connettore.getResponse();
 		if(resp && rsp.size()>0) {
-			Libri cliente = new Libri();
-			Object[] clienteDb = (Object[]) rsp.get(0);
-			cliente.setIdLibro((int)clienteDb[0]);
-			cliente.setNumPagine((int)clienteDb[1]);
-			cliente.setAnno((int)clienteDb[2]);
-			cliente.setPosizione((int)clienteDb[3]);
-			cliente.setTitolo((String)clienteDb[4]);
-			cliente.setGenere((String)clienteDb[5]);
-			cliente.setIsbn((String)clienteDb[6]);
-			cliente.setCasaEditrice((String)clienteDb[7]);
-			libri.add(cliente);
+			for(int i = 0;i<rsp.size();i++) {
+				Libri cliente = new Libri();
+
+				Object[] clienteDb = (Object[]) rsp.get(i);
+				cliente.setIdLibro((int)clienteDb[0]);
+				cliente.setNumPagine((int)clienteDb[1]);
+				cliente.setAnno((int)clienteDb[2]);
+				cliente.setPosizione((int)clienteDb[3]);
+				cliente.setTitolo((String)clienteDb[4]);
+				cliente.setGenere((String)clienteDb[5]);
+				cliente.setIsbn((String)clienteDb[6]);
+				cliente.setCasaEditrice((String)clienteDb[7]);
+				libri.add(cliente);
+			}
 		}
 		
 		return libri;

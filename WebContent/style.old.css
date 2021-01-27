@@ -1,0 +1,19 @@
+
+.content{
+	text-align:center;
+}
+h1{
+	color: rgb(50,50,150);
+}
+h2{
+	color: rgb(50,150,150);
+}
+footer{
+	margin-top:50px;
+}
+a:visited,a{
+	color:rgba(0,0,255,1);
+}
+div{
+	font-size:1.1em;
+}

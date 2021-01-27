@@ -13,6 +13,7 @@ import dao.DipendentiDao;
 import dao.LibriDao;
 import dao.RegistroLibriDao;
 import dao.TurniDao;
+import exceptions.CustomException;
 
 public class Main {
 	public static void main(String[] args) {
@@ -20,7 +21,7 @@ public class Main {
 		ClienteCtr clienteCtr = new ClienteCtr();
 		try {
 			clienteCtr.insert(c1);
-		} catch (Exception e) {
+		} catch (CustomException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			

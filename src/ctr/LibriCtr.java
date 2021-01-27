@@ -1,32 +1,104 @@
 package ctr;
 
+import java.io.IOException;
 import java.util.List;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import dao.LibriDao;
 import model.Libri;
 
-public class LibriCtr {
+@WebServlet("Libri")
+public class LibriCtr extends HttpServlet {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private LibriDao libriDao = new LibriDao();
 	
-	public boolean insert(Libri d) {
-		boolean res = libriDao.insert(d);
-		return res;		
-	}
-	public boolean update(Libri d) {
-		boolean res = libriDao.update(d);
-		return res;
-	}
-	public boolean remove(Libri d) {
-		boolean res = libriDao.remove(d);
-		return res;
-	}
-	public Libri findById(int id) {
-		Libri res = libriDao.findById(id);
-		return res;
+	protected void doGet(HttpServletRequest request,HttpServletResponse response) throws IOException {
+		response.addHeader("Content-Type", "text/html");
+		String azione = request.getParameter("azione");
+		if(azione == null) {
+			response.getWriter().append("Ciao dipendente");
+		}else if(azione.equals("insert")) {
+			this.insert(request, response);
+		}else if(azione.equals("update")) {
+			this.update(request, response);			
+		}else if(azione.equals("remove")) {
+			this.remove(request, response);
+		}else if(azione.equals("findById")) {
+			this.findById(request, response);
+		}else if(azione.equals("findAll")) {
+			this.findAll(request, response);
+		}else {
+			response.getWriter().append("Azione non riconosciuta.");
+		}
 	}
 	
-	public List<Libri> findAll(){
+	private void insert(HttpServletRequest request,HttpServletResponse response) throws IOException {
+		String numPagine=request.getParameter("numPagine"),anno=request.getParameter("anno"),
+				posizione=request.getParameter("posizione"), titolo=request.getParameter("titolo"),
+				genere=request.getParameter("genere"), autore=request.getParameter("autore"),
+				isbn=request.getParameter("isbn"), casaEditrice=request.getParameter("casaEditrice");
+		
+		if(numPagine!=null&&anno!=null&&posizione!=null&&titolo!=null&&genere!=null&&autore!=null&&
+				isbn!=null&&casaEditrice!=null) {
+			int numPagineInt = Integer.parseInt(numPagine);		
+			int annoInt = Integer.parseInt(anno);		
+			int posizioneInt = Integer.parseInt(posizione);		
+			Libri d = new Libri(0,numPagineInt,annoInt,posizioneInt,titolo,genere,autore,isbn,casaEditrice);
+			boolean res = libriDao.insert(d);
+			if(res) {
+				response.addHeader("Content-Type", "text/html");
+
+				response.getWriter().append("Libro <strong>"+titolo+"</strong> inserito correttamente"+". Torna alla <a href='/BibliotecaServlet'>home</a>");
+			}else {
+				response.getWriter().append("errore inserimento nel database");
+			}
+			
+		}else {
+			response.getWriter().append("parametri non corretti");
+		}
+		
+		
+		
+		
+	}
+	private void update(HttpServletRequest request,HttpServletResponse response) {
+		Libri d = new Libri();
+		boolean res = libriDao.update(d);
+	}
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		this.doGet(request, response);
+	}
+	private void remove(HttpServletRequest request,HttpServletResponse response) throws IOException {
+		String Id=request.getParameter("id");
+		response.addHeader("Content-Type","text/html");
+
+		if(Id!=null) {
+			int id=Integer.parseInt(Id);
+			Libri d = new Libri();
+			d.setIdLibro(id);
+			libriDao.remove(d);
+			response.getWriter().append("Rimosso il libro con id "+id+". Torna alla <a href='/BibliotecaServlet'>home</a>");
+
+		}else {
+			response.getWriter().append("Errore nella rimozione. Torna alla <a href='/BibliotecaServlet'>home</a>");
+
+		}
+		
+	}
+	private void findById(HttpServletRequest request,HttpServletResponse response) {
+		int id = 1;
+		Libri res = libriDao.findById(id);
+	}
+	
+	private void findAll(HttpServletRequest request,HttpServletResponse response){
 		List<Libri> res = libriDao.findAll();
-		return res;
 	}
 }

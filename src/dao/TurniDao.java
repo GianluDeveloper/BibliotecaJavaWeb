@@ -3,6 +3,7 @@ package dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import main.JavaDate;
 import main.ObjSql;
 import model.Turni;
 
@@ -66,13 +67,17 @@ public class TurniDao {
 		
 		List<Object> rsp = connettore.getResponse();
 		if(resp && rsp.size()>0) {
-			Turni cliente = new Turni();
-			Object[] clienteDb = (Object[]) rsp.get(0);
-			cliente.setIdTurni((int)clienteDb[0]);
-			cliente.setIdDipendente((int)clienteDb[1]);
-			cliente.setData_inizio((String)clienteDb[2]);
-			cliente.setData_fine((String)clienteDb[3]);
-			turni.add(cliente);
+			for(int i = 0;i<rsp.size();i++) {
+				Turni cliente = new Turni();
+				Object[] clienteDb = (Object[]) rsp.get(i);
+				cliente.setIdTurni((int)clienteDb[0]);
+				cliente.setIdDipendente((int)clienteDb[1]);
+				
+				cliente.setData_inizio(new JavaDate().back((java.sql.Date)clienteDb[2]));
+				cliente.setData_fine(new JavaDate().back((java.sql.Date)clienteDb[3]));
+				turni.add(cliente);
+			}
+			
 		}
 		
 		return turni;

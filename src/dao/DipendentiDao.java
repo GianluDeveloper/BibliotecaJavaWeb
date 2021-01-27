@@ -15,6 +15,7 @@ public class DipendentiDao {
 		Object [] campiString = {d.getNome(),d.getCognome(),d.getTelefono(),d.isAdmin()};
 		ObjSql connettore = new ObjSql();
 		String sql = "INSERT INTO dipendente(nome, cognome,telefono,admin) VALUES(?,?,?,?)";
+		System.out.println(d.isAdmin());
 		boolean resp = connettore.sql(sql, campiString);
 		return resp;
 	}
@@ -40,7 +41,7 @@ public class DipendentiDao {
 		Dipendenti dipendente = new Dipendenti();
 		Object [] campiString = {id};
 		ObjSql connettore = new ObjSql();
-		String sql = "SELECT `id`, `nome`, `cognome`, `telefono`,`admin` FROM `dipendenti` "
+		String sql = "SELECT `id`, `nome`, `cognome`, `telefono`,`admin` FROM `dipendente` "
 				+ "WHERE `id`= ?";
 		boolean resp = connettore.sql(sql, campiString);
 		
@@ -51,6 +52,7 @@ public class DipendentiDao {
 			dipendente.setNome((String)dipendenteDb[1]);
 			dipendente.setCognome((String)dipendenteDb[2]);
 			dipendente.setTelefono((String)dipendenteDb[3]);
+			dipendente.setAdmin((boolean)dipendenteDb[4]);
 		}
 		
 		return dipendente;
@@ -60,7 +62,7 @@ public class DipendentiDao {
 		List<Dipendenti> dipendenti = new ArrayList<>();
 		Object [] campiString = {1};
 		ObjSql connettore = new ObjSql();
-		String sql = "SELECT `id`, `nome`, `cognome`, `telefono`,`admin` FROM `dipendenti` "
+		String sql = "SELECT `id`, `nome`, `cognome`, `telefono`,`admin` FROM `dipendente` "
 				+ "WHERE ?";
 		boolean resp = connettore.sql(sql, campiString);
 		
@@ -73,6 +75,8 @@ public class DipendentiDao {
 				dipendente.setNome((String)dipendenteDb[1]);
 				dipendente.setCognome((String)dipendenteDb[2]);
 				dipendente.setTelefono((String)dipendenteDb[3]);
+				dipendente.setAdmin((boolean)dipendenteDb[4]);
+
 				dipendenti.add(dipendente);
 			}
 		}

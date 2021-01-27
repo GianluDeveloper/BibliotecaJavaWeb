@@ -20,7 +20,14 @@ public class Libri {
 	}
 	
 	public Libri(){
-		
+		this.numPagine=0;
+		this.anno=0;
+		this.posizione=0;
+		this.titolo="";
+		this.genere="";
+		this.autore="";
+		this.isbn="";
+		this.casaEditrice="";
 	}
 
 	public int getIdLibro() {

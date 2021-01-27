@@ -6,7 +6,9 @@ public class Cliente {
 	private String nome,cognome,telefono;
 	
 	public Cliente(){
-		
+		this.nome = "";
+		this.cognome = "";
+		this.telefono = "";
 	}
 	
 	

@@ -1,0 +1,56 @@
+<!-- <!DOCTYPE html> -->
+<!-- <html> -->
+<!-- <head> -->
+<!-- <meta charset="UTF-8"> -->
+<!-- <title>aggiungi Dipendente</title> -->
+<!-- </head> -->
+<!-- <body> -->
+<!-- <h1>Inserisci Dipendente</h1> -->
+<!-- <form method="POST" action="Dipendenti"> -->
+<!-- 	nome: <input type="text" name="nome"/><br/> -->
+<!-- 	cognome: <input type="text" name="cognome"/><br/> -->
+<!-- 	telefono: <input type="text" name="telefono"/><br/> -->
+<!-- 	admin: No <input type="radio" name="admin" value="0" checked/> Sì<input type="radio" name="admin" value="1" /><br/> -->
+<!-- 	<input type="hidden" name="azione" value="insert"/> -->
+<!-- 	<br/><input type="submit" value="Invia"/> -->
+<!-- </form> -->
+
+<!-- </body> -->
+<!-- </html> -->
+
+<div>
+  <div>
+    <h1>Inserisci Dipendente</h1>
+    <div>
+      <form method="POST" action="Dipendenti">
+        <label for="nome">Nome <span style="color:red;">*</span></label><br />
+        <input
+          type="text"
+          name="nome"
+          placeholder="Nome utente..."
+          required
+        /><br />
+        <label for="cognome">Cognome <span style="color:red;">*</span></label><br />
+        <input
+          type="text"
+          name="cognome"
+          placeholder="Cognome utente..."
+          required
+        /><br />
+        <label for="telefono">Telefono <span style="color:red;">*</span></label><br />
+        <input
+          type="text"
+          name="telefono"
+          placeholder="Telefono utente..."
+          required
+        /><br />
+                <label for="admin">Admin</label><br />
+          <input type="radio" name="admin" value="1" /> <strong><em>Sì</em></strong> 
+           <input type="radio" name="admin" value="0" checked/> <strong><em>No</em></strong><br/>
+        <br/>
+        <br /><button type="submit">Invia dati</button>
+        <input type="hidden" name="azione" value="insert" />
+      </form>
+    </div>
+  </div>
+</div>

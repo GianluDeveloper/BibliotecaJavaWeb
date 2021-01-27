@@ -1,0 +1,13 @@
+
+<form method="POST" data-action="Cliente:findBykv" action="#" onsubmit="return handleForm(this)">
+	<label for="k">Scegli un campo di ricerca:</label><br/>
+	<select name="k" id="k">
+		<option value="idCliente">idCliente</option>
+		<option value="nome">nome</option>
+		<option value="cognome">cognome</option>
+		<option value="telefono">telefono</option>
+	</select><br/>
+	<input type="text" placeholder="Ricerca..." name="v"/><br/>
+	<button type="submit">Trova</button>
+	<input type="hidden" name="azione" value="findBykv"/>
+</form>
