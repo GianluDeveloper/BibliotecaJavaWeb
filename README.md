@@ -11,9 +11,11 @@ Tecnologie usate:
 - CSS3 & CSS Grid
 - Javascript fetch API
 
-Per eseguire il progetto:
+Per eseguire il progetto (richiede [Docker](https://www.docker.com/get-started)):
 ```
 git clone https://github.com/GianluDeveloper/BibliotecaJavaWeb/
+
+cd ./BibliotecaJavaWeb
 
 docker-compose build
 
