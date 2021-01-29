@@ -16,6 +16,7 @@
 	<th>cognome</th>
 	<th>telefono</th>
 	<th>admin</th>
+	<th>Vedi Conto Corrente</th>
 	<th>Modifica</th>
 	<th>Elimina</th>
 </tr>
@@ -26,6 +27,7 @@
 		<td>${entry.cognome}</td>
 		<td>${entry.telefono}</td>
 		<td>${entry.admin}</td>
+		<td><a href='${pageContext.request.contextPath}/Dipendenti?azione=ewallet&id=${entry.matricola}'>Conto corrente</a></td>
 		<td>
       <a
         href="#${pageContext.request.contextPath}/update.jsp?type=Dipendenti&id=${entry.matricola }"
@@ -38,6 +40,7 @@
         onclick="return remove(this)" ><em class="fa fa-trash-alt fa-fw"></em
       ></a>
     </td>
+    
     	</tr>
 </c:forEach>
 </table>

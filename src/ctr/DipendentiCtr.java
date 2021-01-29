@@ -10,8 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.DipendentiDao;
-import model.Cliente;
+import exceptions.CustomException;
 import model.Dipendenti;
+import service.ContoCorrente;
+import service.ContoCorrenteWSProxy;
+import service.ResponseContoCorrente;
+import service.RicercaDb;
 
 @WebServlet("Dipendenti")
 public class DipendentiCtr extends HttpServlet{
@@ -38,6 +42,8 @@ public class DipendentiCtr extends HttpServlet{
 			this.findBykv(request, response);
 		}else if(azione.equals("findAll")) {
 			this.findAll(request, response);
+		}else if(azione.equals("ewallet")) {
+			this.ewallet(request, response);
 		}else {
 			response.getWriter().append("Azione non riconosciuta.");
 		}
@@ -72,6 +78,32 @@ public class DipendentiCtr extends HttpServlet{
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		this.doGet(request, response);
+	}
+	private void ewallet(HttpServletRequest request,HttpServletResponse response) throws IOException {
+		String id = request.getParameter("id");
+		
+		if(id== null) {
+			response.getWriter().append("parametro id non valido.");
+			return;
+		}
+		
+		RicercaDb r = new RicercaDb();
+		r.setKey("idCliente");
+		r.setValue(id);
+		
+		ContoCorrenteWSProxy p = new ContoCorrenteWSProxy();
+		ResponseContoCorrente remoteResp = p.find(r);
+		ContoCorrente[] lista = remoteResp.getContoCorrente();
+		if(lista !=null) {
+			String resp = "<title>ok</title>";
+			for(ContoCorrente m : lista) {
+				resp+=m.getSaldo()+" -> "+ m.getDataCreazione()+"<br/>";
+			}
+			response.getWriter().append(resp);
+		}else {
+			String resp = "L'utente con id "+id+" non e' presente nell'e-wallet";
+			response.getWriter().append(resp);
+		}
 	}
 	private void update(HttpServletRequest request,HttpServletResponse response) throws IOException, ServletException {
 		String matricolaget = request.getParameter("id");
