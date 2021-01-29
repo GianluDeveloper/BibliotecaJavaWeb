@@ -27,7 +27,7 @@
 		<td>${entry.cognome}</td>
 		<td>${entry.telefono}</td>
 		<td>${entry.admin}</td>
-		<td><a onclick="updateLink(this)" href='#${pageContext.request.contextPath}/Dipendenti?azione=ewallet&tipo=Conto+Corrente&azioneEwallet=insert&id=${entry.matricola}'>Conto corrente</a></td>
+		<td><a onclick="updateLink(this)" href='#${pageContext.request.contextPath}/Dipendenti?azione=ewallet&tipo=ContoCorrente&azioneEwallet=insert&id=${entry.matricola}'>Conto corrente</a></td>
 		<td>
       <a
         href="#${pageContext.request.contextPath}/update.jsp?type=Dipendenti&id=${entry.matricola }"

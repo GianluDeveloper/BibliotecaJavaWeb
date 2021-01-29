@@ -136,11 +136,12 @@ const handleForm = (e) => {
           "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
         },
         body: data,
-      }).then(() => {
+      }).then(t=>t.text()).then((txt) => {
         let azioneFatta = "inserito";
         if (azione == "update") azioneFatta = "aggiornato";
-        document.querySelector("main").innerHTML =
-          "<h2>" + url + " " + azioneFatta + " con successo</h2>";
+        let msg="<h2>" + url + " " + azioneFatta + " con successo</h2>";
+        msg="<h2>"+txt+"</h2>";
+        document.querySelector("main").innerHTML = msg;
       });
     }
   }
@@ -225,6 +226,21 @@ const updateMain = async (actionName) => {
   } else if (actionName == "ClienteAll") {
     data = await fetch(
       "${pageContext.request.contextPath}/Cliente?azione=findAll&_=" +
+        new Date().getTime()
+    );
+  } else if (actionName == "ContoCorrente") {
+    data = await fetch(
+      "${pageContext.request.contextPath}/Dipendenti?azione=ewallet&azioneEwallet=insert&tipo=TipoMovimento&_=" +
+        new Date().getTime()
+    );
+  } else if (actionName == "ContoCorrenteFind") {
+    data = await fetch(
+      "${pageContext.request.contextPath}/Dipendenti?azione=ewallet&azioneEwallet=insert&tipo=Movimenti&_=" +
+        new Date().getTime()
+    );
+  } else if (actionName == "ContoCorrenteAll") {
+    data = await fetch(
+      "${pageContext.request.contextPath}/Dipendenti?azione=ewallet&azioneEwallet=findAll&tipo=ContoCorrente&_=" +
         new Date().getTime()
     );
   } else {

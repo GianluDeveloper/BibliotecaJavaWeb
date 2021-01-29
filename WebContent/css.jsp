@@ -199,6 +199,12 @@ input[type="radio"]{
 	border-color: rgba(255,255,255,1);
 	
 }
+
+.addEwallet:hover{
+	transform: scale(1.5);
+	transition:ease-in-out 0.2s;
+}
+
 @media (max-width: 700px) {
   .container {
     grid-template-columns: repeat(2, 1fr);

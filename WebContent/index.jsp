@@ -193,17 +193,17 @@
           <h2>Conti Correnti</h2>
           <div class="azione">
             <a href="#"  data-link="ContoCorrente"
-              ><em class="fa fa-plus fa-fw"></em>&nbsp;Tutti i Tipi Movimento</a
+              ><em class="fa fa-dollar-sign fa-fw"></em>&nbsp;Tutti i Tipi Movimento</a
             >
           </div>
           <div class="azione">
             <a href="#"  data-link="ContoCorrenteFind"
-              ><em class="fa fa-search fa-fw"></em>&nbsp;Lista Movimenti</a
+              ><em class="fa fa-money-check-alt fa-fw"></em>&nbsp;Lista Movimenti</a
             >
           </div>
           <div class="azione">
             <a href="#"  data-link="ContoCorrenteAll" 
-              ><em class="fa fa-list fa-fw"></em>&nbsp;Lista Conti Correnti</a
+              ><em class="fa fa-search-dollar fa-fw"></em>&nbsp;Lista Conti Correnti</a
             >
           </div>
         </section>

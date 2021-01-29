@@ -86,13 +86,34 @@ public class DipendentiCtr extends HttpServlet{
 		String tipo = request.getParameter("tipo");
 		
 		if(azione== null||tipo==null) {
-			response.getWriter().append("parametro id non valido.");
-			return;
+			response.getWriter().append("parametri non validi.");
+		}else if(tipo.equals("ContoCorrente")) {
+			this.ewalletContoCorrente(request, response);
+		}else if(tipo.equals("Movimenti")) {
+			this.ewalletMovimenti(request, response);
+		}else if(tipo.equals("TipoMovimento")) {
+			this.ewalletTipoMovimento(request, response);
+		}else {
+			//azione non riconosciuta
 		}
 		
+		
+	}
+	
+	private void ewalletContoCorrente(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+		
+		String azione= request.getParameter("azioneEwallet");
 		if(azione.equals("insert")) {
-			request.getSession().setAttribute("type", "Conto Corrente");
+			request.getSession().setAttribute("typestr", "Conto Corrente");
+			request.getSession().setAttribute("type", "ContoCorrente");
 			request.getRequestDispatcher("ewalletInsert.jsp").forward(request, response);
+		}else if(azione.equals("update")) {
+			ContoCorrenteWSProxy p = new ContoCorrenteWSProxy();
+			ResponseContoCorrente r = p.findById(1);
+			ContoCorrente oggetto = r.getContoCorrente()[0];
+			oggetto.setDataCreazione(new JavaDate().toWebFormat(oggetto.getDataCreazione()));
+			request.getSession().setAttribute("oggetto", oggetto);
+			request.getRequestDispatcher("ewalletUpdate.jsp").forward(request, response);
 		}else if(azione.equals("doInsert")) {
 			String saldo = request.getParameter("saldo");
 			String dataCreazione = request.getParameter("dataCreazione");
@@ -107,33 +128,68 @@ public class DipendentiCtr extends HttpServlet{
 				ContoCorrenteWSProxy p = new ContoCorrenteWSProxy();
 				Response remoteResp = p.insert(c);
 				if(remoteResp.isSuccesso()) {
-					response.getWriter().append("Inserimento ok");
+					response.getWriter().append("<h2>Inserimento avvenuto con successo</h2>");
 				}else {
 					response.getWriter().append("Errore: "+remoteResp.getErrorCode()+" Msg: "+remoteResp.getDescription());
 				}
 			}
+		}else if(azione.equals("doUpdate")) {
+			String iban = request.getParameter("iban");
+			String saldo = request.getParameter("saldo");
+			String dataCreazione = request.getParameter("dataCreazione");
+			String idCliente = request.getParameter("idCliente");
+			if(iban==null||saldo==null || dataCreazione == null || idCliente == null) {
+				response.getWriter().append("parametri non validi.");
+			}else {
+				int idClienteInt = Integer.parseInt(idCliente);
+				float saldoFloat = Float.parseFloat(saldo);
+				int ibanInt = Integer.parseInt(iban);
+				String dataCreazioneHandled = new JavaDate().handleWebFormat(dataCreazione);
+				ContoCorrente c = new ContoCorrente(dataCreazioneHandled,ibanInt,idClienteInt,saldoFloat);
+				ContoCorrenteWSProxy p = new ContoCorrenteWSProxy();
+				Response remoteResp = p.update(c);
+				if(remoteResp.isSuccesso()) {
+					response.getWriter().append("<h2>Update avvenuto con successo</h2>");
+				}else {
+					response.getWriter().append("Errore: "+remoteResp.getErrorCode()+" Msg: "+remoteResp.getDescription());
+				}
+			}
+		}else if(azione.equals("findAll")) {
+			ContoCorrenteWSProxy p = new ContoCorrenteWSProxy();
+			ResponseContoCorrente remoteResp = p.findAll(false);
+			ContoCorrente[] res = remoteResp.getContoCorrente();
+			request.getSession().setAttribute("lista", res);
+			request.getRequestDispatcher("ewalletLista.jsp").forward(request, response);
+		}else if(azione.equals("remove")) {
+			String ID = request.getParameter("id");
+			if(ID==null) {
+				response.getWriter().append("parametri non validi.");
+			}else {
+				int idInt= Integer.parseInt(ID);
+				ContoCorrenteWSProxy p = new ContoCorrenteWSProxy();
+				ContoCorrente c = new ContoCorrente();
+				c.setIban(idInt);
+				Response r = p.remove(c);
+				if(r.isSuccesso()) {
+					response.getWriter().append("<h2>Rimosso id "+idInt+"</h2>");
+				}else {
+					response.getWriter().append("<div><h2>Errore "+r.getErrorCode()+"</h2><div>"+
+							r.getDescription()+"</div></div>");
+				}
+				
+			}
+			
 		}
-		
-		//		RicercaDb r = new RicercaDb();
-		//		r.setKey("idCliente");
-		//		r.setValue(id);
-		//		
-		//		ContoCorrenteWSProxy p = new ContoCorrenteWSProxy();
-		//		ResponseContoCorrente remoteResp = p.find(r);
-		//		ContoCorrente[] lista = remoteResp.getContoCorrente();
-		
-		
-		//		if(lista !=null) {
-		//			String resp = "<title>ok</title>";
-		//			for(ContoCorrente m : lista) {
-		//				resp+=m.getSaldo()+" -> "+ m.getDataCreazione()+"<br/>";
-		//			}
-		//			response.getWriter().append(resp);
-		//		}else {
-		//			String resp = "L'utente con id "+id+" non e' presente nell'e-wallet";
-		//			response.getWriter().append(resp);
-		//		}
 	}
+	private void ewalletMovimenti(HttpServletRequest request,HttpServletResponse response) throws IOException {
+		response.getWriter().append("ewalletMovimenti ok");
+	}
+	
+	private void ewalletTipoMovimento(HttpServletRequest request,HttpServletResponse response) throws IOException {
+		response.getWriter().append("ewalletTipoMovimento ok");
+	}
+	
+	
 	private void update(HttpServletRequest request,HttpServletResponse response) throws IOException, ServletException {
 		String matricolaget = request.getParameter("id");
 		String nome = request.getParameter("nome");
