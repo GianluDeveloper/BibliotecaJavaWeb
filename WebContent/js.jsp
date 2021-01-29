@@ -230,12 +230,12 @@ const updateMain = async (actionName) => {
     );
   } else if (actionName == "ContoCorrente") {
     data = await fetch(
-      "${pageContext.request.contextPath}/Dipendenti?azione=ewallet&azioneEwallet=insert&tipo=TipoMovimento&_=" +
+      "${pageContext.request.contextPath}/Dipendenti?azione=ewallet&azioneEwallet=findAll&tipo=TipoMovimento&_=" +
         new Date().getTime()
     );
   } else if (actionName == "ContoCorrenteFind") {
     data = await fetch(
-      "${pageContext.request.contextPath}/Dipendenti?azione=ewallet&azioneEwallet=insert&tipo=Movimenti&_=" +
+      "${pageContext.request.contextPath}/Dipendenti?azione=ewallet&azioneEwallet=findAll&tipo=Movimenti&_=" +
         new Date().getTime()
     );
   } else if (actionName == "ContoCorrenteAll") {

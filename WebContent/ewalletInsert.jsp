@@ -4,6 +4,7 @@
 <% 
 String typestr = (String)request.getSession().getAttribute("typestr"); 
 String type = (String)request.getSession().getAttribute("type"); 
+if(type.equals("ContoCorrente")){
 %>
 <div>
 	<h2>Inserisci <%=typestr %></h2>
@@ -40,3 +41,35 @@ String type = (String)request.getSession().getAttribute("type");
 		</form>
 	</div>
 </div>
+<%}else if(type.equals("TipoMovimento")){
+	%>
+	
+<div>
+	<h2>Inserisci Nuovo Tipo Movimento</h2>
+	<div>
+		<form method="POST" action="#" data-action="Dipendenti:doInsert" onsubmit="return handleForm(this)">
+			
+	        <label for="nome">Nome nuovo movimento <span style="color:red;">*</span></label><br />
+	        <input
+	        
+	          type="text"
+	          name="descrizione"
+	          placeholder="Descrizione..."
+	          required
+	        /><br />
+	       
+		 <br /><button type="submit">Invia dati</button>
+        <input type="hidden" name="azioneEwallet" value="doInsert" />
+        <input type="hidden" name="azione" value="ewallet" />
+        <input type="hidden" name="tipo" value="TipoMovimento" />
+		</form>
+	</div>
+</div>	
+	
+	
+	
+	<%
+}
+
+
+%>

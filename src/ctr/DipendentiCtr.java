@@ -10,14 +10,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.DipendentiDao;
-import exceptions.CustomException;
 import main.JavaDate;
 import model.Dipendenti;
 import service.ContoCorrente;
 import service.ContoCorrenteWSProxy;
 import service.Response;
 import service.ResponseContoCorrente;
-import service.RicercaDb;
+import service.ResponseTipoMovimento;
+import service.TipoMovimento;
+import service.TipoMovimentoWSProxy;
 
 @WebServlet("Dipendenti")
 public class DipendentiCtr extends HttpServlet{
@@ -72,7 +73,7 @@ public class DipendentiCtr extends HttpServlet{
 			dipendentiDao.insert(d);
 			response.addHeader("Content-Type", "text/html");
 
-			response.getWriter().append("Dipendente inserito correttamente"+". Torna alla <a href='/BibliotecaServlet'>home</a>");
+			response.getWriter().append("Dipendente inserito correttamente"+". ");
 		}else {
 			response.getWriter().append("Qualcosa e' andato storto");
 		}
@@ -108,8 +109,14 @@ public class DipendentiCtr extends HttpServlet{
 			request.getSession().setAttribute("type", "ContoCorrente");
 			request.getRequestDispatcher("ewalletInsert.jsp").forward(request, response);
 		}else if(azione.equals("update")) {
+			String Id = request.getParameter("id");
+			if(Id==null) {
+				response.getWriter().append("parametri non validi.");
+				return;
+			}
+			int id =Integer.parseInt(Id);
 			ContoCorrenteWSProxy p = new ContoCorrenteWSProxy();
-			ResponseContoCorrente r = p.findById(1);
+			ResponseContoCorrente r = p.findById(id);
 			ContoCorrente oggetto = r.getContoCorrente()[0];
 			oggetto.setDataCreazione(new JavaDate().toWebFormat(oggetto.getDataCreazione()));
 			request.getSession().setAttribute("oggetto", oggetto);
@@ -128,7 +135,7 @@ public class DipendentiCtr extends HttpServlet{
 				ContoCorrenteWSProxy p = new ContoCorrenteWSProxy();
 				Response remoteResp = p.insert(c);
 				if(remoteResp.isSuccesso()) {
-					response.getWriter().append("<h2>Inserimento avvenuto con successo</h2>");
+					response.getWriter().append("Inserimento avvenuto con successo");
 				}else {
 					response.getWriter().append("Errore: "+remoteResp.getErrorCode()+" Msg: "+remoteResp.getDescription());
 				}
@@ -149,7 +156,7 @@ public class DipendentiCtr extends HttpServlet{
 				ContoCorrenteWSProxy p = new ContoCorrenteWSProxy();
 				Response remoteResp = p.update(c);
 				if(remoteResp.isSuccesso()) {
-					response.getWriter().append("<h2>Update avvenuto con successo</h2>");
+					response.getWriter().append("Update avvenuto con successo");
 				}else {
 					response.getWriter().append("Errore: "+remoteResp.getErrorCode()+" Msg: "+remoteResp.getDescription());
 				}
@@ -171,21 +178,100 @@ public class DipendentiCtr extends HttpServlet{
 				c.setIban(idInt);
 				Response r = p.remove(c);
 				if(r.isSuccesso()) {
-					response.getWriter().append("<h2>Rimosso id "+idInt+"</h2>");
+					response.getWriter().append("Rimosso id "+idInt);
 				}else {
-					response.getWriter().append("<div><h2>Errore "+r.getErrorCode()+"</h2><div>"+
-							r.getDescription()+"</div></div>");
+					response.getWriter().append("Errore "+r.getErrorCode()+": "+
+							r.getDescription());
 				}
 				
 			}
 			
 		}
 	}
-	private void ewalletMovimenti(HttpServletRequest request,HttpServletResponse response) throws IOException {
-		response.getWriter().append("ewalletMovimenti ok");
+	private void ewalletTipoMovimento(HttpServletRequest request,HttpServletResponse response) throws IOException, ServletException {
+		String azione= request.getParameter("azioneEwallet");
+		if(azione.equals("insert")) {
+			request.getSession().setAttribute("typestr", "Tipi Movimento");
+			request.getSession().setAttribute("type", "TipoMovimento");
+			request.getRequestDispatcher("ewalletInsert.jsp").forward(request, response);
+		}else if(azione.equals("update")) {
+			String Id = request.getParameter("id");
+			if(Id==null) {
+				response.getWriter().append("parametri non validi.");
+				return;
+			}
+			int id =Integer.parseInt(Id);
+			TipoMovimentoWSProxy p = new TipoMovimentoWSProxy();
+			ResponseTipoMovimento r = p.findById(id);
+			TipoMovimento[]oggetti=r.getTipoMovimento();
+			if(oggetti==null) {
+				response.getWriter().append("No results.");
+
+				return;
+			}
+			TipoMovimento oggetto = oggetti[0];
+			request.getSession().setAttribute("oggetto", oggetto);
+			request.getRequestDispatcher("ewalletUpdate.jsp").forward(request, response);
+		}else if(azione.equals("doInsert")) {
+			String descrizione = request.getParameter("descrizione");
+			if(descrizione==null ) {
+				response.getWriter().append("parametri non validi.");
+			}else {
+				
+				TipoMovimento c = new TipoMovimento(descrizione,0);
+				TipoMovimentoWSProxy p = new TipoMovimentoWSProxy();
+				Response remoteResp = p.insert(c);
+				if(remoteResp.isSuccesso()) {
+					response.getWriter().append("Inserimento avvenuto con successo");
+				}else {
+					response.getWriter().append("Errore: "+remoteResp.getErrorCode()+" Msg: "+remoteResp.getDescription());
+				}
+			}
+		}else if(azione.equals("doUpdate")) {
+			String descrizione = request.getParameter("descrizione");
+			String idTipoMovimento = request.getParameter("idTipoMovimento");
+			if(descrizione == null || idTipoMovimento == null) {
+				response.getWriter().append("parametri non validi.");
+			}else {
+				int idTipoMovimentoInt = Integer.parseInt(idTipoMovimento);
+				TipoMovimento c = new TipoMovimento(descrizione,idTipoMovimentoInt);
+				TipoMovimentoWSProxy p = new TipoMovimentoWSProxy();
+				Response remoteResp = p.update(c);
+				if(remoteResp.isSuccesso()) {
+					response.getWriter().append("Update avvenuto con successo");
+				}else {
+					response.getWriter().append("Errore: "+remoteResp.getErrorCode()+" Msg: "+remoteResp.getDescription());
+				}
+			}
+		}else if(azione.equals("findAll")) {
+			TipoMovimentoWSProxy p = new TipoMovimentoWSProxy();
+			ResponseTipoMovimento remoteResp = p.findAll(false);
+			TipoMovimento[] res = remoteResp.getTipoMovimento();
+			request.getSession().setAttribute("lista", res);
+			request.getRequestDispatcher("ewalletLista.jsp").forward(request, response);
+		}else if(azione.equals("remove")) {
+			String ID = request.getParameter("id");
+			if(ID==null) {
+				response.getWriter().append("parametri non validi.");
+			}else {
+				int idInt= Integer.parseInt(ID);
+				TipoMovimentoWSProxy p = new TipoMovimentoWSProxy();
+				TipoMovimento c = new TipoMovimento();
+				c.setIdTipoMovimento(idInt);
+				Response r = p.remove(c);
+				if(r.isSuccesso()) {
+					response.getWriter().append("Rimosso id "+idInt);
+				}else {
+					response.getWriter().append("Errore "+r.getErrorCode()+" : "+
+							r.getDescription());
+				}
+				
+			}
+			
+		}
 	}
 	
-	private void ewalletTipoMovimento(HttpServletRequest request,HttpServletResponse response) throws IOException {
+	private void ewalletMovimenti(HttpServletRequest request,HttpServletResponse response) throws IOException {
 		response.getWriter().append("ewalletTipoMovimento ok");
 	}
 	
@@ -205,7 +291,7 @@ public class DipendentiCtr extends HttpServlet{
 			Dipendenti d = new Dipendenti(id,  nome,  cognome,  telefono,  admin);
 			dipendentiDao.update(d);
 			response.addHeader("Content-Type", "text/html");
-			response.getWriter().append("Utente "+id+" aggiornato. Torna alla <a href='/BibliotecaServlet'>home</a>");
+			response.getWriter().append("Utente "+id+" aggiornato. ");
 
 		}
 		else {
@@ -227,10 +313,10 @@ public class DipendentiCtr extends HttpServlet{
 			Dipendenti d = new Dipendenti();
 			d.setMatricola(id);
 			dipendentiDao.remove(d);
-			response.getWriter().append("Rimosso l'utente con id "+id+". Torna alla <a href='/BibliotecaServlet'>home</a>");
+			response.getWriter().append("Rimosso l'utente con id "+id+". ");
 
 		}else {
-			response.getWriter().append("Errore nella rimozione. Torna alla <a href='/BibliotecaServlet'>home</a>");
+			response.getWriter().append("Errore nella rimozione. ");
 
 		}
 		
