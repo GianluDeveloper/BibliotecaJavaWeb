@@ -68,6 +68,12 @@
           <div class="azione"><a href="#" data-link="TurniFind">Trova Turni</a></div>
           <div class="azione"><a href="#" data-link="TurniAll">Lista Turni</a></div>
         </div>
+        <div class="oggettoAside">
+        	<h4>Conti Correnti</h4>
+        	<div class="azione"><a href="#" data-link="ContoCorrente">Tutti i Tipi Movimento</a></div>
+        	<div class="azione"><a href="#" data-link="ContoCorrenteFind">Lista Movimenti</a></div>
+        	<div class="azione"><a href="#" data-link="ContoCorrenteAll">Lista Conti Correnti</a></div>
+        </div>
       </aside>
       <main>
         <section>
@@ -180,6 +186,24 @@
           <div class="azione">
             <a href="#"  data-link="RegistroLibriAll" 
               ><em class="fa fa-list fa-fw"></em>&nbsp;Lista Registri Libri</a
+            >
+          </div>
+        </section>
+        <section>
+          <h2>Conti Correnti</h2>
+          <div class="azione">
+            <a href="#"  data-link="ContoCorrente"
+              ><em class="fa fa-plus fa-fw"></em>&nbsp;Tutti i Tipi Movimento</a
+            >
+          </div>
+          <div class="azione">
+            <a href="#"  data-link="ContoCorrenteFind"
+              ><em class="fa fa-search fa-fw"></em>&nbsp;Lista Movimenti</a
+            >
+          </div>
+          <div class="azione">
+            <a href="#"  data-link="ContoCorrenteAll" 
+              ><em class="fa fa-list fa-fw"></em>&nbsp;Lista Conti Correnti</a
             >
           </div>
         </section>
