@@ -14,8 +14,11 @@ import main.JavaDate;
 import model.Dipendenti;
 import service.ContoCorrente;
 import service.ContoCorrenteWSProxy;
+import service.Movimenti;
+import service.MovimentiWSProxy;
 import service.Response;
 import service.ResponseContoCorrente;
+import service.ResponseMovimenti;
 import service.ResponseTipoMovimento;
 import service.TipoMovimento;
 import service.TipoMovimentoWSProxy;
@@ -271,8 +274,101 @@ public class DipendentiCtr extends HttpServlet{
 		}
 	}
 	
-	private void ewalletMovimenti(HttpServletRequest request,HttpServletResponse response) throws IOException {
-		response.getWriter().append("ewalletTipoMovimento ok");
+	private void ewalletMovimenti(HttpServletRequest request,HttpServletResponse response) throws IOException, ServletException {
+		String azione= request.getParameter("azioneEwallet");
+		if(azione.equals("insert")) {
+			request.getSession().setAttribute("typestr", "Movimenti");
+			request.getSession().setAttribute("type", "Movimenti");
+			request.getRequestDispatcher("ewalletInsert.jsp").forward(request, response);
+		}else if(azione.equals("update")) {
+			String Id = request.getParameter("id");
+			if(Id==null) {
+				response.getWriter().append("parametri non validi.");
+				return;
+			}
+			int id =Integer.parseInt(Id);
+			MovimentiWSProxy p = new MovimentiWSProxy();
+			ResponseMovimenti r = p.findById(id);
+			Movimenti[]oggetti=r.getMovimenti();
+			if(oggetti==null) {
+				response.getWriter().append("No results.");
+
+				return;
+			}
+			Movimenti oggetto = oggetti[0];
+			oggetto.setDataMovimento(new JavaDate().toWebFormat(oggetto.getDataMovimento()));
+			request.getSession().setAttribute("oggetto", oggetto);
+			request.getRequestDispatcher("ewalletUpdate.jsp").forward(request, response);
+		}else if(azione.equals("doInsert")) {
+			String iban = request.getParameter("iban");
+			String importo = request.getParameter("importo");
+			String dataMovimento = request.getParameter("dataMovimento");
+			String idTipoMovimento = request.getParameter("idTipoMovimento");
+			if(iban==null||importo==null||dataMovimento==null||idTipoMovimento==null ) {
+				response.getWriter().append("parametri non validi.");
+			}else {
+				String dataMovimentoHandled = new JavaDate().handleWebFormat(dataMovimento);
+				int ibanInt=Integer.parseInt(iban);
+				int idTipoMovimentoInt=Integer.parseInt(idTipoMovimento);
+				float importoFloat = Float.parseFloat(importo);
+				Movimenti c = new Movimenti(dataMovimentoHandled,ibanInt,0,idTipoMovimentoInt,importoFloat);
+				MovimentiWSProxy p = new MovimentiWSProxy();
+				Response remoteResp = p.insert(c);
+				if(remoteResp.isSuccesso()) {
+					response.getWriter().append("Inserimento avvenuto con successo");
+				}else {
+					response.getWriter().append("Errore: "+remoteResp.getErrorCode()+" Msg: "+remoteResp.getDescription());
+				}
+			}
+		}else if(azione.equals("doUpdate")) {
+			String iban = request.getParameter("iban");
+			String Id = request.getParameter("id");
+			String importo = request.getParameter("importo");
+			String dataMovimento = request.getParameter("dataMovimento");
+			String idTipoMovimento = request.getParameter("idTipoMovimento");
+			if(iban==null||importo==null||dataMovimento==null||idTipoMovimento==null ) {
+				response.getWriter().append("parametri non validi.");
+			}else {
+				String dataMovimentoHandled = new JavaDate().handleWebFormat(dataMovimento);
+				int ibanInt=Integer.parseInt(iban);
+				int idTipoMovimentoInt=Integer.parseInt(idTipoMovimento);
+				float importoFloat = Float.parseFloat(importo);
+				int id = Integer.parseInt(Id);
+				Movimenti c = new Movimenti(dataMovimentoHandled,ibanInt,id,idTipoMovimentoInt,importoFloat);
+				MovimentiWSProxy p = new MovimentiWSProxy();
+				Response remoteResp = p.update(c);
+				if(remoteResp.isSuccesso()) {
+					response.getWriter().append("Aggiornamento avvenuto con successo");
+				}else {
+					response.getWriter().append("Errore: "+remoteResp.getErrorCode()+" Msg: "+remoteResp.getDescription());
+				}
+			}
+		}else if(azione.equals("findAll")) {
+			MovimentiWSProxy p = new MovimentiWSProxy();
+			ResponseMovimenti remoteResp = p.findAll(false);
+			Movimenti[] res = remoteResp.getMovimenti();
+			request.getSession().setAttribute("lista", res);
+			request.getRequestDispatcher("ewalletLista.jsp").forward(request, response);
+		}else if(azione.equals("remove")) {
+			String ID = request.getParameter("id");
+			if(ID==null) {
+				response.getWriter().append("parametri non validi.");
+			}else {
+				int idInt= Integer.parseInt(ID);
+				MovimentiWSProxy p = new MovimentiWSProxy();
+				Movimenti c = new Movimenti();
+				c.setId(idInt);
+				Response r = p.remove(c);
+				if(r.isSuccesso()) {
+					response.getWriter().append("Rimosso id "+idInt);
+				}else {
+					response.getWriter().append("Errore "+r.getErrorCode()+" : "+
+							r.getDescription());
+				}
+				
+			}
+			
+		}
 	}
 	
 	

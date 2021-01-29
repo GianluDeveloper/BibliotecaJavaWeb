@@ -71,7 +71,56 @@ if(type.equals("TipoMovimento")){
 		</div>
 	</div>
 
-	<% } %>
+	<% } else if(type.equals("Movimenti")){
+		%>
+		<div>
+			<h2>Aggiorna Movimento</h2>
+			<div>
+				<form method="POST" action="#" data-action="Dipendenti:update" onsubmit="return handleForm(this)">
+					
+			        <label for="nome">Iban <span style="color:red;">*</span></label><br />
+			        <input
+			        
+			          type="text"
+			          name="iban"
+			          placeholder="Iban..."
+			          value="${oggetto.iban}"
+			          required
+			        /><br />
+			        <label for="nome">Importo <span style="color:red;">*</span></label><br />
+			        <input
+			          type="text"
+			          name="importo"
+			          placeholder="Importo..."
+			          value="${oggetto.importo}"
+			          required
+			        /><br />
+			        <label for="nome">Data Movimento <span style="color:red;">*</span></label><br />
+			        <input
+			          type="date"
+			          name="dataMovimento"
+			          placeholder="Data Movimento..."
+			          value="${oggetto.dataMovimento}"
+			          required
+			        /><br />
+			        <label for="nome">ID Tipo Movimento <span style="color:red;">*</span></label><br />
+			        <input
+			          type="text"
+			          name="idTipoMovimento"
+			          placeholder="ID Tipo Movimento..."
+			          value="${oggetto.idTipoMovimento}"
+			          required
+			        /><br />
+				 <br /><button type="submit">Aggiorna dati</button>
+		        <input type="hidden" name="azioneEwallet" value="doUpdate" />
+		        <input type="hidden" name="azione" value="ewallet" />
+		        <input type="hidden" name="tipo" value="Movimenti" />
+		        <input type="hidden" name="id" value="${oggetto.id}" />
+				</form>
+			</div>
+		</div>
+
+		<% } %>
 
 
 
