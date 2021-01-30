@@ -1,2 +1,2 @@
 FROM jboss/wildfly
-ADD JavaBiblioteca.war /opt/jboss/wildfly/standalone/deployments/
+ADD *.war /opt/jboss/wildfly/standalone/deployments/

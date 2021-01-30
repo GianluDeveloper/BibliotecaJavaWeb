@@ -24,6 +24,21 @@ services:
       - ./javathis.sql:/docker-entrypoint-initdb.d/schema.sql:ro
     networks:
       - linkDb
+  dbWallet:
+    image: "mysql"
+#    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ewallet@ewallet.ewallet
+      MYSQL_DATABASE: ewallet
+      MYSQL_USER: ewallet
+      MYSQL_PASSWORD: ewallet
+    volumes:
+#      - ./workdir/db/init/:/docker-entrypoint-initdb.d/
+      - ./workdir/db/data2/:/var/lib/mysql/
+      - ./ewallet.sql:/docker-entrypoint-initdb.d/schema.sql:ro
+    networks:
+      - linkDb
 
 
 networks:

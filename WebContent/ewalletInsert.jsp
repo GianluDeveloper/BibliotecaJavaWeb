@@ -4,6 +4,12 @@
 <% 
 String typestr = (String)request.getSession().getAttribute("typestr"); 
 String type = (String)request.getSession().getAttribute("type"); 
+String id =request.getParameter("id");
+if(id!=null){
+	if(id.length()<1){
+		id=null;
+	}
+}
 if(type.equals("ContoCorrente")){
 %>
 <div>
@@ -17,15 +23,15 @@ if(type.equals("ContoCorrente")){
 	          type="text"
 	          name="idCliente"
 	          placeholder="ID Dipendente..."
-	          value="<% String id =request.getParameter("id"); out.print(id==null?"":id); %>"
+	          value="<%  out.print(id==null?"":id); %>"
 	          <%out.print(id==null?"":"DISABLED"); %>
 	          required
 	        /><br />
-	        <label for="nome">Saldo <span style="color:red;">*</span></label><br />
+	        <label for="nome">Saldo Iniziale <span style="color:red;">*</span></label><br />
 	        <input
 	          type="text"
 	          name="saldo"
-	          placeholder="Saldo..."
+	          placeholder="Saldo Iniziale..."
 	          required
 	        /><br />
 	        <label for="nome">Data Creazione <span style="color:red;">*</span></label><br />
@@ -80,7 +86,7 @@ if(type.equals("ContoCorrente")){
 		
         <label for="nome">Iban <span style="color:red;">*</span></label><br />
         <input
-         value="<% String id =request.getParameter("id"); out.print(id==null?"":id); %>"
+         value="<% out.print(id==null?"":id); %>"
 	          <%out.print(id==null?"":"DISABLED"); %>
           type="text"
           name="iban"

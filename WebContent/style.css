@@ -36,7 +36,7 @@ aside a:visited {
 header {
   grid-area: hd;
   display: grid;
-  grid-column-gap: 1em;
+  /*grid-column-gap: 1em;*/
   grid-auto-flow: column;
   justify-items: center;
   align-items: center;
@@ -45,6 +45,8 @@ header {
   margin: 5px;
   padding: 5px;
   border-radius:10px;
+  grid-template-columns: repeat(9, 1fr);
+  grid-template-areas: ". uno . . . . due tre . ";
 }
 header > nav {
   margin-left: 2em;
@@ -60,10 +62,15 @@ header > nav>a:hover{
 
 header > nav:nth-child(3) {
   margin-left: 0px;
+  grid-area:tre;
+}
+header > nav:nth-child(2) {
+  grid-area:due;
 }
 
 header > nav:nth-child(1) {
     letter-spacing: 2px;
+    grid-area:uno;
 }
 header > nav > a {
   text-decoration: none;

@@ -204,8 +204,10 @@ public class DipendentiCtr extends HttpServlet{
 				}
 			}
 		}else if(azione.equals("findAll")) {
+			
 			ContoCorrenteWSProxy p = new ContoCorrenteWSProxy();
 			ResponseContoCorrente remoteResp = p.findAll(false);
+			
 			ContoCorrente[] res = remoteResp.getContoCorrente();
 			request.getSession().setAttribute("lista", res);
 			request.getRequestDispatcher("ewalletLista.jsp").forward(request, response);
@@ -353,6 +355,27 @@ public class DipendentiCtr extends HttpServlet{
 				Movimenti c = new Movimenti(dataMovimentoHandled,ibanInt,0,idTipoMovimentoInt,importoFloat);
 				MovimentiWSProxy p = new MovimentiWSProxy();
 				Response remoteResp = p.insert(c);
+				
+				
+				
+				// aggiorna il saldo conto corrente
+				
+				
+				ContoCorrenteWSProxy p2 = new ContoCorrenteWSProxy();
+				ResponseContoCorrente r2 = p2.findById(ibanInt);
+				ContoCorrente oggetto = r2.getContoCorrente()[0];
+				float saldoPrima = oggetto.getSaldo();
+				float saldoDopo = saldoPrima+importoFloat;
+				oggetto.setSaldo(saldoDopo);
+				
+				p2.update(oggetto);
+				
+				
+				
+				
+				
+				
+				
 				if(remoteResp.isSuccesso()) {
 					response.getWriter().append("Inserimento avvenuto con successo");
 				}else {
