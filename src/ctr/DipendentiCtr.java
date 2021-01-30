@@ -20,6 +20,7 @@ import service.Response;
 import service.ResponseContoCorrente;
 import service.ResponseMovimenti;
 import service.ResponseTipoMovimento;
+import service.RicercaDb;
 import service.TipoMovimento;
 import service.TipoMovimentoWSProxy;
 
@@ -97,11 +98,49 @@ public class DipendentiCtr extends HttpServlet{
 			this.ewalletMovimenti(request, response);
 		}else if(tipo.equals("TipoMovimento")) {
 			this.ewalletTipoMovimento(request, response);
+		}else if(tipo.equals("ContoCorrenteDipendente")){
+			this.ewalletContoCorrenteDipendente(request, response);
 		}else {
 			//azione non riconosciuta
 		}
 		
 		
+	}	
+	
+	private void ewalletContoCorrenteDipendente(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+		String Id= request.getParameter("id");
+		if(Id==null) {
+			response.getWriter().append("parametri non validi.");
+		}else {
+			 
+			//conto corrente
+			ContoCorrenteWSProxy p = new ContoCorrenteWSProxy();
+			RicercaDb ricerca = new RicercaDb();
+			ricerca.setKey("idCliente");
+			ricerca.setValue(Id);
+			ResponseContoCorrente r = p.find(ricerca);
+			ContoCorrente[] res = r.getContoCorrente();
+			//movimenti 
+			Movimenti[] resmov =null;
+			if(res!=null) {
+				ContoCorrente d = res[0];
+				int iban =d.getIban();
+				MovimentiWSProxy p2 = new MovimentiWSProxy();
+				ricerca.setKey("iban");
+				request.getSession().setAttribute("iban", iban);
+				ricerca.setValue(String.valueOf(iban));
+				ResponseMovimenti rmov = p2.find(ricerca);
+				resmov= rmov.getMovimenti();
+			}
+			
+			
+			
+			
+			request.getSession().setAttribute("lista", res);
+			request.getSession().setAttribute("movimenti", resmov);
+			request.getRequestDispatcher("ewalletVisura.jsp").forward(request, response);
+		}
+	
 	}
 	
 	private void ewalletContoCorrente(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {

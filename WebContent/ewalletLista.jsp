@@ -16,7 +16,7 @@ if(tipo.equals("ContoCorrente")){ %>
 <table>
 <tr>
 	<th>iban</th>
-	<th>idCliente</th>
+	<th>ID Dipendente</th>
 	<th>saldo</th>
 	<th>dataCreazione</th>
 	<th>Modifica</th>

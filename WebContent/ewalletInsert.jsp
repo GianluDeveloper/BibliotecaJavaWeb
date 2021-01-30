@@ -7,7 +7,7 @@ String type = (String)request.getSession().getAttribute("type");
 if(type.equals("ContoCorrente")){
 %>
 <div>
-	<h2>Inserisci <%=typestr %></h2>
+	<h2>Inserisci Nuovo <%=typestr %></h2>
 	<div>
 		<form method="POST" action="#" data-action="Dipendenti:doInsert" onsubmit="return handleForm(this)">
 			
@@ -18,13 +18,14 @@ if(type.equals("ContoCorrente")){
 	          name="idCliente"
 	          placeholder="ID Dipendente..."
 	          value="<% String id =request.getParameter("id"); out.print(id==null?"":id); %>"
+	          <%out.print(id==null?"":"DISABLED"); %>
 	          required
 	        /><br />
-	        <label for="nome">Saldo Iniziale <span style="color:red;">*</span></label><br />
+	        <label for="nome">Saldo <span style="color:red;">*</span></label><br />
 	        <input
 	          type="text"
 	          name="saldo"
-	          placeholder="Saldo Iniziale..."
+	          placeholder="Saldo..."
 	          required
 	        /><br />
 	        <label for="nome">Data Creazione <span style="color:red;">*</span></label><br />
@@ -79,7 +80,8 @@ if(type.equals("ContoCorrente")){
 		
         <label for="nome">Iban <span style="color:red;">*</span></label><br />
         <input
-        
+         value="<% String id =request.getParameter("id"); out.print(id==null?"":id); %>"
+	          <%out.print(id==null?"":"DISABLED"); %>
           type="text"
           name="iban"
           placeholder="Iban..."
