@@ -32,14 +32,14 @@ CREATE TABLE `contocorrente` (
   `idCliente` int NOT NULL,
   `saldo` float NOT NULL,
   `dataCreazione` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `contocorrente`
 --
 
 INSERT INTO `contocorrente` (`iban`, `idCliente`, `saldo`, `dataCreazione`) VALUES
-(1, 10, 999.99, '2021-01-30');
+(1, 10, 879.21, '2021-01-30');
 
 -- --------------------------------------------------------
 
@@ -53,7 +53,7 @@ CREATE TABLE `movimenti` (
   `importo` float NOT NULL,
   `dataMovimento` date NOT NULL,
   `idTipoMovimento` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `movimenti`
@@ -61,6 +61,10 @@ CREATE TABLE `movimenti` (
 
 INSERT INTO `movimenti` (`id`, `iban`, `importo`, `dataMovimento`, `idTipoMovimento`) VALUES
 (1, 1, 999.99, '2021-01-30', 1);
+INSERT INTO `movimenti` (`id`, `iban`, `importo`, `dataMovimento`, `idTipoMovimento`) VALUES
+(2, 1, 130.21, '2021-01-31', 3);
+INSERT INTO `movimenti` (`id`, `iban`, `importo`, `dataMovimento`, `idTipoMovimento`) VALUES
+(3, 1, -250.99, '2021-01-31', 3);
 
 -- --------------------------------------------------------
 
@@ -71,7 +75,7 @@ INSERT INTO `movimenti` (`id`, `iban`, `importo`, `dataMovimento`, `idTipoMovime
 CREATE TABLE `tipomovimento` (
   `idTipoMovimento` int NOT NULL,
   `descrizione` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tipomovimento`
@@ -79,6 +83,10 @@ CREATE TABLE `tipomovimento` (
 
 INSERT INTO `tipomovimento` (`idTipoMovimento`, `descrizione`) VALUES
 (1, 'Stipendio');
+INSERT INTO `tipomovimento` (`idTipoMovimento`, `descrizione`) VALUES
+(2, 'Conguaglio');
+INSERT INTO `tipomovimento` (`idTipoMovimento`, `descrizione`) VALUES
+(3, 'Risarcimento Danni');
 
 --
 -- Indexes for dumped tables
