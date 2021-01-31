@@ -7,7 +7,7 @@
 <div>
 
 
-<h2>Lista Libri</h2>
+<h2>Lista Libri <a href="#" onclick="updateMain('Libri')" data-link="Libri"><em style="color:red" class="fas fa-plus-circle fa-fw addEwallet"></em></a></h2>
 <div>
 <table>
 <tr>

@@ -5,7 +5,7 @@
 <div>
 
 
-<h2>Lista Turni</h2>
+<h2>Lista Turni <a href="#" onclick="updateMain('Turni')" data-link="Turni"><em style="color:red" class="fas fa-plus-circle fa-fw addEwallet"></em></a></h2>
 <div>
 <table>
 <tr>

@@ -4,15 +4,24 @@
 
 <% 
 String tipo = request.getParameter("tipo");
+String k = request.getParameter("k");
+String v = request.getParameter("v");
+String msg= "";
+if(k!=null&&v!=null){
+	msg="<h3>Risultati per la ricerca di <em style='color:red'>"+k+
+			"</em> con valore <em style='color:red'>"+v+"</em></h3>";
+}
 
 if(tipo.equals("ContoCorrente")){ %>
 <div>
 
 
-<h2>Lista Conti Correnti 
+<h2>Lista Conti Correnti &nbsp;
 <a href="#${pageContext.request.contextPath}/Dipendenti?azione=ewallet&tipo=ContoCorrente&azioneEwallet=insert&id=" onclick="updateLink(this)" >
-<em style="color:red" class="fas fa-plus-circle fa-fw addEwallet"></em></a></h2>
+<em style="color:red" class="fas fa-plus-circle fa-fw addEwallet"></em></a>&nbsp; <a href="#${pageContext.request.contextPath}/Dipendenti?azione=ewallet&tipo=ContoCorrente&type=ContoCorrente&azioneEwallet=search&id=" onclick="updateLink(this)" >
+<em style="color:red" class="fas fa-search fa-fw addEwallet"></em></a>  </h2>
 <div>
+<%=msg %>
 <table>
 <tr>
 	<th>iban</th>

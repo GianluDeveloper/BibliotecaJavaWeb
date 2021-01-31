@@ -7,7 +7,7 @@
 <div>
 
 
-<h2>Lista Clienti</h2>
+<h2>Lista Clienti <a href="#" onclick="updateMain('Cliente')" data-link="Cliente"><em style="color:red" class="fas fa-plus-circle fa-fw addEwallet"></em></a></h2>
 <div>
 <table>
 <tr>

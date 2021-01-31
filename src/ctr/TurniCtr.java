@@ -60,7 +60,7 @@ public class TurniCtr extends HttpServlet{
 			Turni d = new Turni(0, idDipendente, data_inizio, data_fine);
 			boolean res = turniDao.insert(d);
 			response.addHeader("Content-Type", "text/html");
-			response.getWriter().append("Turno inserito correttamente"+". Torna alla <a href='/BibliotecaServlet'>home</a>");
+			response.getWriter().append("Turno inserito correttamente"+". ");
 		}else {
 			response.getWriter().append("si e' verificato un errore");
 		}			
@@ -80,11 +80,11 @@ public class TurniCtr extends HttpServlet{
 			boolean res = turniDao.update(d);
 			response.addHeader("Content-Type","text/html");
 
-			response.getWriter().append("Turno aggiornato correttamente"+". Torna alla <a href='/BibliotecaServlet'>home</a>");
+			response.getWriter().append("Turno aggiornato correttamente"+". ");
 		}else {
 			response.addHeader("Content-Type","text/html");
 
-			response.getWriter().append("si e' verificato un errore"+". Torna alla <a href='/BibliotecaServlet'>home</a>");
+			response.getWriter().append("si e' verificato un errore"+". ");
 		}	
 	}
 	private void remove(HttpServletRequest request,HttpServletResponse response) throws IOException {
@@ -96,9 +96,9 @@ public class TurniCtr extends HttpServlet{
 			Turni d = new Turni();
 			d.setIdTurni(idTurno);
 			boolean res = turniDao.remove(d);
-			response.getWriter().append("Turno "+idTurno+" rimosso"+". Torna alla <a href='/BibliotecaServlet'>home</a>");
+			response.getWriter().append("Turno "+idTurno+" rimosso"+". ");
 		}else {
-			response.getWriter().append("Errore nei parametri"+". Torna alla <a href='/BibliotecaServlet'>home</a>");
+			response.getWriter().append("Errore nei parametri"+". ");
 		}
 		
 	}

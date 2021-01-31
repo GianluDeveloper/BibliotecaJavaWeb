@@ -211,6 +211,37 @@ public class DipendentiCtr extends HttpServlet{
 			ContoCorrente[] res = remoteResp.getContoCorrente();
 			request.getSession().setAttribute("lista", res);
 			request.getRequestDispatcher("ewalletLista.jsp").forward(request, response);
+		}else if(azione.equals("search")) {
+			
+			ContoCorrenteWSProxy p = new ContoCorrenteWSProxy();
+			ResponseContoCorrente remoteResp = p.findAll(false);
+			
+			ContoCorrente[] res = remoteResp.getContoCorrente();
+			request.getSession().setAttribute("lista", res);
+			request.getRequestDispatcher("findBykv.jsp").forward(request, response);
+		}else if(azione.equals("doSearch")) {
+			response.getWriter().append("ok");
+			String k = request.getParameter("k");
+			String v = request.getParameter("v");
+			if(k==null || v==null) {
+				response.getWriter().append("Errore nei parametri");
+			}else {
+				RicercaDb rdb = new RicercaDb();
+				rdb.setKey(k);rdb.setValue(v);
+				ContoCorrenteWSProxy p = new ContoCorrenteWSProxy();
+				ResponseContoCorrente remoteResp = p.find(rdb);
+				
+				ContoCorrente[] res = remoteResp.getContoCorrente();
+				request.getSession().setAttribute("lista", res);
+				request.getRequestDispatcher("ewalletLista.jsp").forward(request, response);
+			}
+//			
+//			ContoCorrenteWSProxy p = new ContoCorrenteWSProxy();
+//			ResponseContoCorrente remoteResp = p.findAll(false);
+//			
+//			ContoCorrente[] res = remoteResp.getContoCorrente();
+//			request.getSession().setAttribute("lista", res);
+//			request.getRequestDispatcher("findBykv.jsp").forward(request, response);
 		}else if(azione.equals("remove")) {
 			String ID = request.getParameter("id");
 			if(ID==null) {

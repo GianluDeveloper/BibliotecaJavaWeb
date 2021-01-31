@@ -60,7 +60,7 @@ public class LibriCtr extends HttpServlet {
 			if(res) {
 				response.addHeader("Content-Type", "text/html");
 
-				response.getWriter().append("Libro <strong>"+titolo+"</strong> inserito correttamente"+". Torna alla <a href='/BibliotecaServlet'>home</a>");
+				response.getWriter().append("Libro <strong>"+titolo+"</strong> inserito correttamente.");
 			}else {
 				response.getWriter().append("errore inserimento nel database");
 			}
@@ -109,10 +109,10 @@ public class LibriCtr extends HttpServlet {
 			Libri d = new Libri();
 			d.setIdLibro(id);
 			libriDao.remove(d);
-			response.getWriter().append("Rimosso il libro con id "+id+". Torna alla <a href='/BibliotecaServlet'>home</a>");
+			response.getWriter().append("Rimosso il libro con id "+id+".");
 
 		}else {
-			response.getWriter().append("Errore nella rimozione. Torna alla <a href='/BibliotecaServlet'>home</a>");
+			response.getWriter().append("Errore nella rimozione. ");
 
 		}
 		

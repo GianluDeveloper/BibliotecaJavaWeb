@@ -112,6 +112,30 @@
 </form>
 	</div></div>
 	<%
+}else if(type.equals("ContoCorrente")){
+	%>
+	<div>
+
+
+<h2>Ricerca Conto Corrente</h2>
+<div>
+	<form method="POST" data-action="Dipendenti:findBykv" action="#" onsubmit="return handleForm(this)">
+	<label for="k">Campo di ricerca:</label><br/>
+	<select name="k" id="k">
+		<option value="iban">Iban</option> 	
+		<option value="idCliente">ID Dipendente</option>
+		<option value="saldo">Saldo</option>
+		<option value="dataCreazione">Data Creazione</option>
+	</select><br/>
+	<input type="text" placeholder="Ricerca..." name="v" required/><br/>
+	<button type="submit">Trova</button>
+	<input type="hidden" name="azione" value="ewallet"/>
+	<input type="hidden" name="tipo" value="ContoCorrente"/>
+	<input type="hidden" name="type" value="ContoCorrente"/>
+	<input type="hidden" name="azioneEwallet" value="doSearch"/>
+</form>
+	</div></div>
+	<%
 }
 
 

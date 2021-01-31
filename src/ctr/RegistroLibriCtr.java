@@ -60,7 +60,7 @@ public class RegistroLibriCtr extends HttpServlet {
 			if(res) {
 				response.addHeader("Content-Type", "text/html");
 
-				response.getWriter().append("Registro inserito correttamente"+". Torna alla <a href='/BibliotecaServlet'>home</a>");
+				response.getWriter().append("Registro inserito correttamente"+". ");
 			}else {
 				response.getWriter().append("errore inserimento");
 			}
@@ -90,7 +90,7 @@ public class RegistroLibriCtr extends HttpServlet {
 			if(res) {
 				response.addHeader("Content-Type", "text/html");
 
-				response.getWriter().append("Registro inserito correttamente"+". Torna alla <a href='/BibliotecaServlet'>home</a>");
+				response.getWriter().append("Registro inserito correttamente"+". ");
 			}else {
 				response.getWriter().append("errore inserimento");
 			}
@@ -107,10 +107,10 @@ public class RegistroLibriCtr extends HttpServlet {
 			Registro d = new Registro();
 			d.setId(id);
 			registroLibriDao.remove(d);
-			response.getWriter().append("Rimosso il registro libri con id "+id+". Torna alla <a href='/BibliotecaServlet'>home</a>");
+			response.getWriter().append("Rimosso il registro libri con id "+id+". ");
 
 		}else {
-			response.getWriter().append("Errore nella rimozione. Torna alla <a href='/BibliotecaServlet'>home</a>");
+			response.getWriter().append("Errore nella rimozione. ");
 
 		}
 		

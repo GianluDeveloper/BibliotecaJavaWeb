@@ -53,13 +53,13 @@ public class ClienteCtr extends HttpServlet {
 			}
 			response.addHeader("Content-Type", "text/html");
 
-			String ret="Ho inserito "+nome+" "+cognome+" telefono "+telefono+". Torna alla <a href='/BibliotecaServlet'>home</a>";
+			String ret="Cliente inserito correttamente.";
 			response.getWriter().append(ret);
 		}else if(operazione!=null&&operazione.equals("update") && Id!=null&& nome!=null&&cognome!=null&&telefono!=null) {
 			Cliente c2 = new Cliente(Integer.parseInt(Id),nome,cognome,telefono);
 			this.update(c2);
 			response.addHeader("Content-type", "text/html; charset=utf-8");
-			String ret="Ho aggiornato id: "+c2.getIdCliente()+" nome: "+nome+" "+cognome+" telefono "+telefono+". Torna alla <a href='/BibliotecaServlet'>home</a>";
+			String ret="Aggiornamento cliente effettuato con successo.";
 			response.getWriter().append(ret);
 		}else if(operazione!=null&&operazione.equals("findAll")) {
 			this.findAll(request,response);
@@ -127,7 +127,7 @@ public class ClienteCtr extends HttpServlet {
 			d.setIdCliente(id);
 			this.clienteDao.remove(d);
 			response.addHeader("Content-Type","text/html");
-			response.getWriter().append("Rimosso l'utente con id "+id+". Torna alla <a href='/BibliotecaServlet'>home</a>");
+			response.getWriter().append("Rimosso l'utente con id "+id+".");
 		}
 	}
 	

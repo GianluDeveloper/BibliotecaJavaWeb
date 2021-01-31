@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.List,model.Registro" %>
 
-<div><h2>Lista Registri Libri</h2>
+<div><h2>Lista Registri Libri <a href="#" onclick="updateMain('RegistroLibri')" data-link="RegistroLibri"><em style="color:red" class="fas fa-plus-circle fa-fw addEwallet"></em></a></h2>
 <table>
 <tr>
 	<th>id</th>

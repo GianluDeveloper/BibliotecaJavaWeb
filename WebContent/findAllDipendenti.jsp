@@ -7,7 +7,7 @@
 <div>
 
 
-<h2>Lista Dipendenti</h2>
+<h2>Lista Dipendenti <a href="#" onclick="updateMain('Dipendente')" data-link="Dipendente"><em style="color:red" class="fas fa-plus-circle fa-fw addEwallet"></em></a></h2>
 <div>
 <table>
 <tr>
