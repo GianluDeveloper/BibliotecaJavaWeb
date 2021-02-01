@@ -8,10 +8,9 @@
 package service;
 
 public interface TipoMovimentoWSService extends javax.xml.rpc.Service {
-	public java.lang.String getTipoMovimentoWSPortAddress();
+    public java.lang.String getTipoMovimentoWSPortAddress();
 
-	public service.TipoMovimentoWS getTipoMovimentoWSPort() throws javax.xml.rpc.ServiceException;
+    public service.TipoMovimentoWS getTipoMovimentoWSPort() throws javax.xml.rpc.ServiceException;
 
-	public service.TipoMovimentoWS getTipoMovimentoWSPort(java.net.URL portAddress)
-			throws javax.xml.rpc.ServiceException;
+    public service.TipoMovimentoWS getTipoMovimentoWSPort(java.net.URL portAddress) throws javax.xml.rpc.ServiceException;
 }
