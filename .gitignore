@@ -1,0 +1,4 @@
+build/*
+WebContent/WEB-INF/lib/*
+workdir/*
+build/
