@@ -8,9 +8,10 @@
 package service;
 
 public interface ContoCorrenteWSService extends javax.xml.rpc.Service {
-    public java.lang.String getContoCorrenteWSPortAddress();
+	public java.lang.String getContoCorrenteWSPortAddress();
 
-    public service.ContoCorrenteWS getContoCorrenteWSPort() throws javax.xml.rpc.ServiceException;
+	public service.ContoCorrenteWS getContoCorrenteWSPort() throws javax.xml.rpc.ServiceException;
 
-    public service.ContoCorrenteWS getContoCorrenteWSPort(java.net.URL portAddress) throws javax.xml.rpc.ServiceException;
+	public service.ContoCorrenteWS getContoCorrenteWSPort(java.net.URL portAddress)
+			throws javax.xml.rpc.ServiceException;
 }

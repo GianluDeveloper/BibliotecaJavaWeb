@@ -1,58 +1,81 @@
 package main;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
+//import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
+
+//import javax.naming.InitialContext;
+import javax.naming.NamingException;
+//import javax.sql.DataSource;
+
 public class ObjSql {
 	
-	private static final String DBName = "java";
-	private static final String USERNAME = "java";
-	private static final String PASSWORD = "java";
-	
-	private static String url = "jdbc:mysql://dbMY:3306/"+DBName
-			+"?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
-	private static Connection dbConnection = null;
-	private static String driver = "com.mysql.cj.jdbc.Driver";
+//	private static final String DBName = "java";
+//	private static final String USERNAME = "java";
+//	private static final String PASSWORD = "java";
+//	
+//	private static String url = "jdbc:mysql://dbMY:3306/"+DBName
+//			+"?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+//	private static Connection dbConnection = null;
+//	private static String driver = "com.mysql.cj.jdbc.Driver";
 	
 	private List<Object> response;
 	
-	public ObjSql() {}
-	private void closeMysql() {
-		if (dbConnection != null) {
-			try {
-				dbConnection.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-	}
-	private void openMysql() {
-		try {
-
-			Class.forName(driver);
-
-			
-			dbConnection = DriverManager.getConnection(url, USERNAME, PASSWORD);
-
-
-		} catch (Exception e) {
-
-			e.printStackTrace();
-		}
-	}
+//	public ObjSql() {}
+//	private void closeMysql() {
+//		if (dbConnection != null) {
+//			try {
+//				dbConnection.close();
+//			} catch (SQLException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//		}
+//	}
+//	private void openMysql() {
+//		try {
+//
+//			Class.forName(driver);
+//
+//			
+//			dbConnection = DriverManager.getConnection(url, USERNAME, PASSWORD);
+//
+//
+//		} catch (Exception e) {
+//
+//			e.printStackTrace();
+//		}
+//	}
 	public  List<Object> getResponse() {
 		return this.response;
 	}
-	public boolean sql(String updateTableSQL,Object []x) {
+	public boolean sql(String updateTableSQL,Object []x)  {
 		
 		response=new ArrayList<>();
-		this.openMysql();
+//		this.openMysql();
+		
+		DataSource ds=null;
+		try {
+			ds = (DataSource) new InitialContext().lookup("java:/BibliotecaDS");
+		} catch (NamingException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
+		Connection dbConnection = null;
+		try {
+			dbConnection = ds.getConnection();
+		} catch (SQLException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
+
 		
 		java.sql.PreparedStatement cmd = null;
 		boolean success = true;
@@ -114,7 +137,7 @@ public class ObjSql {
 			success=false;
 		}
 		
-		this.closeMysql();
+//		this.closeMysql();
 	
 		return success;
 	}

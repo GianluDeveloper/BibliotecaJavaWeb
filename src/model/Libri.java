@@ -1,33 +1,31 @@
 package model;
 
 public class Libri {
-	private int idLibro,numPagine,anno,posizione;
+	private int idLibro, numPagine, anno, posizione;
 	private String titolo, genere, autore, isbn, casaEditrice;
-	
-	
-	
-	public Libri(int idLibro,int numPagine,int anno,int posizione,String titolo,
-			String genere, String autore, String isbn, String casaEditrice){
-		this.idLibro=idLibro;
-		this.numPagine=numPagine;
-		this.anno=anno;
-		this.posizione=posizione;
-		this.titolo=titolo;
-		this.genere=genere;
-		this.autore=autore;
-		this.isbn=isbn;
-		this.casaEditrice=casaEditrice;
+
+	public Libri(int idLibro, int numPagine, int anno, int posizione, String titolo, String genere, String autore,
+			String isbn, String casaEditrice) {
+		this.idLibro = idLibro;
+		this.numPagine = numPagine;
+		this.anno = anno;
+		this.posizione = posizione;
+		this.titolo = titolo;
+		this.genere = genere;
+		this.autore = autore;
+		this.isbn = isbn;
+		this.casaEditrice = casaEditrice;
 	}
-	
-	public Libri(){
-		this.numPagine=0;
-		this.anno=0;
-		this.posizione=0;
-		this.titolo="";
-		this.genere="";
-		this.autore="";
-		this.isbn="";
-		this.casaEditrice="";
+
+	public Libri() {
+		this.numPagine = 0;
+		this.anno = 0;
+		this.posizione = 0;
+		this.titolo = "";
+		this.genere = "";
+		this.autore = "";
+		this.isbn = "";
+		this.casaEditrice = "";
 	}
 
 	public int getIdLibro() {
@@ -101,5 +99,5 @@ public class Libri {
 	public void setCasaEditrice(String casaEditrice) {
 		this.casaEditrice = casaEditrice;
 	}
-	
+
 }

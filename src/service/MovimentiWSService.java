@@ -8,9 +8,9 @@
 package service;
 
 public interface MovimentiWSService extends javax.xml.rpc.Service {
-    public java.lang.String getMovimentiWSPortAddress();
+	public java.lang.String getMovimentiWSPortAddress();
 
-    public service.MovimentiWS getMovimentiWSPort() throws javax.xml.rpc.ServiceException;
+	public service.MovimentiWS getMovimentiWSPort() throws javax.xml.rpc.ServiceException;
 
-    public service.MovimentiWS getMovimentiWSPort(java.net.URL portAddress) throws javax.xml.rpc.ServiceException;
+	public service.MovimentiWS getMovimentiWSPort(java.net.URL portAddress) throws javax.xml.rpc.ServiceException;
 }

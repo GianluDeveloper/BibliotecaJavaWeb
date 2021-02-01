@@ -1,24 +1,22 @@
 package model;
 
 public class Cliente {
-	
+
 	private int idCliente;
-	private String nome,cognome,telefono;
-	
-	public Cliente(){
+	private String nome, cognome, telefono;
+
+	public Cliente() {
 		this.nome = "";
 		this.cognome = "";
 		this.telefono = "";
 	}
-	
-	
+
 	public Cliente(int idCliente, String nome, String cognome, String telefono) {
 		this.idCliente = idCliente;
 		this.nome = nome;
 		this.cognome = cognome;
 		this.telefono = telefono;
 	}
-
 
 //	public void printToScreen() {
 //		System.out.println(this.idCliente+" "+this.nome+

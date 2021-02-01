@@ -8,10 +8,15 @@
 package service;
 
 public interface TipoMovimentoWS extends java.rmi.Remote {
-    public service.ResponseTipoMovimento findById(java.lang.Integer arg0) throws java.rmi.RemoteException;
-    public service.ResponseTipoMovimento find(service.RicercaDb arg0) throws java.rmi.RemoteException;
-    public service.Response remove(service.TipoMovimento arg0) throws java.rmi.RemoteException;
-    public service.ResponseTipoMovimento findAll(java.lang.Boolean arg0) throws java.rmi.RemoteException;
-    public service.Response insert(service.TipoMovimento arg0) throws java.rmi.RemoteException;
-    public service.Response update(service.TipoMovimento arg0) throws java.rmi.RemoteException;
+	public service.ResponseTipoMovimento findById(java.lang.Integer arg0) throws java.rmi.RemoteException;
+
+	public service.ResponseTipoMovimento find(service.RicercaDb arg0) throws java.rmi.RemoteException;
+
+	public service.Response remove(service.TipoMovimento arg0) throws java.rmi.RemoteException;
+
+	public service.ResponseTipoMovimento findAll(java.lang.Boolean arg0) throws java.rmi.RemoteException;
+
+	public service.Response insert(service.TipoMovimento arg0) throws java.rmi.RemoteException;
+
+	public service.Response update(service.TipoMovimento arg0) throws java.rmi.RemoteException;
 }

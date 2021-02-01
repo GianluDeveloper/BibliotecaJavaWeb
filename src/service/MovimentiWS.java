@@ -8,10 +8,15 @@
 package service;
 
 public interface MovimentiWS extends java.rmi.Remote {
-    public service.ResponseMovimenti findById(java.lang.Integer arg0) throws java.rmi.RemoteException;
-    public service.ResponseMovimenti find(service.RicercaDb arg0) throws java.rmi.RemoteException;
-    public service.Response remove(service.Movimenti arg0) throws java.rmi.RemoteException;
-    public service.ResponseMovimenti findAll(java.lang.Boolean arg0) throws java.rmi.RemoteException;
-    public service.Response insert(service.Movimenti arg0) throws java.rmi.RemoteException;
-    public service.Response update(service.Movimenti arg0) throws java.rmi.RemoteException;
+	public service.ResponseMovimenti findById(java.lang.Integer arg0) throws java.rmi.RemoteException;
+
+	public service.ResponseMovimenti find(service.RicercaDb arg0) throws java.rmi.RemoteException;
+
+	public service.Response remove(service.Movimenti arg0) throws java.rmi.RemoteException;
+
+	public service.ResponseMovimenti findAll(java.lang.Boolean arg0) throws java.rmi.RemoteException;
+
+	public service.Response insert(service.Movimenti arg0) throws java.rmi.RemoteException;
+
+	public service.Response update(service.Movimenti arg0) throws java.rmi.RemoteException;
 }
