@@ -136,6 +136,12 @@ public class ObjSql {
 			e.printStackTrace();
 			success=false;
 		}
+		try {
+			dbConnection.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 //		this.closeMysql();
 	
