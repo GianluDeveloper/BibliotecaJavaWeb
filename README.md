@@ -5,6 +5,7 @@ Progetto esemplificativo con backend Java.
 Tecnologie usate:
 - Servlet Java JBoss/Wildfly
 - WebService SOAP
+- Servlet Jersey REST API
 - JDBC
 - JSTL
 - MySQL
