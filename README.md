@@ -1,7 +1,7 @@
 # Progetto Java Web App Gestionale Biblioteca 
 
 Progetto esemplificativo con backend Java. \
-Backend collegato con [GianluDeveloper/EWalletBiblioteca](https://github.com/GianluDeveloper/EWalletBiblioteca/) 
+Collegato con [GianluDeveloper/EWalletBiblioteca](https://github.com/GianluDeveloper/EWalletBiblioteca/) 
 
 Tecnologie usate:
 - Servlet Java JBoss/Wildfly
