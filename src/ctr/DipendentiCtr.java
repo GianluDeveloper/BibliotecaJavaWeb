@@ -23,7 +23,7 @@ import service.ResponseMovimenti;
 import service.ResponseTipoMovimento;
 import service.RicercaDb;
 import service.TipoMovimento;
-import util.ClientRest;
+import utils.ClientRest;
 
 @WebServlet("Dipendenti")
 public class DipendentiCtr extends HttpServlet {
