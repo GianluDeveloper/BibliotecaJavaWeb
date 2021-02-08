@@ -42,8 +42,10 @@ if(tipo.equals("Iscrizioni")){ %>
         <tr>
 		<td>${entry.idIscrizione}</td>
 		<td>${entry.idDipendente}</td>
-		<td>${entry.idDocente}</td>
-		<td>${entry.idCorso}</td>
+		<td><a onclick="updateLink(this)" href='#${pageContext.request.contextPath}/CorsiEJB?azione=doSearch&type=Docenti&k=idDocente&v=${entry.idDocente}'>
+		<strong>${entry.idDocente}</strong></a></td>
+		<td><a onclick="updateLink(this)" href='#${pageContext.request.contextPath}/CorsiEJB?azione=doSearch&type=Corsi&k=idCorso&v=${entry.idCorso}'>
+		<strong>${entry.idCorso}</strong></a></td>
 		<td>
       <a
         href="#${pageContext.request.contextPath}/CorsiEJB?azione=update&type=Iscrizioni&id=${entry.idIscrizione}"
