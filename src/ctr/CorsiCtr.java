@@ -19,7 +19,6 @@ import model.Docenti;
 import model.Iscrizioni;
 import response.Response;
 import response.ResponseDao;
-import util.DateHandler;
 import util.RicercaDb;
 
 @WebServlet("CorsiEJB")
@@ -279,16 +278,13 @@ public class CorsiCtr extends HttpServlet {
 		String azione = request.getParameter("azione");
 		switch (azione) {
 		case "findAll":
-			// ResponseDao<Corsi> corsi = bs.findAll(false);
 
-			ResponseDao<Iscrizioni> iscrizioni = bs3.findAll(false);
+			ResponseDao<Docenti> iscrizioni = bs2.findAll(false);
 
-			// ResponseDao<Docenti> docenti = bs2.findAll(false);
 
-			List<Iscrizioni> listaIscrizioni = iscrizioni.getList();
+			List<Docenti> listaIscrizioni = iscrizioni.getList();
 			request.getSession().setAttribute("lista", listaIscrizioni);
 			request.getRequestDispatcher("corsiLista.jsp").forward(request, response);
-			// response.getWriter().append("ok findAll iscrizioni");
 			break;
 		case "search":
 			request.getRequestDispatcher("findBykv.jsp").forward(request, response);
@@ -303,8 +299,8 @@ public class CorsiCtr extends HttpServlet {
 			RicercaDb r = new RicercaDb();
 			r.setKey(k);
 			r.setValue(v);
-			ResponseDao<Iscrizioni> iscrizioniFind = bs3.find(r);
-			List<Iscrizioni> listaIscrizioniFind = iscrizioniFind.getList();
+			ResponseDao<Docenti> iscrizioniFind = bs2.find(r);
+			List<Docenti> listaIscrizioniFind = iscrizioniFind.getList();
 			request.getSession().setAttribute("lista", listaIscrizioniFind);
 			request.getRequestDispatcher("corsiLista.jsp").forward(request, response);
 
@@ -315,32 +311,29 @@ public class CorsiCtr extends HttpServlet {
 				response.getWriter().append("cancellazione non valida.");
 			}
 			int id = Integer.parseInt(Id);
-			ResponseDao<Iscrizioni> iscrizioniUpdateS = bs3.findById(id);
-			Iscrizioni IscrizioneUpdate = iscrizioniUpdateS.getList().get(0);
+			ResponseDao<Docenti> iscrizioniUpdateS = bs2.findById(id);
+			Docenti IscrizioneUpdate = iscrizioniUpdateS.getList().get(0);
 			request.getSession().setAttribute("oggetto", IscrizioneUpdate);
 			request.getRequestDispatcher("corsiUpdate.jsp").forward(request, response);
 
 			break;
 		case "doUpdate":
-			String idDipendenteU = request.getParameter("idDipendente");
-			String idDocenteU = request.getParameter("idDocente");
+			String nomeDocente = request.getParameter("nomeDocente");
 			String idCorsoU = request.getParameter("idCorso");
-			String IdU = request.getParameter("idIscrizione");
+			String IdU = request.getParameter("idDocente");
 			if (IdU == null) {
 				response.getWriter().append("cancellazione non valida.");
 			}
 			int idU = Integer.parseInt(IdU);
-			if (idDipendenteU == null || idDocenteU == null || idCorsoU == null) {
+			if (nomeDocente == null || idCorsoU == null) {
 				response.getWriter().append("update non valido.");
 				return;
 			}
-			int IdDipendenteU = Integer.parseInt(idDipendenteU);
-			int IdDocenteU = Integer.parseInt(idDocenteU);
 			int IdCorsoU = Integer.parseInt(idCorsoU);
-			Iscrizioni IscrDaInserireUpdate = new Iscrizioni(idU, IdDipendenteU, IdDocenteU, IdCorsoU);
-			Response iscrizioniUpdate = bs3.update(IscrDaInserireUpdate);
+			Docenti IscrDaInserireUpdate = new Docenti(idU, IdCorsoU, nomeDocente);
+			Response iscrizioniUpdate = bs2.update(IscrDaInserireUpdate);
 			if (iscrizioniUpdate.getErrorCode() == 0) {
-				response.getWriter().append("<div><h2>Iscrizione aggiornata con successo</h2></div>");
+				response.getWriter().append("<div><h2>Docente aggiornato con successo</h2></div>");
 			} else {
 				response.getWriter()
 						.append("<div><h2>Errore aggiornamento: " + iscrizioniUpdate.getDescription() + "</h2></div>");
@@ -353,11 +346,11 @@ public class CorsiCtr extends HttpServlet {
 				response.getWriter().append("cancellazione non valida.");
 			}
 			int idR = Integer.parseInt(IdR);
-			Iscrizioni tmp = new Iscrizioni();
-			tmp.setIdIscrizione(idR);
-			Response iscrizioniRemove = bs3.delete(tmp);
+			Docenti tmp = new Docenti();
+			tmp.setIdDocente(idR);
+			Response iscrizioniRemove = bs2.delete(tmp);
 			if (iscrizioniRemove.getErrorCode() == 0) {
-				response.getWriter().append("<div><h2>Iscrizione rimossa con successo</h2></div>");
+				response.getWriter().append("<div><h2>Docente rimosso con successo</h2></div>");
 			} else {
 				response.getWriter()
 						.append("<div><h2>Errore rimozione: " + iscrizioniRemove.getDescription() + "</h2></div>");
@@ -368,21 +361,18 @@ public class CorsiCtr extends HttpServlet {
 
 			break;
 		case "doInsert":
-			String idDipendente = request.getParameter("idDipendente");
-			String idDocente = request.getParameter("idDocente");
+			String nomeDocenteI = request.getParameter("nomeDocente");
 			String idCorso = request.getParameter("idCorso");
 
-			if (idDipendente == null || idDocente == null || idCorso == null) {
+			if (nomeDocenteI == null || idCorso == null) {
 				response.getWriter().append("inserimento non valido.");
 				return;
 			}
-			int IdDipendente = Integer.parseInt(idDipendente);
-			int IdDocente = Integer.parseInt(idDocente);
 			int IdCorso = Integer.parseInt(idCorso);
-			Iscrizioni IscrDaInserire = new Iscrizioni(0, IdDipendente, IdDocente, IdCorso);
-			Response iscrizioniInsert = bs3.insert(IscrDaInserire);
+			Docenti IscrDaInserire = new Docenti(0, IdCorso, nomeDocenteI);
+			Response iscrizioniInsert = bs2.insert(IscrDaInserire);
 			if (iscrizioniInsert.getErrorCode() == 0) {
-				response.getWriter().append("<div><h2>Iscrizione inserita con successo</h2></div>");
+				response.getWriter().append("<div><h2>Docente inserito con successo</h2></div>");
 			} else {
 				response.getWriter()
 						.append("<div><h2>Errore inserimento: " + iscrizioniInsert.getDescription() + "</h2></div>");

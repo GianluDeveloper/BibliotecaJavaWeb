@@ -180,6 +180,27 @@
 </form>
 	</div></div>
 	<%
+}else if(type.equals("Docenti")){
+	%>
+	<div>
+
+
+<h2>Ricerca Docenti</h2>
+<div>
+	<form method="POST" data-action="CorsiEJB:findBykv" action="#" onsubmit="return handleForm(this)">
+	<label for="k">Campo di ricerca:</label><br/>
+	<select name="k" id="k">
+		<option value="idDocente">idDocente</option> 	
+		<option value="idCorso">idCorso</option>
+		<option value="nomeDocente">nomeDocente</option>
+	</select><br/>
+	<input type="text" placeholder="Ricerca..." name="v" required/><br/>
+	<button type="submit">Trova</button>
+	<input type="hidden" name="azione" value="doSearch"/>
+	<input type="hidden" name="type" value="Docenti"/>
+</form>
+	</div></div>
+	<%
 }
 
 %>

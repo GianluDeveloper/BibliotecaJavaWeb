@@ -54,9 +54,7 @@ if(tipo.equals("Iscrizioni")){ %>
 </table>
 </div>
 </div>
-<%}
-
-if(tipo.equals("Corsi")){ %>
+<%}else if(tipo.equals("Corsi")){ %>
 <div>
 
 <h2>Lista Corsi &nbsp;
@@ -89,6 +87,45 @@ if(tipo.equals("Corsi")){ %>
     </td>
     <td>
       <a data-link="CorsiAll" data-action="stop" href ="#${pageContext.request.contextPath}/CorsiEJB?azione=remove&type=Corsi&id=${entry.idCorso }"
+        onclick="return remove(this)" ><em class="fa fa-trash-alt fa-fw"></em
+      ></a>
+    </td>
+    	</tr>
+</c:forEach>
+</table>
+</div>
+</div>
+<%}else if(tipo.equals("Docenti")){ %>
+<div>
+
+<h2>Lista Docenti &nbsp;
+<a href="#${pageContext.request.contextPath}/CorsiEJB?azione=insert&type=Docenti" onclick="updateLink(this)" >
+<em style="color:red" class="fas fa-plus-circle fa-fw addEwallet"></em></a>&nbsp; <a href="#${pageContext.request.contextPath}/CorsiEJB?azione=search&type=Docenti" onclick="updateLink(this)" >
+<em style="color:red" class="fas fa-search fa-fw addEwallet"></em></a>  </h2>
+<div>
+<%=msg %>
+<table>
+<tr>
+	<th>idDocente</th>
+	<th>idCorso</th>
+	<th>nomeDocente</th>
+	<th>Modifica</th>
+	<th>Elimina</th>
+</tr>
+<c:forEach items="${lista}" var="entry">
+        <tr>
+		<td>${entry.idDocente}</td>
+		<td>${entry.idCorso}</td>
+		<td>${entry.nomeDocente}</td>
+		<td>
+      <a
+        href="#${pageContext.request.contextPath}/CorsiEJB?azione=update&type=Docenti&id=${entry.idDocente}"
+        onclick="updateLink(this)"
+        ><em class="fa fa-edit fa-fw"></em
+      ></a>
+    </td>
+    <td>
+      <a data-link="DocentiAll" data-action="stop" href ="#${pageContext.request.contextPath}/CorsiEJB?azione=remove&type=Docenti&id=${entry.idDocente }"
         onclick="return remove(this)" ><em class="fa fa-trash-alt fa-fw"></em
       ></a>
     </td>

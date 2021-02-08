@@ -43,7 +43,7 @@ if(type.equals("Iscrizioni")){
 		</form>
 	</div>
 </div>
-<%}if(type.equals("Corsi")){
+<%}else if(type.equals("Corsi")){
 	%>
 	<div>
 		<h2>Aggiorna Corso</h2>
@@ -87,6 +87,42 @@ if(type.equals("Iscrizioni")){
 		
 		</div>
 	</div>
-	<%}
+	<%}else if(type.equals("Docenti")){
+		%>
+		<div>
+			<h2>Aggiorna Docente</h2>
+			<div>
+			
+			<form method="POST" action="#" data-action="CorsiEJB:doUpdate" onsubmit="return handleForm(this)">
+					
+			        <label for="nome">Nome Docente <span style="color:red;">*</span></label><br />
+			        <input
+			        
+			          type="text"
+			          name="nomeDocente"
+			          placeholder="Nome Docente..."
+			          value="${oggetto.nomeDocente}"
+			          required
+			        /><br />
+			        <label for="nome">ID Corso <span style="color:red;">*</span></label><br />
+			        <input
+			          type="number"
+			          name="idCorso"
+			          placeholder="ID Corso..."
+			          value="${oggetto.idCorso}"
+			          required
+			        /><br />
+				 <br /><button type="submit">Invia dati</button>
+		        <input type="hidden" name="azione" value="doUpdate" />
+		        <input type="hidden" name="type" value="<%=type %>" />
+				<input type="hidden" name="idDocente" value="${oggetto.idDocente}" />
+		        
+				</form>
+			
+			
+			
+			</div>
+		</div>
+		<%}
 
 %>

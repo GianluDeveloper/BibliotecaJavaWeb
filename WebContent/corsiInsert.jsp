@@ -82,5 +82,35 @@ if(type.equals("Iscrizioni")){
 		</div>
 	</div>
 	<%}
+else if(type.equals("Docenti")){
+	%>
+	<div>
+		<h2>Inserisci Docente</h2>
+		<div>
+			<form method="POST" action="#" data-action="CorsiEJB:doInsert" onsubmit="return handleForm(this)">
+				
+		        <label for="nome">Nome Docente <span style="color:red;">*</span></label><br />
+		        <input
+		        
+		          type="text"
+		          name="nomeDocente"
+		          placeholder="Nome Docente..."
+		          required
+		        /><br />
+		        <label for="nome">ID Corso <span style="color:red;">*</span></label><br />
+		        <input
+		          type="number"
+		          name="idCorso"
+		          placeholder="ID Corso..."
+		          required
+		        /><br />
+		        
+			 <br /><button type="submit">Invia dati</button>
+	        <input type="hidden" name="azione" value="doInsert" />
+	        <input type="hidden" name="type" value="<%=type %>" />
+			</form>
+		</div>
+	</div>
+	<%}
 
 %>
