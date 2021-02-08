@@ -12,12 +12,19 @@ if(k!=null&&v!=null){
 			"</em> con valore <em style='color:red'>"+v+"</em></h3>";
 }
 
+String idHtml =request.getParameter("id");
+if(idHtml==null){
+	idHtml="";
+}else{
+	idHtml="&id="+idHtml;
+}
+
 if(tipo.equals("Iscrizioni")){ %>
 <div>
 
 
 <h2>Lista Iscrizioni &nbsp;
-<a href="#${pageContext.request.contextPath}/CorsiEJB?azione=insert&type=Iscrizioni" onclick="updateLink(this)" >
+<a href="#${pageContext.request.contextPath}/CorsiEJB?azione=insert&type=Iscrizioni<%=idHtml %>" onclick="updateLink(this)" >
 <em style="color:red" class="fas fa-plus-circle fa-fw addEwallet"></em></a>&nbsp; <a href="#${pageContext.request.contextPath}/CorsiEJB?azione=search&type=Iscrizioni" onclick="updateLink(this)" >
 <em style="color:red" class="fas fa-search fa-fw addEwallet"></em></a>  </h2>
 <div>

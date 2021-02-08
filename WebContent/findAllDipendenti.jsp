@@ -17,6 +17,7 @@
 	<th>telefono</th>
 	<th>admin</th>
 	<th>Vedi Conto Corrente</th>
+	<th>Vedi Iscrizione Corsi</th>
 	<th>Modifica</th>
 	<th>Elimina</th>
 </tr>
@@ -29,6 +30,8 @@
 		<td>${entry.admin}</td>
 		<td><a onclick="updateLink(this)" href='#${pageContext.request.contextPath}/Dipendenti?azione=ewallet&tipo=ContoCorrenteDipendente&azioneEwallet=insert&id=${entry.matricola}'>
 		<em class="fa fa-file-invoice-dollar fa-fw"></em></a></td>
+		<td><a onclick="updateLink(this)" href='#${pageContext.request.contextPath}/CorsiEJB?azione=doSearch&type=Iscrizioni&k=idDipendente&v=${entry.matricola}&id=${entry.matricola}'>
+		<em class="fa fa-school fa-fw"></em></a></td>
 		<td>
       <a
         href="#${pageContext.request.contextPath}/update.jsp?type=Dipendenti&id=${entry.matricola }"
