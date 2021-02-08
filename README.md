@@ -7,6 +7,7 @@ Tecnologie usate:
 - Servlet Java JBoss/Wildfly
 - WebService SOAP
 - Servlet Jersey REST API
+- Enterprise JavaBean (EJB)
 - JDBC
 - JSTL
 - MySQL
