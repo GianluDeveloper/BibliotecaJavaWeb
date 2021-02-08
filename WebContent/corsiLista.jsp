@@ -54,34 +54,41 @@ if(tipo.equals("Iscrizioni")){ %>
 </table>
 </div>
 </div>
-<%}else if(tipo.equals("TipoMovimento")){ %>
+<%}
+
+if(tipo.equals("Corsi")){ %>
 <div>
 
-
-<h2>Lista Tipi Movimenti 
-<a href="#${pageContext.request.contextPath}/Dipendenti?azione=ewallet&tipo=TipoMovimento&azioneEwallet=insert&id=" onclick="updateLink(this)" >
-<em style="color:red" class="fas fa-plus-circle fa-fw addEwallet"></em></a></h2>
+<h2>Lista Corsi &nbsp;
+<a href="#${pageContext.request.contextPath}/CorsiEJB?azione=insert&type=Corsi" onclick="updateLink(this)" >
+<em style="color:red" class="fas fa-plus-circle fa-fw addEwallet"></em></a>&nbsp; <a href="#${pageContext.request.contextPath}/CorsiEJB?azione=search&type=Corsi" onclick="updateLink(this)" >
+<em style="color:red" class="fas fa-search fa-fw addEwallet"></em></a>  </h2>
 <div>
+<%=msg %>
 <table>
 <tr>
-	<th>idTipoMovimento</th>
-	<th>Descrizione</th>
+	<th>idCorso</th>
+	<th>nomeCorso</th>
+	<th>dataInizio</th>
+	<th>dataFine</th>
 	<th>Modifica</th>
 	<th>Elimina</th>
 </tr>
 <c:forEach items="${lista}" var="entry">
         <tr>
-		<td>${entry.idTipoMovimento}</td>
-		<td>${entry.descrizione}</td>
+		<td>${entry.idCorso}</td>
+		<td>${entry.nomeCorso}</td>
+		<td>${entry.dataInizio}</td>
+		<td>${entry.dataFine}</td>
 		<td>
       <a
-        href="#${pageContext.request.contextPath}/Dipendenti?azione=ewallet&tipo=TipoMovimento&azioneEwallet=update&id=${entry.idTipoMovimento}"
+        href="#${pageContext.request.contextPath}/CorsiEJB?azione=update&type=Corsi&id=${entry.idCorso}"
         onclick="updateLink(this)"
         ><em class="fa fa-edit fa-fw"></em
       ></a>
     </td>
     <td>
-      <a data-link="ContoCorrente" data-action="stop" href ="#${pageContext.request.contextPath}/Dipendenti?azione=ewallet&tipo=TipoMovimento&azioneEwallet=remove&id=${entry.idTipoMovimento }"
+      <a data-link="CorsiAll" data-action="stop" href ="#${pageContext.request.contextPath}/CorsiEJB?azione=remove&type=Corsi&id=${entry.idCorso }"
         onclick="return remove(this)" ><em class="fa fa-trash-alt fa-fw"></em
       ></a>
     </td>
@@ -90,48 +97,6 @@ if(tipo.equals("Iscrizioni")){ %>
 </table>
 </div>
 </div>
-<%}else if(tipo.equals("Movimenti")){ %>
-<div>
-
-
-<h2>Lista Movimenti 
-<a href="#${pageContext.request.contextPath}/Dipendenti?azione=ewallet&tipo=Movimenti&azioneEwallet=insert&id=" onclick="updateLink(this)" >
-<em style="color:red" class="fas fa-plus-circle fa-fw addEwallet"></em></a></h2>
-<div>
-<table>
-<tr>
-	<th>ID</th>
-	<th>Iban</th>
-	<th>Importo</th>
-	<th>Data Movimento</th>
-	<th>ID Tipo Movimento</th>
-	<th>Modifica</th>
-	<th>Elimina</th>
-</tr>
-<c:forEach items="${lista}" var="entry">
-        <tr>
-		<td>${entry.id}</td>
-		<td>${entry.iban}</td>
-		<td>${entry.importo}</td>
-		<td>${entry.dataMovimento}</td>
-		<td>${entry.idTipoMovimento}</td>
-		<td>
-      <a
-        href="#${pageContext.request.contextPath}/Dipendenti?azione=ewallet&tipo=Movimenti&azioneEwallet=update&id=${entry.id}"
-        onclick="updateLink(this)"
-        ><em class="fa fa-edit fa-fw"></em
-      ></a>
-    </td>
-    <td>
-      <a data-link="ContoCorrenteFind" data-action="stop" href ="#${pageContext.request.contextPath}/Dipendenti?azione=ewallet&tipo=Movimenti&azioneEwallet=remove&id=${entry.id }"
-        onclick="return remove(this)" ><em class="fa fa-trash-alt fa-fw"></em
-      ></a>
-    </td>
-    	</tr>
-</c:forEach>
-</table>
-</div>
-</div>
-<%} %>
-
+<%}
+%>
 

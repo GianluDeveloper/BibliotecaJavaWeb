@@ -46,83 +46,41 @@ if(type.equals("Iscrizioni")){
 		</form>
 	</div>
 </div>
-<%}else if(type.equals("TipoMovimento")){
+<%}else if(type.equals("Corsi")){
 	%>
-	
-<div>
-	<h2>Inserisci Nuovo Tipo Movimento</h2>
 	<div>
-		<form method="POST" action="#" data-action="Dipendenti:doInsert" onsubmit="return handleForm(this)">
-			
-	        <label for="nome">Nome nuovo movimento <span style="color:red;">*</span></label><br />
-	        <input
-	        
-	          type="text"
-	          name="descrizione"
-	          placeholder="Descrizione..."
-	          required
-	        /><br />
-	       
-		 <br /><button type="submit">Invia dati</button>
-        <input type="hidden" name="azioneEwallet" value="doInsert" />
-        <input type="hidden" name="azione" value="ewallet" />
-        <input type="hidden" name="tipo" value="TipoMovimento" />
-		</form>
+		<h2>Inserisci Nuovo Corso</h2>
+		<div>
+			<form method="POST" action="#" data-action="CorsiEJB:doInsert" onsubmit="return handleForm(this)">
+				
+		        <label for="nome">Nome Corso <span style="color:red;">*</span></label><br />
+		        <input
+		        
+		          type="text"
+		          name="nomeCorso"
+		          placeholder="Nome Corso..."
+		          required
+		        /><br />
+		        <label for="nome">Data Inizio <span style="color:red;">*</span></label><br />
+		        <input
+		          type="date"
+		          name="dataInizio"
+		          placeholder="Data Inizio..."
+		          required
+		        /><br />
+		        <label for="nome">Data Fine <span style="color:red;">*</span></label><br />
+		        <input
+		          type="date"
+		          name="dataFine"
+		          placeholder="Data Fine..."
+		          required
+		        /><br />
+			 <br /><button type="submit">Invia dati</button>
+	        <input type="hidden" name="azione" value="doInsert" />
+	        <input type="hidden" name="type" value="<%=type %>" />
+			</form>
+		</div>
 	</div>
-</div>	
-	
-	
-	
-	<%
-}else if(type.equals("Movimenti")){
-	%>
-	
-<div>
-<h2>Nuovo Movimento</h2>
-<div>
-	<form method="POST" action="#" data-action="Dipendenti:update" onsubmit="return handleForm(this)">
-		
-        <label for="nome">Iban <span style="color:red;">*</span></label><br />
-        <input
-         value="<% out.print(id==null?"":id); %>"
-	          <%out.print(id==null?"":"DISABLED"); %>
-          type="text"
-          name="iban"
-          placeholder="Iban..."
-          required
-        /><br />
-        <label for="nome">Importo <span style="color:red;">*</span></label><br />
-        <input
-          type="text"
-          name="importo"
-          placeholder="Importo..."
-          required
-        /><br />
-        <label for="nome">Data Movimento <span style="color:red;">*</span></label><br />
-        <input
-          type="date"
-          name="dataMovimento"
-          placeholder="Data Movimento..."
-          required
-        /><br />
-        <label for="nome">ID Tipo Movimento <span style="color:red;">*</span></label><br />
-        <input
-          type="text"
-          name="idTipoMovimento"
-          placeholder="ID Tipo Movimento..."
-          required
-        /><br />
-	 <br /><button type="submit">Invia dati</button>
-    <input type="hidden" name="azioneEwallet" value="doInsert" />
-    <input type="hidden" name="azione" value="ewallet" />
-    <input type="hidden" name="tipo" value="Movimenti" />
-	</form>
-</div>
-</div>
-	
-	
-	<%
-}
-
+	<%}
 
 %>

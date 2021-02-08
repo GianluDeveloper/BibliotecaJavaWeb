@@ -158,6 +158,28 @@
 </form>
 	</div></div>
 	<%
+}else if(type.equals("Corsi")){
+	%>
+	<div>
+
+
+<h2>Ricerca Corsi</h2>
+<div>
+	<form method="POST" data-action="CorsiEJB:findBykv" action="#" onsubmit="return handleForm(this)">
+	<label for="k">Campo di ricerca:</label><br/>
+	<select name="k" id="k">
+		<option value="idCorso">idCorso</option> 	
+		<option value="nomeCorso">nomeCorso</option>
+		<option value="dataInizio">dataInizio</option>
+		<option value="dataFine">dataFine</option>
+	</select><br/>
+	<input type="text" placeholder="Ricerca..." name="v" required/><br/>
+	<button type="submit">Trova</button>
+	<input type="hidden" name="azione" value="doSearch"/>
+	<input type="hidden" name="type" value="Corsi"/>
+</form>
+	</div></div>
+	<%
 }
 
 %>
