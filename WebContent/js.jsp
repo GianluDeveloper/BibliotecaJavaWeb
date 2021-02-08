@@ -243,7 +243,25 @@ const updateMain = async (actionName) => {
       "${pageContext.request.contextPath}/Dipendenti?azione=ewallet&azioneEwallet=findAll&tipo=ContoCorrente&_=" +
         new Date().getTime()
     );
-  } else {
+  }  else if (actionName == "IscrizioniAll") {
+    data = await fetch(
+      "${pageContext.request.contextPath}/CorsiEJB?type=Iscrizioni&azione=findAll&_=" +
+        new Date().getTime()
+    );
+  }
+   else if (actionName == "DocentiAll") {
+    data = await fetch(
+      "${pageContext.request.contextPath}/CorsiEJB?type=Docenti&azione=findAll&_=" +
+        new Date().getTime()
+    );
+  }
+   else if (actionName == "CorsiAll") {
+    data = await fetch(
+      "${pageContext.request.contextPath}/CorsiEJB?type=Corsi&azione=findAll&_=" +
+        new Date().getTime()
+    );
+  }
+  else {
     return;
   }
 

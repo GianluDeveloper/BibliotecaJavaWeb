@@ -132,12 +132,32 @@
 	<input type="hidden" name="azione" value="ewallet"/>
 	<input type="hidden" name="tipo" value="ContoCorrente"/>
 	<input type="hidden" name="type" value="ContoCorrente"/>
-	<input type="hidden" name="azioneEwallet" value="doSearch"/>
+	<input type="hidden" findname="azioneEwallet" value="doSearch"/>
+</form>
+	</div></div>
+	<%
+}else if(type.equals("Iscrizioni")){
+	%>
+	<div>
+
+
+<h2>Ricerca Iscrizioni Corsi</h2>
+<div>
+	<form method="POST" data-action="CorsiEJB:findBykv" action="#" onsubmit="return handleForm(this)">
+	<label for="k">Campo di ricerca:</label><br/>
+	<select name="k" id="k">
+		<option value="idIscrizione">idIscrizione</option> 	
+		<option value="idDipendente">idDipendente</option>
+		<option value="idDocente">idDocente</option>
+		<option value="idCorso">idCorso</option>
+	</select><br/>
+	<input type="text" placeholder="Ricerca..." name="v" required/><br/>
+	<button type="submit">Trova</button>
+	<input type="hidden" name="azione" value="doSearch"/>
+	<input type="hidden" name="type" value="Iscrizioni"/>
 </form>
 	</div></div>
 	<%
 }
-
-
 
 %>

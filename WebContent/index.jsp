@@ -74,6 +74,20 @@
         	<div class="azione"><a href="#" data-link="ContoCorrenteFind">Lista Movimenti</a></div>
         	<div class="azione"><a href="#" data-link="ContoCorrenteAll">Lista Conti Correnti</a></div>
         </div>
+        
+        
+        
+        
+        
+        <div class="oggettoAside">
+          <h4>Corsi</h4>
+		  <div class="azione"><a href="#" data-link="CorsiAll">Lista Corsi</a></div>
+		  <div class="azione"><a href="#" data-link="DocentiAll">Lista Docenti</a></div>
+		  <div class="azione"><a href="#" data-link="IscrizioniAll">Lista Iscrizioni</a></div>
+        </div>
+        
+        
+        
       </aside>
       <main>
         <section>
@@ -207,6 +221,27 @@
             >
           </div>
         </section>
+        
+        
+        <section>
+          <h2>Corsi</h2>
+          <div class="azione">
+            <a href="#"  data-link="CorsiAll"
+              ><em class="fa fa-graduation-cap fa-fw"></em>&nbsp;Lista Corsi</a
+            >
+          </div>
+          <div class="azione">
+            <a href="#"  data-link="DocentiAll"
+              ><em class="fa fa-chalkboard-teacher fa-fw"></em>&nbsp;Lista Docenti</a
+            >
+          </div>
+          <div class="azione">
+            <a href="#"  data-link="IscrizioniAll" 
+              ><em class="fa fa-clipboard-list fa-fw"></em>&nbsp;Lista Iscrizioni</a
+            >
+          </div>
+        </section>
+        
       </main>
       <footer>
         &copy; 2021
