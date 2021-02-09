@@ -8,7 +8,12 @@
 package service;
 
 public class Movimenti  implements java.io.Serializable {
-    private java.lang.String dataMovimento;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -8474177821774223397L;
+
+	private java.lang.String dataMovimento;
 
     private int iban;
 
@@ -135,7 +140,8 @@ public class Movimenti  implements java.io.Serializable {
     }
 
     private java.lang.Object __equalsCalc = null;
-    public synchronized boolean equals(java.lang.Object obj) {
+    @SuppressWarnings("unused")
+	public synchronized boolean equals(java.lang.Object obj) {
         if (!(obj instanceof Movimenti)) return false;
         Movimenti other = (Movimenti) obj;
         if (obj == null) return false;
@@ -224,7 +230,8 @@ public class Movimenti  implements java.io.Serializable {
     /**
      * Get Custom Serializer
      */
-    public static org.apache.axis.encoding.Serializer getSerializer(
+    @SuppressWarnings("rawtypes")
+	public static org.apache.axis.encoding.Serializer getSerializer(
            java.lang.String mechType, 
            java.lang.Class _javaType,  
            javax.xml.namespace.QName _xmlType) {
@@ -236,7 +243,8 @@ public class Movimenti  implements java.io.Serializable {
     /**
      * Get Custom Deserializer
      */
-    public static org.apache.axis.encoding.Deserializer getDeserializer(
+    @SuppressWarnings("rawtypes")
+	public static org.apache.axis.encoding.Deserializer getDeserializer(
            java.lang.String mechType, 
            java.lang.Class _javaType,  
            javax.xml.namespace.QName _xmlType) {

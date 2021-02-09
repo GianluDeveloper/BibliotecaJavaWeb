@@ -458,7 +458,7 @@ public class DipendentiCtr extends HttpServlet {
 		}
 	}
 	// REST version done
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "unused" })
 	private void ewalletContoCorrenteDipendenteRest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, InstantiationException, IllegalAccessException, ClassNotFoundException {
 		String Id = request.getParameter("id");
@@ -509,7 +509,7 @@ public class DipendentiCtr extends HttpServlet {
 	}
 
 	// REST version done
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "unused" })
 	private void ewalletContoCorrenteRest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException, InstantiationException, IllegalAccessException, ClassNotFoundException {
 
@@ -671,7 +671,7 @@ public class DipendentiCtr extends HttpServlet {
 	}
 
 	// REST version done
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "unused" })
 	private void ewalletTipoMovimentoRest(HttpServletRequest request, HttpServletResponse response) throws IOException,
 			ServletException, InstantiationException, IllegalAccessException, ClassNotFoundException {
 
@@ -784,7 +784,7 @@ public class DipendentiCtr extends HttpServlet {
 	}
 
 	// REST version done
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "unused" })
 	private void ewalletMovimentiRest(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException, InstantiationException, IllegalAccessException, ClassNotFoundException {
 		String azione = request.getParameter("azioneEwallet");

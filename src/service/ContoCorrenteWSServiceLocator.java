@@ -9,7 +9,12 @@ package service;
 
 public class ContoCorrenteWSServiceLocator extends org.apache.axis.client.Service implements service.ContoCorrenteWSService {
 
-    public ContoCorrenteWSServiceLocator() {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 6259257787653595855L;
+
+	public ContoCorrenteWSServiceLocator() {
     }
 
 
@@ -70,7 +75,8 @@ public class ContoCorrenteWSServiceLocator extends org.apache.axis.client.Servic
      * If this service has no port for the given interface,
      * then ServiceException is thrown.
      */
-    public java.rmi.Remote getPort(Class serviceEndpointInterface) throws javax.xml.rpc.ServiceException {
+    @SuppressWarnings("rawtypes")
+	public java.rmi.Remote getPort(Class serviceEndpointInterface) throws javax.xml.rpc.ServiceException {
         try {
             if (service.ContoCorrenteWS.class.isAssignableFrom(serviceEndpointInterface)) {
                 service.ContoCorrenteWSServiceSoapBindingStub _stub = new service.ContoCorrenteWSServiceSoapBindingStub(new java.net.URL(ContoCorrenteWSPort_address), this);
@@ -89,7 +95,8 @@ public class ContoCorrenteWSServiceLocator extends org.apache.axis.client.Servic
      * If this service has no port for the given interface,
      * then ServiceException is thrown.
      */
-    public java.rmi.Remote getPort(javax.xml.namespace.QName portName, Class serviceEndpointInterface) throws javax.xml.rpc.ServiceException {
+    @SuppressWarnings("rawtypes")
+	public java.rmi.Remote getPort(javax.xml.namespace.QName portName, Class serviceEndpointInterface) throws javax.xml.rpc.ServiceException {
         if (portName == null) {
             return getPort(serviceEndpointInterface);
         }
@@ -108,9 +115,11 @@ public class ContoCorrenteWSServiceLocator extends org.apache.axis.client.Servic
         return new javax.xml.namespace.QName("http://service/", "ContoCorrenteWSService");
     }
 
-    private java.util.HashSet ports = null;
+    @SuppressWarnings("rawtypes")
+	private java.util.HashSet ports = null;
 
-    public java.util.Iterator getPorts() {
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+	public java.util.Iterator getPorts() {
         if (ports == null) {
             ports = new java.util.HashSet();
             ports.add(new javax.xml.namespace.QName("http://service/", "ContoCorrenteWSPort"));

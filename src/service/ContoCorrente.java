@@ -8,7 +8,12 @@
 package service;
 
 public class ContoCorrente  implements java.io.Serializable {
-    private java.lang.String dataCreazione;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 6751146808873900252L;
+
+	private java.lang.String dataCreazione;
 
     private int iban;
 
@@ -111,7 +116,8 @@ public class ContoCorrente  implements java.io.Serializable {
     }
 
     private java.lang.Object __equalsCalc = null;
-    public synchronized boolean equals(java.lang.Object obj) {
+    @SuppressWarnings("unused")
+	public synchronized boolean equals(java.lang.Object obj) {
         if (!(obj instanceof ContoCorrente)) return false;
         ContoCorrente other = (ContoCorrente) obj;
         if (obj == null) return false;
@@ -192,7 +198,8 @@ public class ContoCorrente  implements java.io.Serializable {
     /**
      * Get Custom Serializer
      */
-    public static org.apache.axis.encoding.Serializer getSerializer(
+    @SuppressWarnings("rawtypes")
+	public static org.apache.axis.encoding.Serializer getSerializer(
            java.lang.String mechType, 
            java.lang.Class _javaType,  
            javax.xml.namespace.QName _xmlType) {
@@ -204,7 +211,8 @@ public class ContoCorrente  implements java.io.Serializable {
     /**
      * Get Custom Deserializer
      */
-    public static org.apache.axis.encoding.Deserializer getDeserializer(
+    @SuppressWarnings("rawtypes")
+	public static org.apache.axis.encoding.Deserializer getDeserializer(
            java.lang.String mechType, 
            java.lang.Class _javaType,  
            javax.xml.namespace.QName _xmlType) {

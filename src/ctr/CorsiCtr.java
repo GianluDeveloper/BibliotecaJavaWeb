@@ -10,13 +10,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dto.DocentiDto;
 import ejb.EJBCorsiRemote;
 import ejb.EJBDocentiRemote;
 import ejb.EJBIscrizioniRemote;
 import main.JavaDate;
-import model.Corsi;
-import model.Docenti;
-import model.Iscrizioni;
+import dto.CorsiDto;
+import dto.IscrizioniDto;
 import response.Response;
 import response.ResponseDao;
 import util.RicercaDb;
@@ -39,11 +39,11 @@ public class CorsiCtr extends HttpServlet {
 		case "findAll":
 			// ResponseDao<Corsi> corsi = bs.findAll(false);
 
-			ResponseDao<Iscrizioni> iscrizioni = bs3.findAll(false);
+			ResponseDao<IscrizioniDto> iscrizioni = bs3.findAll(false);
 
 			// ResponseDao<Docenti> docenti = bs2.findAll(false);
 
-			List<Iscrizioni> listaIscrizioni = iscrizioni.getList();
+			List<IscrizioniDto> listaIscrizioni = iscrizioni.getList();
 			request.getSession().setAttribute("lista", listaIscrizioni);
 			request.getRequestDispatcher("corsiLista.jsp").forward(request, response);
 			// response.getWriter().append("ok findAll iscrizioni");
@@ -61,8 +61,8 @@ public class CorsiCtr extends HttpServlet {
 			RicercaDb r = new RicercaDb();
 			r.setKey(k);
 			r.setValue(v);
-			ResponseDao<Iscrizioni> iscrizioniFind = bs3.find(r);
-			List<Iscrizioni> listaIscrizioniFind = iscrizioniFind.getList();
+			ResponseDao<IscrizioniDto> iscrizioniFind = bs3.find(r);
+			List<IscrizioniDto> listaIscrizioniFind = iscrizioniFind.getList();
 			request.getSession().setAttribute("lista", listaIscrizioniFind);
 			request.getRequestDispatcher("corsiLista.jsp").forward(request, response);
 
@@ -73,8 +73,8 @@ public class CorsiCtr extends HttpServlet {
 				response.getWriter().append("cancellazione non valida.");
 			}
 			int id = Integer.parseInt(Id);
-			ResponseDao<Iscrizioni> iscrizioniUpdateS = bs3.findById(id);
-			Iscrizioni IscrizioneUpdate = iscrizioniUpdateS.getList().get(0);
+			ResponseDao<IscrizioniDto> iscrizioniUpdateS = bs3.findById(id);
+			IscrizioniDto IscrizioneUpdate = iscrizioniUpdateS.getList().get(0);
 			request.getSession().setAttribute("oggetto", IscrizioneUpdate);
 			request.getRequestDispatcher("corsiUpdate.jsp").forward(request, response);
 
@@ -95,7 +95,7 @@ public class CorsiCtr extends HttpServlet {
 			int IdDipendenteU = Integer.parseInt(idDipendenteU);
 			int IdDocenteU = Integer.parseInt(idDocenteU);
 			int IdCorsoU = Integer.parseInt(idCorsoU);
-			Iscrizioni IscrDaInserireUpdate = new Iscrizioni(idU, IdDipendenteU, IdDocenteU, IdCorsoU);
+			IscrizioniDto IscrDaInserireUpdate = new IscrizioniDto(idU, IdDipendenteU, IdDocenteU, IdCorsoU);
 			Response iscrizioniUpdate = bs3.update(IscrDaInserireUpdate);
 			if (iscrizioniUpdate.getErrorCode() == 0) {
 				response.getWriter().append("<div><h2>Iscrizione aggiornata con successo</h2></div>");
@@ -111,7 +111,7 @@ public class CorsiCtr extends HttpServlet {
 				response.getWriter().append("cancellazione non valida.");
 			}
 			int idR = Integer.parseInt(IdR);
-			Iscrizioni tmp = new Iscrizioni();
+			IscrizioniDto tmp = new IscrizioniDto();
 			tmp.setIdIscrizione(idR);
 			Response iscrizioniRemove = bs3.delete(tmp);
 			if (iscrizioniRemove.getErrorCode() == 0) {
@@ -137,7 +137,7 @@ public class CorsiCtr extends HttpServlet {
 			int IdDipendente = Integer.parseInt(idDipendente);
 			int IdDocente = Integer.parseInt(idDocente);
 			int IdCorso = Integer.parseInt(idCorso);
-			Iscrizioni IscrDaInserire = new Iscrizioni(0, IdDipendente, IdDocente, IdCorso);
+			IscrizioniDto IscrDaInserire = new IscrizioniDto(0, IdDipendente, IdDocente, IdCorso);
 			Response iscrizioniInsert = bs3.insert(IscrDaInserire);
 			if (iscrizioniInsert.getErrorCode() == 0) {
 				response.getWriter().append("<div><h2>Iscrizione inserita con successo</h2></div>");
@@ -157,11 +157,11 @@ public class CorsiCtr extends HttpServlet {
 		case "findAll":
 			// ResponseDao<Corsi> corsi = bs.findAll(false);
 
-			ResponseDao<Corsi> iscrizioni = bs.findAll(false);
+			ResponseDao<CorsiDto> iscrizioni = bs.findAll(false);
 
 			// ResponseDao<Docenti> docenti = bs2.findAll(false);
 
-			List<Corsi> listaIscrizioni = iscrizioni.getList();
+			List<CorsiDto> listaIscrizioni = iscrizioni.getList();
 			request.getSession().setAttribute("lista", listaIscrizioni);
 			request.getRequestDispatcher("corsiLista.jsp").forward(request, response);
 			// response.getWriter().append("ok findAll iscrizioni");
@@ -179,8 +179,8 @@ public class CorsiCtr extends HttpServlet {
 			RicercaDb r = new RicercaDb();
 			r.setKey(k);
 			r.setValue(v);
-			ResponseDao<Corsi> iscrizioniFind = bs.find(r);
-			List<Corsi> listaIscrizioniFind = iscrizioniFind.getList();
+			ResponseDao<CorsiDto> iscrizioniFind = bs.find(r);
+			List<CorsiDto> listaIscrizioniFind = iscrizioniFind.getList();
 			request.getSession().setAttribute("lista", listaIscrizioniFind);
 			request.getRequestDispatcher("corsiLista.jsp").forward(request, response);
 
@@ -191,8 +191,8 @@ public class CorsiCtr extends HttpServlet {
 				response.getWriter().append("cancellazione non valida.");
 			}
 			int id = Integer.parseInt(Id);
-			ResponseDao<Corsi> iscrizioniUpdateS = bs.findById(id);
-			Corsi IscrizioneUpdate = iscrizioniUpdateS.getList().get(0);
+			ResponseDao<CorsiDto> iscrizioniUpdateS = bs.findById(id);
+			CorsiDto IscrizioneUpdate = iscrizioniUpdateS.getList().get(0);
 			String tmpFine = IscrizioneUpdate.getDataFine();
 			String tmpInizio = IscrizioneUpdate.getDataInizio();
 			IscrizioneUpdate.setDataInizio( new JavaDate().toWebFormat(tmpInizio));
@@ -217,7 +217,7 @@ public class CorsiCtr extends HttpServlet {
 			dataInizioU = new JavaDate().handleWebFormat(dataInizioU);
 			dataFineU = new JavaDate().handleWebFormat(dataFineU);
 			
-			Corsi IscrDaInserireUpdate = new Corsi(idU, nomeCorsoU, dataInizioU, dataFineU);
+			CorsiDto IscrDaInserireUpdate = new CorsiDto(idU, nomeCorsoU, dataInizioU, dataFineU);
 			Response iscrizioniUpdate = bs.update(IscrDaInserireUpdate);
 			if (iscrizioniUpdate.getErrorCode() == 0) {
 				response.getWriter().append("<div><h2>Corso aggiornato con successo</h2></div>");
@@ -233,7 +233,7 @@ public class CorsiCtr extends HttpServlet {
 				response.getWriter().append("cancellazione non valida.");
 			}
 			int idR = Integer.parseInt(IdR);
-			Corsi tmp = new Corsi();
+			CorsiDto tmp = new CorsiDto();
 			tmp.setIdCorso(idR);
 			Response iscrizioniRemove = bs.delete(tmp);
 			if (iscrizioniRemove.getErrorCode() == 0) {
@@ -259,7 +259,7 @@ public class CorsiCtr extends HttpServlet {
 			dataInizio = new JavaDate().handleWebFormat(dataInizio);
 			dataFine = new JavaDate().handleWebFormat(dataFine);
 			
-			Corsi IscrDaInserire = new Corsi(0, nomeCorso, dataInizio, dataFine);
+			CorsiDto IscrDaInserire = new CorsiDto(0, nomeCorso, dataInizio, dataFine);
 			Response iscrizioniInsert = bs.insert(IscrDaInserire);
 			if (iscrizioniInsert.getErrorCode() == 0) {
 				response.getWriter().append("<div><h2>Corso inserito con successo</h2></div>");
@@ -279,10 +279,10 @@ public class CorsiCtr extends HttpServlet {
 		switch (azione) {
 		case "findAll":
 
-			ResponseDao<Docenti> iscrizioni = bs2.findAll(false);
+			ResponseDao<DocentiDto> iscrizioni = bs2.findAll(false);
 
 
-			List<Docenti> listaIscrizioni = iscrizioni.getList();
+			List<DocentiDto> listaIscrizioni = iscrizioni.getList();
 			request.getSession().setAttribute("lista", listaIscrizioni);
 			request.getRequestDispatcher("corsiLista.jsp").forward(request, response);
 			break;
@@ -299,8 +299,8 @@ public class CorsiCtr extends HttpServlet {
 			RicercaDb r = new RicercaDb();
 			r.setKey(k);
 			r.setValue(v);
-			ResponseDao<Docenti> iscrizioniFind = bs2.find(r);
-			List<Docenti> listaIscrizioniFind = iscrizioniFind.getList();
+			ResponseDao<DocentiDto> iscrizioniFind = bs2.find(r);
+			List<DocentiDto> listaIscrizioniFind = iscrizioniFind.getList();
 			request.getSession().setAttribute("lista", listaIscrizioniFind);
 			request.getRequestDispatcher("corsiLista.jsp").forward(request, response);
 
@@ -311,8 +311,8 @@ public class CorsiCtr extends HttpServlet {
 				response.getWriter().append("cancellazione non valida.");
 			}
 			int id = Integer.parseInt(Id);
-			ResponseDao<Docenti> iscrizioniUpdateS = bs2.findById(id);
-			Docenti IscrizioneUpdate = iscrizioniUpdateS.getList().get(0);
+			ResponseDao<DocentiDto> iscrizioniUpdateS = bs2.findById(id);
+			DocentiDto IscrizioneUpdate = iscrizioniUpdateS.getList().get(0);
 			request.getSession().setAttribute("oggetto", IscrizioneUpdate);
 			request.getRequestDispatcher("corsiUpdate.jsp").forward(request, response);
 
@@ -330,7 +330,7 @@ public class CorsiCtr extends HttpServlet {
 				return;
 			}
 			int IdCorsoU = Integer.parseInt(idCorsoU);
-			Docenti IscrDaInserireUpdate = new Docenti(idU, IdCorsoU, nomeDocente);
+			DocentiDto IscrDaInserireUpdate = new DocentiDto(idU, IdCorsoU, nomeDocente);
 			Response iscrizioniUpdate = bs2.update(IscrDaInserireUpdate);
 			if (iscrizioniUpdate.getErrorCode() == 0) {
 				response.getWriter().append("<div><h2>Docente aggiornato con successo</h2></div>");
@@ -346,7 +346,7 @@ public class CorsiCtr extends HttpServlet {
 				response.getWriter().append("cancellazione non valida.");
 			}
 			int idR = Integer.parseInt(IdR);
-			Docenti tmp = new Docenti();
+			DocentiDto tmp = new DocentiDto();
 			tmp.setIdDocente(idR);
 			Response iscrizioniRemove = bs2.delete(tmp);
 			if (iscrizioniRemove.getErrorCode() == 0) {
@@ -369,7 +369,7 @@ public class CorsiCtr extends HttpServlet {
 				return;
 			}
 			int IdCorso = Integer.parseInt(idCorso);
-			Docenti IscrDaInserire = new Docenti(0, IdCorso, nomeDocenteI);
+			DocentiDto IscrDaInserire = new DocentiDto(0, IdCorso, nomeDocenteI);
 			Response iscrizioniInsert = bs2.insert(IscrDaInserire);
 			if (iscrizioniInsert.getErrorCode() == 0) {
 				response.getWriter().append("<div><h2>Docente inserito con successo</h2></div>");

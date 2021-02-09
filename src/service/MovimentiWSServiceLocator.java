@@ -9,7 +9,12 @@ package service;
 
 public class MovimentiWSServiceLocator extends org.apache.axis.client.Service implements service.MovimentiWSService {
 
-    public MovimentiWSServiceLocator() {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 7006298408419273819L;
+
+	public MovimentiWSServiceLocator() {
     }
 
 
@@ -70,7 +75,8 @@ public class MovimentiWSServiceLocator extends org.apache.axis.client.Service im
      * If this service has no port for the given interface,
      * then ServiceException is thrown.
      */
-    public java.rmi.Remote getPort(Class serviceEndpointInterface) throws javax.xml.rpc.ServiceException {
+    @SuppressWarnings("rawtypes")
+	public java.rmi.Remote getPort(Class serviceEndpointInterface) throws javax.xml.rpc.ServiceException {
         try {
             if (service.MovimentiWS.class.isAssignableFrom(serviceEndpointInterface)) {
                 service.MovimentiWSServiceSoapBindingStub _stub = new service.MovimentiWSServiceSoapBindingStub(new java.net.URL(MovimentiWSPort_address), this);
@@ -89,7 +95,8 @@ public class MovimentiWSServiceLocator extends org.apache.axis.client.Service im
      * If this service has no port for the given interface,
      * then ServiceException is thrown.
      */
-    public java.rmi.Remote getPort(javax.xml.namespace.QName portName, Class serviceEndpointInterface) throws javax.xml.rpc.ServiceException {
+    @SuppressWarnings("rawtypes")
+	public java.rmi.Remote getPort(javax.xml.namespace.QName portName, Class serviceEndpointInterface) throws javax.xml.rpc.ServiceException {
         if (portName == null) {
             return getPort(serviceEndpointInterface);
         }
@@ -108,9 +115,11 @@ public class MovimentiWSServiceLocator extends org.apache.axis.client.Service im
         return new javax.xml.namespace.QName("http://service/", "MovimentiWSService");
     }
 
-    private java.util.HashSet ports = null;
+    @SuppressWarnings("rawtypes")
+	private java.util.HashSet ports = null;
 
-    public java.util.Iterator getPorts() {
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+	public java.util.Iterator getPorts() {
         if (ports == null) {
             ports = new java.util.HashSet();
             ports.add(new javax.xml.namespace.QName("http://service/", "MovimentiWSPort"));
