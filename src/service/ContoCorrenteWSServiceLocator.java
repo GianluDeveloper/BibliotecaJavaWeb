@@ -27,7 +27,7 @@ public class ContoCorrenteWSServiceLocator extends org.apache.axis.client.Servic
     }
 
     // Use to get a proxy class for ContoCorrenteWSPort
-    private java.lang.String ContoCorrenteWSPort_address = "http://localhost:8080/EWalletBiblioteca/ContoCorrenteWS";
+    private java.lang.String ContoCorrenteWSPort_address = "http://localhost:8080/EWallet-0.1/ContoCorrenteWS";
 
     public java.lang.String getContoCorrenteWSPortAddress() {
         return ContoCorrenteWSPort_address;

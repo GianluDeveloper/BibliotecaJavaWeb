@@ -27,7 +27,7 @@ public class MovimentiWSServiceLocator extends org.apache.axis.client.Service im
     }
 
     // Use to get a proxy class for MovimentiWSPort
-    private java.lang.String MovimentiWSPort_address = "http://localhost:8080/EWalletBiblioteca/MovimentiWS";
+    private java.lang.String MovimentiWSPort_address = "http://localhost:8080/EWallet-0.1/MovimentiWS";
 
     public java.lang.String getMovimentiWSPortAddress() {
         return MovimentiWSPort_address;
