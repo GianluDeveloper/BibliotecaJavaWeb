@@ -1,5 +1,5 @@
 /**
- * MovimentiWSServiceLocator.java
+ * ContoCorrenteWSServiceLocator.java
  *
  * This file was auto-generated from WSDL
  * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
@@ -7,58 +7,58 @@
 
 package service;
 
-public class MovimentiWSServiceLocator extends org.apache.axis.client.Service implements service.MovimentiWSService {
+public class ContoCorrenteWSServiceLocator extends org.apache.axis.client.Service implements service.ContoCorrenteWSService {
 
     /**
 	 * 
 	 */
-	private static final long serialVersionUID = 7006298408419273819L;
+	private static final long serialVersionUID = 6259257787653595855L;
 
-	public MovimentiWSServiceLocator() {
+	public ContoCorrenteWSServiceLocator() {
     }
 
 
-    public MovimentiWSServiceLocator(org.apache.axis.EngineConfiguration config) {
+    public ContoCorrenteWSServiceLocator(org.apache.axis.EngineConfiguration config) {
         super(config);
     }
 
-    public MovimentiWSServiceLocator(java.lang.String wsdlLoc, javax.xml.namespace.QName sName) throws javax.xml.rpc.ServiceException {
+    public ContoCorrenteWSServiceLocator(java.lang.String wsdlLoc, javax.xml.namespace.QName sName) throws javax.xml.rpc.ServiceException {
         super(wsdlLoc, sName);
     }
 
-    // Use to get a proxy class for MovimentiWSPort
-    private java.lang.String MovimentiWSPort_address = "http://localhost:8080/EWallet-0.1/MovimentiWS";
+    // Use to get a proxy class for ContoCorrenteWSPort
+    private java.lang.String ContoCorrenteWSPort_address = "http://localhost:8080/EWalletBiblioteca/ContoCorrenteWS";
 
-    public java.lang.String getMovimentiWSPortAddress() {
-        return MovimentiWSPort_address;
+    public java.lang.String getContoCorrenteWSPortAddress() {
+        return ContoCorrenteWSPort_address;
     }
 
     // The WSDD service name defaults to the port name.
-    private java.lang.String MovimentiWSPortWSDDServiceName = "MovimentiWSPort";
+    private java.lang.String ContoCorrenteWSPortWSDDServiceName = "ContoCorrenteWSPort";
 
-    public java.lang.String getMovimentiWSPortWSDDServiceName() {
-        return MovimentiWSPortWSDDServiceName;
+    public java.lang.String getContoCorrenteWSPortWSDDServiceName() {
+        return ContoCorrenteWSPortWSDDServiceName;
     }
 
-    public void setMovimentiWSPortWSDDServiceName(java.lang.String name) {
-        MovimentiWSPortWSDDServiceName = name;
+    public void setContoCorrenteWSPortWSDDServiceName(java.lang.String name) {
+        ContoCorrenteWSPortWSDDServiceName = name;
     }
 
-    public service.MovimentiWS getMovimentiWSPort() throws javax.xml.rpc.ServiceException {
+    public service.ContoCorrenteWS getContoCorrenteWSPort() throws javax.xml.rpc.ServiceException {
        java.net.URL endpoint;
         try {
-            endpoint = new java.net.URL(MovimentiWSPort_address);
+            endpoint = new java.net.URL(ContoCorrenteWSPort_address);
         }
         catch (java.net.MalformedURLException e) {
             throw new javax.xml.rpc.ServiceException(e);
         }
-        return getMovimentiWSPort(endpoint);
+        return getContoCorrenteWSPort(endpoint);
     }
 
-    public service.MovimentiWS getMovimentiWSPort(java.net.URL portAddress) throws javax.xml.rpc.ServiceException {
+    public service.ContoCorrenteWS getContoCorrenteWSPort(java.net.URL portAddress) throws javax.xml.rpc.ServiceException {
         try {
-            service.MovimentiWSServiceSoapBindingStub _stub = new service.MovimentiWSServiceSoapBindingStub(portAddress, this);
-            _stub.setPortName(getMovimentiWSPortWSDDServiceName());
+            service.ContoCorrenteWSServiceSoapBindingStub _stub = new service.ContoCorrenteWSServiceSoapBindingStub(portAddress, this);
+            _stub.setPortName(getContoCorrenteWSPortWSDDServiceName());
             return _stub;
         }
         catch (org.apache.axis.AxisFault e) {
@@ -66,8 +66,8 @@ public class MovimentiWSServiceLocator extends org.apache.axis.client.Service im
         }
     }
 
-    public void setMovimentiWSPortEndpointAddress(java.lang.String address) {
-        MovimentiWSPort_address = address;
+    public void setContoCorrenteWSPortEndpointAddress(java.lang.String address) {
+        ContoCorrenteWSPort_address = address;
     }
 
     /**
@@ -78,9 +78,9 @@ public class MovimentiWSServiceLocator extends org.apache.axis.client.Service im
     @SuppressWarnings("rawtypes")
 	public java.rmi.Remote getPort(Class serviceEndpointInterface) throws javax.xml.rpc.ServiceException {
         try {
-            if (service.MovimentiWS.class.isAssignableFrom(serviceEndpointInterface)) {
-                service.MovimentiWSServiceSoapBindingStub _stub = new service.MovimentiWSServiceSoapBindingStub(new java.net.URL(MovimentiWSPort_address), this);
-                _stub.setPortName(getMovimentiWSPortWSDDServiceName());
+            if (service.ContoCorrenteWS.class.isAssignableFrom(serviceEndpointInterface)) {
+                service.ContoCorrenteWSServiceSoapBindingStub _stub = new service.ContoCorrenteWSServiceSoapBindingStub(new java.net.URL(ContoCorrenteWSPort_address), this);
+                _stub.setPortName(getContoCorrenteWSPortWSDDServiceName());
                 return _stub;
             }
         }
@@ -101,8 +101,8 @@ public class MovimentiWSServiceLocator extends org.apache.axis.client.Service im
             return getPort(serviceEndpointInterface);
         }
         java.lang.String inputPortName = portName.getLocalPart();
-        if ("MovimentiWSPort".equals(inputPortName)) {
-            return getMovimentiWSPort();
+        if ("ContoCorrenteWSPort".equals(inputPortName)) {
+            return getContoCorrenteWSPort();
         }
         else  {
             java.rmi.Remote _stub = getPort(serviceEndpointInterface);
@@ -112,7 +112,7 @@ public class MovimentiWSServiceLocator extends org.apache.axis.client.Service im
     }
 
     public javax.xml.namespace.QName getServiceName() {
-        return new javax.xml.namespace.QName("http://service/", "MovimentiWSService");
+        return new javax.xml.namespace.QName("http://service/", "ContoCorrenteWSService");
     }
 
     @SuppressWarnings("rawtypes")
@@ -122,7 +122,7 @@ public class MovimentiWSServiceLocator extends org.apache.axis.client.Service im
 	public java.util.Iterator getPorts() {
         if (ports == null) {
             ports = new java.util.HashSet();
-            ports.add(new javax.xml.namespace.QName("http://service/", "MovimentiWSPort"));
+            ports.add(new javax.xml.namespace.QName("http://service/", "ContoCorrenteWSPort"));
         }
         return ports.iterator();
     }
@@ -132,8 +132,8 @@ public class MovimentiWSServiceLocator extends org.apache.axis.client.Service im
     */
     public void setEndpointAddress(java.lang.String portName, java.lang.String address) throws javax.xml.rpc.ServiceException {
         
-if ("MovimentiWSPort".equals(portName)) {
-            setMovimentiWSPortEndpointAddress(address);
+if ("ContoCorrenteWSPort".equals(portName)) {
+            setContoCorrenteWSPortEndpointAddress(address);
         }
         else 
 { // Unknown Port Name

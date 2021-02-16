@@ -22,7 +22,7 @@ public class TipoMovimentoWSServiceLocator extends org.apache.axis.client.Servic
     }
 
     // Use to get a proxy class for TipoMovimentoWSPort
-    private java.lang.String TipoMovimentoWSPort_address = "http://localhost:8080/EWallet-0.1/TipoMovimentoWS";
+    private java.lang.String TipoMovimentoWSPort_address = "http://localhost:8080/EWalletBiblioteca/TipoMovimentoWS";
 
     public java.lang.String getTipoMovimentoWSPortAddress() {
         return TipoMovimentoWSPort_address;
