@@ -79,12 +79,12 @@
 			<artifactId>org.apache.axis</artifactId>
 			<version>1.4.LIFERAY-PATCHED-6</version>
 		</dependency>
-<!-- https://mvnrepository.com/artifact/commons-discovery/commons-discovery -->
-<dependency>
-    <groupId>commons-discovery</groupId>
-    <artifactId>commons-discovery</artifactId>
-    <version>0.5</version>
-</dependency>
+		<!-- https://mvnrepository.com/artifact/commons-discovery/commons-discovery -->
+		<dependency>
+			<groupId>commons-discovery</groupId>
+			<artifactId>commons-discovery</artifactId>
+			<version>0.5</version>
+		</dependency>
 
 
 	</dependencies>
