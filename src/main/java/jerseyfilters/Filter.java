@@ -12,7 +12,8 @@ public class Filter implements ContainerResponseFilter {
 	public ContainerResponse filter(ContainerRequest request, ContainerResponse response) {
 
 		response.getHttpHeaders().add("Access-Control-Allow-Origin", "*");
-
+		response.getHttpHeaders().add("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
+		response.getHttpHeaders().add("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
 		return response;
 	}
 }
