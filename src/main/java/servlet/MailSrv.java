@@ -19,14 +19,14 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class MDBProducer
  */
-@WebServlet("/MDBProducer")
-public class MDBProducer extends HttpServlet {
+@WebServlet("/MailSrv")
+public class MailSrv extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public MDBProducer() {
+	public MailSrv() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -39,28 +39,32 @@ public class MDBProducer extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
-		final String QUEUE_LOOKUP = "java:/jms/queue/CODA";
+		final String QUEUE_LOOKUP = "java:/jms/queue/MailQueue";
 		final String CONNECTION_FACTORY = "ConnectionFactory";
-		String tmp = request.getParameter("tmp");
-		try {
-			Context context = new InitialContext();
-			Queue queue = (Queue) context.lookup(QUEUE_LOOKUP);
-			QueueConnectionFactory factory = (QueueConnectionFactory) context.lookup(CONNECTION_FACTORY);
-			QueueConnection connection = factory.createQueueConnection();
-			QueueSession session = connection.createQueueSession(false, QueueSession.AUTO_ACKNOWLEDGE);
-			QueueSender sender = session.createSender(queue);
-			TextMessage message = session.createTextMessage();
-			message.setText("parametro get -> " + tmp);
-			sender.send(message);
-			connection.close();
-			session.close();
+		String tmp = request.getParameter("message");
+		if (tmp == null) {
+			request.getRequestDispatcher("InviaEmail.jsp").forward(request, response);
 
-		} catch (Exception gen) {
-			gen.printStackTrace();
+		} else {
+			try {
+				Context context = new InitialContext();
+				Queue queue = (Queue) context.lookup(QUEUE_LOOKUP);
+				QueueConnectionFactory factory = (QueueConnectionFactory) context.lookup(CONNECTION_FACTORY);
+				QueueConnection connection = factory.createQueueConnection();
+				QueueSession session = connection.createQueueSession(false, QueueSession.AUTO_ACKNOWLEDGE);
+				QueueSender sender = session.createSender(queue);
+				TextMessage message = session.createTextMessage();
+				message.setText("parametro get -> " + tmp);
+				sender.send(message);
+				connection.close();
+				session.close();
+
+			} catch (Exception gen) {
+				gen.printStackTrace();
+			}
+
+			request.getRequestDispatcher("InviaEmail.jsp").forward(request, response);
 		}
-
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-
 	}
 
 	/**
