@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/css; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<spring:url value="/resources/css/Gidole-Regular.ttf" var="fonts" />
 @font-face{
     font-family: "Gidole";
-    src:url("${pageContext.request.contextPath}/css/Gidole-Regular.ttf");
+    src:url("${ fonts }");
 }
 
 .container {
