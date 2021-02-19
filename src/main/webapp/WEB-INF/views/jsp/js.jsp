@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <spring:url value="/resources/insertCliente.html" var="insertCliente" />
+<spring:url value="/Cliente/findByKv" var="findCliente" />
 
 const asideClick = (e) => {
   console.log(e);
@@ -221,7 +222,7 @@ const updateMain = async (actionName) => {
     );
   } else if (actionName == "ClienteFind") {
     data = await fetch(
-      "${pageContext.request.contextPath}/findBykv.jsp?type=Cliente&_=" +
+      "${findCliente}?type=Cliente&_=" +
         new Date().getTime()
     );
   } else if (actionName == "ClienteAll") {

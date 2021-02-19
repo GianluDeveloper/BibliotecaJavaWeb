@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
@@ -11,10 +12,34 @@ import dao.ClienteDao;
 import model.Cliente;
 
 @Controller
+@RequestMapping("/Cliente")
 public class ClienteCtr extends WebMvcConfigurerAdapter {
 
 	private ClienteDao clienteDao = new ClienteDao();
 
+	@RequestMapping("/findByKv")
+	public ModelAndView findByKv(ModelAndView model) {
+
+//		ModelAndView model = new ModelAndView();
+		model.setViewName("findBykv");
+
+		return model;
+	}
+
+	@RequestMapping("/find")
+	public ModelAndView find(@RequestParam(required = true) String k, @RequestParam(required = true) String v,
+			ModelAndView model) {
+
+		System.out.println(k + " -> " + v);
+		List<Cliente> res = this.clienteDao.findBykv(k, v);
+
+		model.setViewName("findAllClienti");
+		model.addObject("lista", res);
+
+		return model;
+	}
+
+////	
 //	@RequestMapping("/Cliente")
 //	public ModelAndView hello(@RequestParam(required = false) String nome, @RequestParam(required = false) String nome,
 //			@RequestParam(required = false) String cognome, @RequestParam(required = false) String telefono,
@@ -145,8 +170,8 @@ public class ClienteCtr extends WebMvcConfigurerAdapter {
 //		Cliente res = this.clienteDao.findById(id);
 //		return res;
 //	}
-	@RequestMapping("/Cliente/findAll")
-	public ModelAndView  findAll() {
+	@RequestMapping("/findAll")
+	public ModelAndView findAll() {
 		List<Cliente> res = clienteDao.findAll();
 
 		ModelAndView model = new ModelAndView();
@@ -170,7 +195,7 @@ public class ClienteCtr extends WebMvcConfigurerAdapter {
 //		html+="</table>";
 //		request.getSession().setAttribute("html", html);
 //		request.getRequestDispatcher("findAllClienti.jsp").forward(request,response);
-		
+
 		// response.getWriter().append(html);
 	}
 }
