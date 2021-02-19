@@ -11,11 +11,19 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class HelloSpring {
 
-	@RequestMapping(value = "/test", method = RequestMethod.GET)
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String printWelcome(ModelMap model) {
 
 		model.addAttribute("message", "Spring 3 MVC Hello World");
-		return "hello";
+		return "index";
+
+	}
+	
+	@RequestMapping(value = "/my.css", method = RequestMethod.GET)
+	public String myCss(ModelMap model) {
+
+//		model.addAttribute("message", "Spring 3 MVC Hello World");
+		return "css";
 
 	}
 
