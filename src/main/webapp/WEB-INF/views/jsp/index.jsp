@@ -3,6 +3,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <spring:url value="/resources/css/all.min.css" var="coreCss" />
 <spring:url value="/my.css" var="myCss" />
+<spring:url value="/scripts.js" var="myJs" />
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -133,8 +134,8 @@
 			<section>
 				<h2>Clienti</h2>
 				<div class="azione">
-					<a href="#" data-link="Cliente"><em
-						class="fa fa-plus fa-fw"></em>&nbsp;Inserisci cliente</a>
+					<a href="#" data-link="Cliente"><em class="fa fa-plus fa-fw"></em>&nbsp;Inserisci
+						cliente</a>
 				</div>
 				<!--           <div class="azione"> -->
 				<!--             <a href="#" -->
@@ -146,15 +147,15 @@
 						class="fa fa-search fa-fw"></em>&nbsp;Trova clienti</a>
 				</div>
 				<div class="azione">
-					<a href="#" data-link="ClienteAll"><em
-						class="fa fa-list fa-fw"></em>&nbsp;Lista clienti</a>
+					<a href="#" data-link="ClienteAll"><em class="fa fa-list fa-fw"></em>&nbsp;Lista
+						clienti</a>
 				</div>
 			</section>
 			<section>
 				<h2>Dipendenti</h2>
 				<div class="azione">
-					<a href="#" data-link="Dipendente"><em
-						class="fa fa-plus fa-fw"></em>&nbsp;Inserisci dipendente</a>
+					<a href="#" data-link="Dipendente"><em class="fa fa-plus fa-fw"></em>&nbsp;Inserisci
+						dipendente</a>
 				</div>
 				<!--           <div class="azione"> -->
 				<!--             <a href="#" -->
@@ -173,8 +174,8 @@
 			<section>
 				<h2>Turni</h2>
 				<div class="azione">
-					<a href="#" data-link="Turni"><em
-						class="fa fa-plus fa-fw"></em>&nbsp;Inserisci turno</a>
+					<a href="#" data-link="Turni"><em class="fa fa-plus fa-fw"></em>&nbsp;Inserisci
+						turno</a>
 				</div>
 				<!--           <div class="azione"> -->
 				<!--             <a href="#" -->
@@ -193,8 +194,8 @@
 			<section>
 				<h2>Libri</h2>
 				<div class="azione">
-					<a href="#" data-link="Libri"><em
-						class="fa fa-plus fa-fw"></em>&nbsp;Inserisci libro</a>
+					<a href="#" data-link="Libri"><em class="fa fa-plus fa-fw"></em>&nbsp;Inserisci
+						libro</a>
 				</div>
 				<!--           <div class="azione"> -->
 				<!--             <a href="#" -->
@@ -270,7 +271,8 @@
 			diritti sono riservati.
 		</footer>
 	</div>
-	<script type="text/javascript"
-		src="${pageContext.request.contextPath}/js.jsp"></script>
+
+	<script type="text/javascript" src="${myJs}"></script>
+
 </body>
 </html>

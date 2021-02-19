@@ -18,12 +18,20 @@ public class HelloSpring {
 		return "index";
 
 	}
-	
+
 	@RequestMapping(value = "/my.css", method = RequestMethod.GET)
 	public String myCss(ModelMap model) {
 
 //		model.addAttribute("message", "Spring 3 MVC Hello World");
 		return "css";
+
+	}
+
+	@RequestMapping(value = "/scripts.js", method = RequestMethod.GET)
+	public String myJs(ModelMap model) {
+
+//		model.addAttribute("message", "Spring 3 MVC Hello World");
+		return "js";
 
 	}
 
