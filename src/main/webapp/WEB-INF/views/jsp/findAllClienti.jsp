@@ -21,9 +21,9 @@
 <c:forEach items="${lista}" var="entry">
         <tr>
 		<td>${entry.idCliente}</td>
-		<td>${entry.nome}</td>
-		<td>${entry.cognome}</td>
-		<td>${entry.telefono}</td>
+		<td><c:out value="${entry.nome}" escapeXml="true"/></td>
+		<td><c:out value="${entry.cognome}" escapeXml="true"/></td>
+		<td><c:out value="${entry.telefono}" escapeXml="true"/></td>
 		<td>
       <a
         href="#${pageContext.request.contextPath}/update.jsp?type=Cliente&id=${entry.idCliente }"
