@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import redis.clients.jedis.Jedis;
+
 @Controller
 public class HelloSpring {
 
@@ -48,8 +50,13 @@ public class HelloSpring {
 
 	@RequestMapping("/helloDue")
 	public String hello(Model model) {
+		Jedis jedis = new Jedis();
 
-		model.addAttribute("msg", "CIAO");
+		Long resp = jedis.incr("java.ee");
+		
+		jedis.close();
+		
+		model.addAttribute("msg", "CIAO " + resp);
 
 		return "helloworld";
 
