@@ -26,8 +26,6 @@ docker-compose build
 docker-compose up 
 ```
 
-Esempio live:
-<https://gianlu.dev/JavaBiblioteca/>
 
 ***
 
